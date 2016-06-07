@@ -16,7 +16,7 @@ function Login()
 	}
 	$username = trim($_POST['username']);
 	$password = trim($_POST['password']);
-	echo "Usuario: $username y Contraseña: $password";
+	
 	//Tenemos que obtener el tipo de usuario que es
 	
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
@@ -26,7 +26,7 @@ function Login()
 	$tipoUser = '';
 	$idUser = '';
 	if ($result->num_rows == 1) {
-		
+		echo $result->num_rows;
 		$row = $result->fetch_assoc();
 		$tipoUser = $row['tipo'];
 		$idUser = $row['id'];
@@ -41,18 +41,18 @@ function Login()
 		$tipoUser => $idUser,
 	);
 	
-	session_start();
+	if(session_id() == '') {
+		session_start();
+	}
 		
 	$_SESSION['user'] = $array;
-		
-	echo "Hemos fijado la variable de sesion: $username";
 	
 		
 	$conn->close();
 	
-	RedirectToURL("$tipoUser.php", 3);
 	
-	return true;
+	
+	return $tipoUser;
 }
 
 
@@ -87,11 +87,21 @@ function Registro(){
 		}
 	}
 }
-
-
+if(session_id() == '') {
+    session_start();
+}
+if(isset($_SESSION['user'])){
+	foreach (array_keys($_SESSION['user']) as $field)
+		{
+			echo "Para volver a la pagina principal debe cerrar sesion";
+			RedirectToURL("$field.php",3);
+		}
+}
 if(isset($_POST['submit']))
 {
-	Login();  //Tipo de usuario
+	$tipoUser = Login(); //Tipo de usuario 
+	echo $tipoUser;
+	RedirectToURL("$tipoUser.php", 0);
 }
 
 if(isset($_POST['registro']))

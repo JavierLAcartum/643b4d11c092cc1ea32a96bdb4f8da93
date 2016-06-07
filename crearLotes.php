@@ -1,5 +1,7 @@
 <?php
-	session_start();//recogemos las variables de sesion
+	if(session_id() == '') {
+		session_start();
+	}
 	
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 
@@ -15,8 +17,11 @@
 		<input type="checkbox" name="<?php echo $row['id']; ?>" > <?php echo $row['nombre']?> </input>
 		<?php
 		}
-		?><input type="submit" name="crearLote">
+		?><input type="submit" name="crearLote" value="Crear lote">
+		<button onclick="location.href='subastador.php'"> Volver</button>
+		
 		</form>
+		
 		<?php
 
 	}else{

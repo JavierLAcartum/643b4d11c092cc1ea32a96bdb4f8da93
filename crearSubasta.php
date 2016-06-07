@@ -1,6 +1,8 @@
 <?php
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-	session_start();
+	if(session_id() == '') {
+		session_start();
+	}
 	$selectProductos = "SELECT id, nombre FROM productos WHERE idlote IS NULL AND idSubasta is NULL AND idusuario='".$_SESSION['user']['subastador']."'";
 	$resultProductos = $conn->query($selectProductos);
 	$selectLotes = "SELECT id, nombre FROM lotes WHERE idSubasta IS NULL AND idusuario='".$_SESSION['user']['subastador']."'";

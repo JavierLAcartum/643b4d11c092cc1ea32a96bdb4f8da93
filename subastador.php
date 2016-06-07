@@ -7,7 +7,9 @@ function RedirectToURL($url, $tiempo)
 function subirP(){
 	$nom = $_POST['nombreProducto'];
 	$des = $_POST['descripcionProducto'];
-	session_start();	
+	if(session_id() == '') {
+			session_start();
+	}	
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 	$selectProductos = ("SELECT nombre FROM productos WHERE nombre='$nom' AND idusuario='".$_SESSION['user']['subastador']."'");
 			$resultProductos = $conn->query($selectProductos);
@@ -103,7 +105,9 @@ function subirLote(){
 	//Mayor o igual que 4 porque tambien hay un campo nombre y el campo de enviar
 	echo "Numero de campos marcados en formulario: ".count($_POST);
 	
-	session_start();
+	if(session_id() == '') {
+		session_start();
+	}
 	
 	if(count($_POST)>=4){
 		$nombrelote = $_POST['nombreLote'];
@@ -208,7 +212,9 @@ function crearSubasta(){
 		$fechainicio = cambiarFormatoFecha($fechainicio);
 		$fechacierre = cambiarFormatoFecha($fechacierre);
 		
-		session_start();
+		if(session_id() == '') {
+			session_start();
+		}
 		$sql;
 		
 		if($precioinicial==""){		
@@ -292,7 +298,9 @@ function insertInDB($nombre, $descripcion, $imagen){
 
 function borrarProducto(){
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-	session_start();
+	if(session_id() == '') {
+		session_start();
+	}
 	
 	if(count($_POST)> 1){
 		foreach ($_POST['productoSeleccionado'] as $field){
@@ -329,6 +337,18 @@ function borrarProducto(){
 		return false;
 	}
 	
+}
+
+if(session_id() == '') {
+    session_start();
+}
+if(isset($_SESSION['user'])){
+	foreach (array_keys($_SESSION['user']) as $field)
+		{
+			if($field!="subastador"){
+				RedirectToURL("$field.php",0);
+			}
+		}
 }
 
 if(isset($_POST['subirProducto']))
@@ -376,13 +396,26 @@ if(isset($_POST['borrarProducto'])){
 		echo "Error al borrar producto";
 	}
 }
-if(!isset($_GET['page'])){
-	include("listaSubastas.php");
-	crearTablaSubastas('subastador');
+if(isset($_POST['salir'])){
+	
+	if(session_id() == '') {
+		session_start();
+	}
+	
+	$_SESSION['user']=NULL;
+	
+	if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+		);
+	}
+	
+	session_destroy();
+	
+	RedirectToURL("index.php", 0);
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -405,6 +438,9 @@ if(!isset($_GET['page'])){
 				<a href="subastador.php?page=crearSubasta">
 					<?php echo "Crear Subasta"?>
 				</a>
+				<a href="subastador.php?page=cerrarSesion">
+					<?php echo "Cerrar sesion"?>
+				</a>
 			</li>
 		</ul>
 		<div class="wrapper">
@@ -415,7 +451,8 @@ if(!isset($_GET['page'])){
 			</div>
 			<?php
 				if(!isset($_GET['page'])){
-					
+					include("listaSubastas.php");
+					crearTablaSubastas('subastador');
 				}else{
 					$page = $_GET['page'];
 					include("$page.php");

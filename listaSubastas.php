@@ -66,7 +66,9 @@
 		$selectSubastas;
 		$resultSubastas;
 		
-		session_start();
+		if(session_id() == '') {
+			session_start();
+		}
 		
 		if($tipoUsuario == ""){
 			$selectSubastas = "SELECT * FROM subastas ORDER BY fechacierre DESC";
