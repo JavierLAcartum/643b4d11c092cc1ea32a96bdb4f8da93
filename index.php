@@ -16,7 +16,6 @@ function Login()
 	}
 	$username = trim($_POST['username']);
 	$password = trim($_POST['password']);
-//paca la del pueblo
 	echo "Usuario: $username y Contraseña: $password";
 	//Tenemos que obtener el tipo de usuario que es
 	
