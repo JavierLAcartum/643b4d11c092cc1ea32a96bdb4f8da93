@@ -99,6 +99,10 @@ if(isset($_POST['registro']))
 	Registro();
 }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 	<meta charset="UTF-8">
@@ -147,7 +151,7 @@ if(isset($_POST['registro']))
 			</div>
 
 
-			<!-- ESTO DA WARNINGS!!!!!! ************
+			<!-- ESTO DA WARNINGS!!!!!! -->
 			<div>
 				<?php
 					if(!isset($_GET['page'])){
@@ -159,13 +163,24 @@ if(isset($_POST['registro']))
 					}
 				?>
 			</div>
-			*********************************** -->
 
 
 		</div>
 
 
+		<!-- Pie de pagina -->
+            <div id="footer">
+                <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
+                <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
+                <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
+                <a href="mailto:sestrn00@estudiantes.unileon.es">sestrn00@estudiantes.unileon.es</a> -
+                <a href="mailto:sleons00@estudiantes.unileon.es">sleons00@estudiantes.unileon.es</a>
+                <address> 02/06/2016 </address>
+            </div>
+            <!-- end #footer -->   
 
 
-	</body>
+
+		</body>
+
 	</html>
