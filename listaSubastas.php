@@ -72,7 +72,7 @@
 			$selectSubastas = "SELECT * FROM subastas ORDER BY fechacierre DESC";
 			$resultSubastas = $conn->query($selectSubastas);
 		}
-		
+				
 		else if($tipoUsuario == 'subastador'){
 			$selectSubastas = "SELECT * FROM subastas WHERE idsubastador = '".$_SESSION['user']['subastador']."' ORDER BY fechacierre DESC";
 			$resultSubastas = $conn->query($selectSubastas);
