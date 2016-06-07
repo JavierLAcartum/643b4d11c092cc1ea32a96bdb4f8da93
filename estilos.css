@@ -53,10 +53,29 @@ body {
     border: 1px solid #F7F7F7;
     font-size: 24px;
     border-radius: 5px;
-    margin-left: 1100px;
+    margin-left: 110px;
     padding: 5px;
     padding-right: 15px;
     padding-left: 15px;
+    margin-top: 15px;
+}
+
+#header form{
+    margin-left: 820px;
+}
+
+#header .buttonReg {
+    width: 150px;
+    color: #8B8B8B;
+    background: #F7F7F7;
+    border: 1px solid #8B8B8B;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-left: 885px;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 20px;
 }
 
 #butts{
