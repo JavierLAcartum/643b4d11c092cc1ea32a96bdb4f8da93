@@ -376,6 +376,12 @@ if(isset($_POST['borrarProducto'])){
 		echo "Error al borrar producto";
 	}
 }
+if(!isset($_GET['page'])){
+	include("listaSubastas.php");
+	crearTablaSubastas('subastador');
+}
+
+
 
 ?>
 

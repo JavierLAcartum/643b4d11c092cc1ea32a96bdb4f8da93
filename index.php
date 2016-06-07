@@ -133,6 +133,7 @@ if(isset($_POST['registro']))
 				<?php
 					if(!isset($_GET['page'])){
 						include("listaSubastas.php");
+						crearTablaSubastas("");
 					}else{
 						$page = $_GET['page'];
 						include("$page.php");
