@@ -388,31 +388,30 @@ if(!isset($_GET['page'])){
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>
-			SUBASTAS
-		</title>
+		<title>SUBASTAS</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
 	</head>
 	<body>
-		<ul>
-			<li style="float:left; padding-left:10%;">
-				<a class="active" href="subastador.php?page=subirProducto"><?php echo "subir producto"?></a>
-				<a href="subastador.php?page=crearLotes"><?php echo "crear lotes"?></a>
+
+		<div id="header">
+				<a class="active" href="subastador.php?page=subirProducto">
+					<button class="buttonSub"> Subir producto </button>
+				<a href="subastador.php?page=crearLotes">
+					<button class="buttonSub"> Crear lotes </button>
 				<a href="subastador.php?page=borrarProducto">
-					<?php echo "Borrar productos / lotes"?>
+					<button class="buttonSub"> Borrar productos / lotes </button>
 				</a>
 				<a href="subastador.php?page=crearSubasta">
-					<?php echo "Crear Subasta"?>
+					<button class="buttonSub"> Crear subasta </button>
 				</a>
-			</li>
-		</ul>
+		
+		</div>
+
 		<div class="wrapper">
 			<div id="num_table"	style="display:inline-block">
-				<h1 style="color:white">
-					Kenken
-				</h1>
 			</div>
+
 			<?php
 				if(!isset($_GET['page'])){
 					
@@ -421,9 +420,19 @@ if(!isset($_GET['page'])){
 					include("$page.php");
 				}
 			?>
-			<br>
-			<br>
-			
+
 		</div>
-	</body
-	</html>
+
+		<!-- Pie de pagina -->
+            <div id="footer">
+                <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
+                <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
+                <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
+                <a href="mailto:sestrn00@estudiantes.unileon.es">sestrn00@estudiantes.unileon.es</a> -
+                <a href="mailto:sleons00@estudiantes.unileon.es">sleons00@estudiantes.unileon.es</a>
+                <address> 09/06/2016 </address>
+            </div>
+            <!-- end #footer -->   
+
+	</body>
+</html>

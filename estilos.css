@@ -78,6 +78,20 @@ body {
     margin-top: 20px;
 }
 
+#header .buttonSub {
+    width: 300px;
+    color: #F7F7F7;
+    background: #8B8B8B;
+    border: 1px solid #F7F7F7;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-left: 110px;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
 #butts{
     font-family: "Arial";
     text-align: left;

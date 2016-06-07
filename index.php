@@ -175,7 +175,7 @@ if(isset($_POST['registro']))
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
                 <a href="mailto:sestrn00@estudiantes.unileon.es">sestrn00@estudiantes.unileon.es</a> -
                 <a href="mailto:sleons00@estudiantes.unileon.es">sleons00@estudiantes.unileon.es</a>
-                <address> 02/06/2016 </address>
+                <address> 09/06/2016 </address>
             </div>
             <!-- end #footer -->   
 
