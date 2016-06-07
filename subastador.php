@@ -16,17 +16,12 @@ function subirP(){
 			$resultLotes = $conn->query($selectLotes);
 			
 	if ($resultProductos->num_rows > 0) {	
-		while($resultProductos->fetch_assoc()) {
 			echo "Ya existe otro producto o lote con el mismo nombre.";
 				return false;
-		}
 	}
 	if ($resultLotes->num_rows > 0) {
-		while($resultLotes->fetch_assoc()) {
 			echo "Ya existe otro producto o lote con el mismo nombre.";
 			return false;
-			
-		}
 	}
 		
 	
@@ -226,7 +221,6 @@ function crearSubasta(){
 		if ($conn->query($sql) === TRUE){
 			$idSubasta = $conn->insert_id;
 			
-					echo $seleccion;
 			$selectProductos = ("SELECT nombre FROM productos WHERE nombre='$seleccion'");
 			$resultProductos = $conn->query($selectProductos);
 			$selectLotes = ("SELECT nombre FROM lotes WHERE nombre='$seleccion'");
@@ -296,6 +290,47 @@ function insertInDB($nombre, $descripcion, $imagen){
 }
 
 
+function borrarProducto(){
+	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+	session_start();
+	
+	if(count($_POST)> 1){
+		foreach ($_POST['productoSeleccionado'] as $field){
+			echo $field;
+				if($field!="borrarProducto"){
+					$deleteProducto = "DELETE FROM productos WHERE nombre='$field' AND idusuario = '".$_SESSION['user']['subastador']."'";					
+					$conn->query ($deleteProducto); //Si selecciona un producto, borrar producto
+					
+					$selectLote = "SELECT id FROM lotes WHERE nombre = '$field' AND idusuario = '".$_SESSION['user']['subastador']."'";
+					$resultSelectLote = $conn->query($selectLote);
+					if($resultSelectLote->num_rows >= 1){
+						
+						//Si selecciona un lote, primero se pone la idlote a NULL de los productos que pertenecían a ese lote 
+						//y después se borra el lote
+						
+						while($row = $resultSelectLote->fetch_assoc()) {
+							$idLoteActual = $row['id'];
+							$updateProducto = "UPDATE productos SET idlote=NULL WHERE idlote='$idLoteActual'";
+							$conn->query($updateProducto);
+						}
+					}
+					
+					$deleteLote = "DELETE FROM lotes WHERE nombre='$field' AND idusuario = '".$_SESSION['user']['subastador']."'";
+					$conn->query ($deleteLote);
+					
+					echo "Los productos o lotes seleccionados han sido borrados correctamente\n\n";					
+				}
+				 
+			}
+		return true;
+	}
+	else{
+		echo "No ha seleccionado ningún producto o lote para eliminar.";
+		return false;
+	}
+	
+}
+
 if(isset($_POST['subirProducto']))
 {
 	$sub = subirP();
@@ -329,8 +364,18 @@ if(isset($_REQUEST['crearSubasta'])){
 		}
 	}
 }
-		//recuperamos la variable de sesion
-		//session_start();
+if(isset($_POST['borrarProducto'])){
+	if(borrarProducto()==true){
+		echo "PRODUCTO BORRADO CORRECTAMENTE";
+		RedirectToURL('subastador.php', 3);
+	}else{
+		foreach (array_keys($_POST) as $field)
+		{
+			$_POST[$field] = '';
+		}
+		echo "Error al borrar producto";
+	}
+}
 
 ?>
 
@@ -348,6 +393,9 @@ if(isset($_REQUEST['crearSubasta'])){
 			<li style="float:left; padding-left:10%;">
 				<a class="active" href="subastador.php?page=subirProducto"><?php echo "subir producto"?></a>
 				<a href="subastador.php?page=crearLotes"><?php echo "crear lotes"?></a>
+				<a href="subastador.php?page=borrarProducto">
+					<?php echo "Borrar productos / lotes"?>
+				</a>
 				<a href="subastador.php?page=crearSubasta">
 					<?php echo "Crear Subasta"?>
 				</a>
