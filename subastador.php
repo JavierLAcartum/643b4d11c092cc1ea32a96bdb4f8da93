@@ -438,17 +438,15 @@ if(isset($_POST['salir'])){
 				<a href="subastador.php?page=crearSubasta">
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
-<<<<<<< HEAD
 				<a href="subastador.php?page=cerrarSesion">
 					<?php echo "Cerrar sesion"?>
 				</a>
 			</li>
 		</ul>
-=======
+
 		
 		</div>
 
->>>>>>> origin/master
 		<div class="wrapper">
 			<div id="num_table"	style="display:inline-block">
 			</div>
