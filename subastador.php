@@ -160,11 +160,11 @@ function subirLote(){
 }
 
 function cambiarFormatoFecha($fecha){
-	//El formato que devuelve el input datetime es YYYY-MM-DDTHH:MM
+	//El formato que devuelve el input datetime es YYYY-MM-DDTHH:MM:SS
 	//Para introducirlo en la base de datos tiene que tener el formato YYYY-MM-DD HH:MM:SS
 	
 	$date = substr($fecha,0,10); //YYYY-MM-DD
-	$tiempo = substr($fecha,11,5).":00"; 
+	$tiempo = substr($fecha,11,8); 
 									 
 	$fecha = $date." ".$tiempo;
 

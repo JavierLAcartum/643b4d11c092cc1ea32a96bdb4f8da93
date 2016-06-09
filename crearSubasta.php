@@ -8,11 +8,13 @@
 	$selectLotes = "SELECT id, nombre FROM lotes WHERE idSubasta IS NULL AND idusuario='".$_SESSION['user']['subastador']."'";
 	$resultLotes = $conn->query($selectLotes);
 	if ($resultProductos->num_rows >= 1 | $resultLotes->num_rows >= 1) {
-	
-	echo "<br/><br/>Elija el tipo de subasta";
 ?>
+
+		
+	<br/><br/>Elija el tipo de subasta<br/><br/>
+	
 	<form action="subastador.php" method="post">
-		<select name="tipoSubasta">
+		<select id="tipoSubasta" name="tipoSubasta" onchange="cambiar_formulario()">
 			<option selected value="1">Dinámica descubierta</option>
 			<option value="2">Dinámica anónima</option>
 			<option value="3">Dinámica de tipo holandés</option>
@@ -21,29 +23,75 @@
 			<option value="6">Round Robin</option>
 		</select>
 
-		<select name="subtipo">
+		<select name="subtipo" onchange="cambiar_formulario()">
 			<option selected value="1">Ascendente</option>
 			<option value="0">Descendente</option>
 		</select><br/><br/>
 
+		Fecha de apertura		
+		<input type="datetime-local" name = 'fechainicio' step='1' required/>
+		Fecha de cierre
+		<input type="datetime-local" name = 'fechacierre' step='1' required/> <br/> <br/>
+		
+		<div id="segunda-puja"> </div>		
+		
+		<div id="precio-inicial"><input type='number' name='precio' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
+		
+		<div id="tiempo-cambio-precio"></div>
+		<div id="cambio-precio"></div>
+		
+		<script>
+		
+		function cambiar_formulario(){
+			
+			var precioInicial = document.getElementById("precio-inicial");
+			var selectSubasta = document.getElementById("tipoSubasta");
+			var tipoSubasta = selectSubasta.value;
+			var tiempoCambioPrecio = document.getElementById("tiempo-cambio-precio");
+			var cambioPrecio = document.getElementById("cambio-precio");
+			var segundaPuja = document.getElementById("segunda-puja");
+			
+			if (tipoSubasta == "1" | tipoSubasta == "2"| tipoSubasta == "3"){ //Si es dinámica descubierta, anónima o de tipo holandés parte de un precio inicial
+				
+				precioInicial.innerHTML = "<input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/>";
+			}
+			else{
+				
+				precioInicial.innerHTML= "";
+				
+			}
+			
+			if(tipoSubasta == "3"){ //Si es de tipo holandés tiene que elegir un tiempo tras el que se cambiará el precio y cada cuanto se cambiará
+				
+				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='time' step='1' name = 'tiempo-cambio' required/> <br/> <br/>"
+				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
+			
+			}
+			else{
+				
+				tiempoCambioPrecio.innerHTML = "";
+				cambioPrecio.innerHTML = "";				
+			}
+			
+			if(tipoSubasta == "6"){ //Si es Round Robin deberá elegir una fecha para la segunda puja
+				
+				segundaPuja.innerHTML = "Seleccione una fecha para la segunda puja: <input type='datetime-local' name = 'fechasegundapuja' step='1' required/> <br/> <br/>";
+				
+			}
+			else{
+				segundaPuja.innerHTML = "";
+			}
+			
+		}	
+		
 
-		<input type="number" name='precio' placeholder="Precio inicial (si procede)" step="0.01" min="0"> <br/> <br/>
-
+		</script>
 		<?php
-			echo "Fecha de apertura";
-		?>
-			<input type="datetime-local" name = 'fechainicio' required/>
-			<?php
-			echo "Fecha de cierre";
-		?>
-				<input type="datetime-local" name = 'fechacierre' required/> <br/> <br/>
-
-				<?php
 		
 		if ($resultProductos->num_rows >= 1){
 			echo "Elija un producto para subastar"; 		
 			while($row = $resultProductos->fetch_assoc()) {
-			?>
+		?>
 						<input type="radio" name="seleccion"value = <?php echo $row['nombre'];?>>
 							<?php echo $row['nombre'];?>
 							</input>
