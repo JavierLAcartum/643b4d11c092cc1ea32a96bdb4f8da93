@@ -10,5 +10,9 @@
 	<br>
 	<br>
 	<input type='submit' name="subirProducto" style="margin-left: 300px;"/>
+<<<<<<< HEAD
 	<button onclick="location.href='subastador.php'"> Volver</button>
 </form>
+=======
+</form>
+>>>>>>> origin/master

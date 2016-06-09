@@ -109,6 +109,10 @@ if(isset($_POST['registro']))
 	Registro();
 }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 	<meta charset="UTF-8">
@@ -118,26 +122,46 @@ if(isset($_POST['registro']))
         <link rel="stylesheet" href="estilos.css" type="text/css" media="all" />
     </head>
 	<body>
-		<ul>
-			<li style="float:right;">
-				<a class="active">
-					<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
-						<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px;" required />
-						<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
-						<input type='submit' name="submit"/>
-					</form>
-				</a>
-			</li>
-		</ul>
-		<a href="index.php?page=registro">
-		<?php echo "Reg&iacutestrate"?>
-		</a>
+
+		  <!-- Titulo -->
+        <div id="tittle">
+            <p> Aplicaciones<b>Web</b> </p>
+        </div>
+        <!-- end #tittle -->
+
+  
+
+        <!-- Cabecera -->
+        <div id="header">
+
+          <!-- Login -->
+			<a class="active">
+				<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
+					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px;" required />
+					<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
+					<button> Log in </button>
+				</form>
+			</a>
+				
+
+        	<!-- Boton registro -->
+			<a href="index.php?page=registro">
+				<button class="buttonReg"> Reg&iacutestrate </button>
+			</a>
+
+            <h2> Subastas </h2>
+            <p> Alba Terce&ntildeo, Javier Leza, Ricardo Sierra, Sara Estrav&iacutes y Sonia Leonato </p>
+        </div>
+        <!-- end #header -->
+
+
+
 		<div class="wrapper">
 			<div id="num_table"	style="display:inline-block">
-				<h1 style="color:white">
-					Kenken
-				</h1>
 			</div>
+
+
+			<!-- ESTO DA WARNINGS!!!!!! -->
 			<div>
 				<?php
 					if(!isset($_GET['page'])){
@@ -149,6 +173,24 @@ if(isset($_POST['registro']))
 					}
 				?>
 			</div>
+
+
 		</div>
-	</body>
+
+
+		<!-- Pie de pagina -->
+            <div id="footer">
+                <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
+                <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
+                <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
+                <a href="mailto:sestrn00@estudiantes.unileon.es">sestrn00@estudiantes.unileon.es</a> -
+                <a href="mailto:sleons00@estudiantes.unileon.es">sleons00@estudiantes.unileon.es</a>
+                <address> 09/06/2016 </address>
+            </div>
+            <!-- end #footer -->   
+
+
+
+		</body>
+
 	</html>
