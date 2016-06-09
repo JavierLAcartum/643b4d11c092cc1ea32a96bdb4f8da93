@@ -447,7 +447,7 @@ if(isset($_POST['salir'])){
 
 		<div id="header">
 				<a class="active" href="subastador.php?page=subirProducto">
-					<button class="buttonSub"> Subir producto </button>
+					<button class="buttonSub" style="margin-top: 150px;"> Subir producto </button>
 				<a href="subastador.php?page=crearLotes">
 					<button class="buttonSub"> Crear lotes </button>
 				<a href="subastador.php?page=borrarProducto">
@@ -457,7 +457,7 @@ if(isset($_POST['salir'])){
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
 				<a href="subastador.php?page=cerrarSesion">
-					<?php echo "Cerrar sesion"?>
+					<button class="buttonSub"> Cerrar sesión </button>
 				</a>
 			</li>
 		</ul>
