@@ -106,6 +106,7 @@
 					$tipoSubasta;
 					$fechaIniSubasta; //fecha inicio subasta
 					$fechaFinSubasta; //fecha fin subasta
+                    $tipoSubastaPhp = ''; //Guarda URL del tipo de subasta
 					
 					$producto_lote = -1; //Variable para fijar si es un producto = 0 y si es lote = 1. Por si acaso luego queremos saber en que tabla buscar
 					$nombreObjeto = ''; 
@@ -138,6 +139,12 @@
 					$selectPujas = "SELECT * FROM pujas WHERE idsubasta='".$idSubasta."' ORDER BY fecha DESC";
 					$resultPujas = $conn->query($selectPujas);
 					$pujasRealizadas = $resultPujas;
+                    if($tipoSubasta == 1){
+                        $tipoSubastaPhp = "dinamicaDescAscendente";
+                    }
+                    if($tipoSubasta == 2){
+                        $tipoSubastaPhp = "dinamicaDescDescendente";
+                    }
 					
 					if($resultSubastador->num_rows == 1){
 						$rowSubastador = $resultSubastador->fetch_assoc();
@@ -169,7 +176,7 @@
 				?>
 				
 				<div style="border-style: solid;">
-					<a href="subasta.php?id=<?php echo $idSubasta; ?>">
+					<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 						<div style="border-style: solid;">
 							<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p>
 						</div>
@@ -184,7 +191,7 @@
 							<h3> <?php if(isset($pujaActual)){
 										echo $pujaActual;
 										if(is_int($pujaActual)){
-											echo " euros";
+								        echo " euros";
 										}
 								} ?></h3>
 						</div>
