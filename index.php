@@ -139,7 +139,7 @@ if(isset($_POST['registro']))
 				<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
 					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px;" required />
 					<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
-					<button> Log in </button>
+					<button name = 'submit'> Log in </button>
 				</form>
 			</a>
 				
