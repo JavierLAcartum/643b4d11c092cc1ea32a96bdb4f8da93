@@ -446,8 +446,11 @@ if(isset($_POST['salir'])){
 	<body>
 
 		<div id="header">
+				<a href="subastador.php?page=cerrarSesion">
+					<button class="buttonSesion"> Cerrar sesión </button>
+				</a>
 				<a class="active" href="subastador.php?page=subirProducto">
-					<button class="buttonSub" style="margin-top: 150px;"> Subir producto </button>
+					<button class="buttonSub" style="margin-top: 130px;"> Subir producto </button>
 				<a href="subastador.php?page=crearLotes">
 					<button class="buttonSub"> Crear lotes </button>
 				<a href="subastador.php?page=borrarProducto">
@@ -455,9 +458,6 @@ if(isset($_POST['salir'])){
 				</a>
 				<a href="subastador.php?page=crearSubasta">
 					<button class="buttonSub"> Crear subasta </button>
-				</a>
-				<a href="subastador.php?page=cerrarSesion">
-					<button class="buttonSesion"> Cerrar sesión </button>
 				</a>
 		</div>
 

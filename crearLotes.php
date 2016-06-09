@@ -25,7 +25,11 @@
 		<?php
 
 	}else{
-		echo "No puede crear lotes, no tiene al menos 2 productos";
+		echo "";
+		?>
+		<label style="margin-left: 470px; font-family:'Segoe UI'; font-size: 20px;"> No puede crear lotes, no tiene al menos 2 productos </label>
+		<?php
 	}
+
 	$conn->close();
 ?>

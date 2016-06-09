@@ -49,7 +49,10 @@
 		<?php
 
 	}else{
-		echo "No tiene productos o lotes que borrar";
+		echo "";
+		?>
+		<label style="margin-left: 470px; font-family:'Segoe UI'; font-size: 20px;"> No tiene productos o lotes que borrar </label>
+		<?php
 	}
 	$conn->close();
 ?>
