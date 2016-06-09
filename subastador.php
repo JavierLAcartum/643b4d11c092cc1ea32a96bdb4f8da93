@@ -177,8 +177,7 @@ function crearSubasta(){
 		
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 
-	
-	if(count($_POST)==7){
+	if(array_key_exists('seleccion', $_POST)){ //Si ha seleccionado algún producto o lote
 		$tipoSubasta = $_POST['tipoSubasta'];
 		$subtipo = $_POST['subtipo'];
 		$tipoSubasta = $tipoSubasta * 2 - $subtipo;
@@ -203,8 +202,6 @@ function crearSubasta(){
 		$fechainicio = $_POST['fechainicio'];
 		$fechacierre = $_POST['fechacierre'];
 		
-		$precioinicial = $_POST['precio'];
-		
 		$seleccion = $_POST['seleccion'];
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
@@ -217,11 +214,32 @@ function crearSubasta(){
 		}
 		$sql;
 		
-		if($precioinicial==""){		
-			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '".$_SESSION['user']['subastador']."')");
+		if ($tipoSubasta == "1" | $tipoSubasta == "2" | $tipoSubasta == "3" | $tipoSubasta == "4"){ //Subastas dinámicas descubiertas y anónimas tanto ascendentes como descendentes
+		
+			$precioInicial = $_POST['precioInicial'];			
+			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, precioinicial, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '$precioInicial', '".$_SESSION['user']['subastador']."')");
 		}
-		else{
-			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, precioinicial, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '$precioinicial', '".$_SESSION['user']['subastador']."')");
+		else if($tipoSubasta == "5" | $tipoSubasta == "6"){ //Subastas tipo holandés ascendentes y descendentes
+			
+			$precioInicial = $_POST['precioInicial'];		
+			$cambioPrecio = $_POST['cambioPrecio'];
+			$tiempoCambioPrecio = $_POST['tiempoCambioPrecio'];
+			
+			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, precioinicial, cambioprecio, tiempocambioprecio, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '$precioInicial', '$cambioPrecio', '$tiempoCambioPrecio', '".$_SESSION['user']['subastador']."')");
+			
+		}
+		else if($tipoSubasta == "11"| $tipoSubasta == "12"){ //Subastas Round Robin ascendentes y descendentes
+		
+			$fechaSegundaPuja = $_POST['fechaSegundaPuja'];
+			$fechaSegundaPuja = cambiarFormatoFecha($fechaSegundaPuja);
+			
+			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, fechasegundapuja, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '$fechaSegundaPuja', '".$_SESSION['user']['subastador']."')");
+			
+		}
+		else{ //Subastas de sobre cerrado
+		
+			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '".$_SESSION['user']['subastador']."')");
+		
 		}
 		
 		if ($conn->query($sql) === TRUE){

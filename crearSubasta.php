@@ -23,7 +23,7 @@
 			<option value="6">Round Robin</option>
 		</select>
 
-		<select name="subtipo" onchange="cambiar_formulario()">
+		<select name="subtipo">
 			<option selected value="1">Ascendente</option>
 			<option value="0">Descendente</option>
 		</select><br/><br/>
@@ -35,7 +35,7 @@
 		
 		<div id="segunda-puja"> </div>		
 		
-		<div id="precio-inicial"><input type='number' name='precio' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
+		<div id="precio-inicial"><input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
 		
 		<div id="tiempo-cambio-precio"></div>
 		<div id="cambio-precio"></div>
@@ -63,7 +63,7 @@
 			
 			if(tipoSubasta == "3"){ //Si es de tipo holandés tiene que elegir un tiempo tras el que se cambiará el precio y cada cuanto se cambiará
 				
-				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='time' step='1' name = 'tiempo-cambio' required/> <br/> <br/>"
+				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='time' step='1' name = 'tiempoCambioPrecio' required/> <br/> <br/>"
 				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
 			
 			}
@@ -75,7 +75,7 @@
 			
 			if(tipoSubasta == "6"){ //Si es Round Robin deberá elegir una fecha para la segunda puja
 				
-				segundaPuja.innerHTML = "Seleccione una fecha para la segunda puja: <input type='datetime-local' name = 'fechasegundapuja' step='1' required/> <br/> <br/>";
+				segundaPuja.innerHTML = "Seleccione una fecha para la segunda puja: <input type='datetime-local' name = 'fechaSegundaPuja' step='1' required/> <br/> <br/>";
 				
 			}
 			else{
