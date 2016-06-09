@@ -457,12 +457,8 @@ if(isset($_POST['salir'])){
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
 				<a href="subastador.php?page=cerrarSesion">
-					<button class="buttonSub"> Cerrar sesión </button>
+					<button class="buttonSesion"> Cerrar sesión </button>
 				</a>
-			</li>
-		</ul>
-
-		
 		</div>
 
 		<div class="wrapper">

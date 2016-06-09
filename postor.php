@@ -49,16 +49,15 @@ if(isset($_POST['salir'])){
 		<link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
 	</head>
 	<body>
-		<ul>
-			<li style="float:left; padding-left:10%;">
-				<a href="postor.php?page=cerrarSesion">
-					<?php echo "Cerrar sesion"?>
-				</a>
-				<a href="postor.php?page=historialSubastas">
-					<?php echo "Historial subastas"?>
-				</a>
-			</li>
-		</ul>
+		<div id="header">
+			<a href="postor.php?page=cerrarSesion">
+				<button class="buttonSesion"> Cerrar sesión </button>
+			</a>
+			<a href="postor.php?page=historialSubastas">
+				<button class="buttonSub"> Historial subastas </button>
+			</a>
+		</div>
+			
 		<div class="wrapper">
 			<div>
 				

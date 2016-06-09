@@ -90,6 +90,7 @@ function Registro(){
 if(session_id() == '') {
     session_start();
 }
+
 if(isset($_SESSION['user'])){
 	foreach (array_keys($_SESSION['user']) as $field)
 		{
@@ -97,6 +98,7 @@ if(isset($_SESSION['user'])){
 			RedirectToURL("$field.php",3);
 		}
 }
+
 if(isset($_POST['submit']))
 {
 	$tipoUser = Login(); //Tipo de usuario 
