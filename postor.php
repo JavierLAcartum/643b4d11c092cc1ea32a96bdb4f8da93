@@ -54,18 +54,14 @@ if(isset($_POST['salir'])){
 				<a href="postor.php?page=cerrarSesion">
 					<?php echo "Cerrar sesion"?>
 				</a>
+				<a href="postor.php?page=historialSubastas">
+					<?php echo "Historial subastas"?>
+				</a>
 			</li>
 		</ul>
 		<div class="wrapper">
 			<div>
-				<?php
-				if(!isset($_GET['page'])){
-					
-				}else{
-					$page = $_GET['page'];
-					include("$page.php");
-				}
-				?>
+				
 				<?php
 				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 				if(session_id() == '') {
@@ -125,6 +121,16 @@ if(isset($_POST['salir'])){
 				}
 				echo "</table>";
 				$conn->close();
+				?>
+				
+				<?php
+				if(!isset($_GET['page'])){
+					include("listaSubastas.php");
+					crearTablaSubastas("");
+				}else{
+					$page = $_GET['page'];
+					include("$page.php");
+				}
 				?>
 			
 		</div>

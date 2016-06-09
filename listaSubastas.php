@@ -73,14 +73,32 @@
 		if($tipoUsuario == ""){
 			$selectSubastas = "SELECT * FROM subastas ORDER BY fechacierre DESC";
 			$resultSubastas = $conn->query($selectSubastas);
+			crearDivSubasta($resultSubastas, $conn);
 		}
 				
 		else if($tipoUsuario == 'subastador'){
 			$selectSubastas = "SELECT * FROM subastas WHERE idsubastador = '".$_SESSION['user']['subastador']."' ORDER BY fechacierre DESC";
 			$resultSubastas = $conn->query($selectSubastas);
+			crearDivSubasta($resultSubastas, $conn);
+			
+		}else if($tipoUsuario == 'postor'){
+			$selectPujas = "SELECT DISTINCT idsubasta FROM pujas WHERE idpostor = '".$_SESSION['user']['postor']."'";
+			$resultPujas = $conn->query($selectPujas);
+			if($resultPujas->num_rows > 0){//LISTA DE SUBASTAS
+				while($rowPujas = $resultPujas->fetch_assoc()) {
+					echo "<br>BIENVENIDO AL HISTORIAL DE SUBASTAS, AQUI APARECEN TODAS LAS SUBASTAS EN LAS QUE UDS. HA PUJADO, SELECCIONE LA QUE QUIERA PARA VER SUS LAS PUJAS EN DICHA SUBASTA<br>";
+					$selectSubastas = "SELECT * FROM subastas WHERE id = '".$rowPujas['idsubasta']."'";
+					$resultSubastas = $conn->query($selectSubastas);
+					crearDivSubasta($resultSubastas, $conn);
+				}
+			}
 		}
 		
-			if($resultSubastas->num_rows > 0){//LISTA DE SUBASTAS
+			
+	}
+	
+	function crearDivSubasta($resultSubastas, $conn){
+		if($resultSubastas->num_rows > 0){//LISTA DE SUBASTAS
 				while($rowSubasta = $resultSubastas->fetch_assoc()) {//ITERACION SOBRE LAS SUBASTAS
 					//VARIABLES A MOSTRAR
 					//**************************************************************************
