@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2016 a las 10:16:25
+-- Tiempo de generación: 09-06-2016 a las 18:04:16
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -98,10 +98,14 @@ CREATE TABLE `subastas` (
   `precioinicial` float DEFAULT NULL,
   `fechainicio` datetime NOT NULL,
   `fechacierre` datetime DEFAULT NULL,
+  `fechasegundapuja` datetime DEFAULT NULL,
+  `cambioprecio` float DEFAULT NULL,
+  `tiempocambioprecio` time DEFAULT NULL,
   `idsubastador` int(11) DEFAULT NULL,
-  `idganador` int(11) DEFAULT NULL
+  `idpujaganadora` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
@@ -116,6 +120,14 @@ CREATE TABLE `usuarios` (
   `apellidos` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `tipo`, `usuario`, `password`, `nombre`, `apellidos`) VALUES
+(1, 'administrador', 'admin', 'sekret', 'Juan', 'García'),
+(2, 'subastador', 'subastador', 'sekrets', 'María', 'González'),
+(3, 'postor', 'postor', 'sekretp', 'Daniel', 'Pérez');
 
 --
 -- Índices para tablas volcadas
@@ -161,7 +173,7 @@ ALTER TABLE `pujas`
 ALTER TABLE `subastas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idsubastador_idx` (`idsubastador`),
-  ADD KEY `indexganador` (`idganador`);
+  ADD KEY `indexganador` (`idpujaganadora`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -182,27 +194,27 @@ ALTER TABLE `log`
 -- AUTO_INCREMENT de la tabla `lotes`
 --
 ALTER TABLE `lotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Restricciones para tablas volcadas
 --
@@ -241,7 +253,7 @@ ALTER TABLE `pujas`
 -- Filtros para la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  ADD CONSTRAINT `subastaganador` FOREIGN KEY (`idganador`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `subastapujaganadora` FOREIGN KEY (`idpujaganadora`) REFERENCES `pujas` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `subastasubastador` FOREIGN KEY (`idsubastador`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
