@@ -123,7 +123,7 @@
 		echo "";
 		?>
 		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 20px;"> No tiene productos para subastar </label>
-		<button style="margin-left: 10px; margin-top: 250px; font-size: 15px;" onclick="location.href='subastador.php'"> Volver</button>
+		<button style="margin-left: 10px; font-size: 15px;" onclick="location.href='subastador.php'"> Volver</button>
 	<?php	
 	}
 	?>
