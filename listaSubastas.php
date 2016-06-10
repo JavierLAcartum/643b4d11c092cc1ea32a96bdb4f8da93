@@ -182,7 +182,8 @@
 					}
 				?>
 				
-				<div style="border-style: solid; color:white;">
+
+				<!-- TABLA -->
 
 					<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 
@@ -192,7 +193,7 @@
 						<div style="border-style: solid;">
 							<?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } ?> 
 						</div>
-						<div style="border-style: solid;">
+						<div style="border-style: solid; color:white;">
 							<h1><?php echo $nombreObjeto; ?></h1>
 						</div>
 						<div style="border-style: solid; float: right;">
@@ -202,14 +203,13 @@
 										if(is_int($pujaActual)){
 								        echo " euros";
 										}
-								} ?></h3>
+								} ?> </h3>
 						</div>
 						<h3><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></h3>
 					
 					</a>
-				</div>
 				
-				
+				<!-- FIN TABLA -->	
 				
 				<?php
 				

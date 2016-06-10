@@ -171,11 +171,17 @@ if(isset($_POST['registro']))
 
 
 		<div class="wrapper">
-			<div id="num_table"	style="display:inline-block">
-			</div>
 
+			<table style="width:100%; padding: 100px; margin-top: 300px; font-family:'Segoe UI'; font-weight: bold;">
+			    <tr>
+			        <td>Tipo</td>
+			        <td>Imagen</td>
+			        <td>Nombre</td>
+			        <td>Fecha finalización</td>
+			        <td>Pujar</td>
+			    </tr>
+           	</table>
 
-			<!-- ESTO DA WARNINGS!!!!!! -->
 			<div>
 				<?php
 					if(!isset($_GET['page'])){
