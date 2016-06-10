@@ -166,10 +166,17 @@
 					}else{
 						$pujaActual = "Sea el primero en pujar ^^";
 					}
+					
+					
+					$paginaSubastas;
+					
+					if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
+						$paginaSubastas = "sobreCerrado.php";
+					}
 				?>
 				
 				<div style="border-style: solid;">
-					<a href="subasta.php?id=<?php echo $idSubasta; ?>">
+					<a href= "<?php echo $paginaSubastas;?>?id=<?php echo $idSubasta; ?>">
 						<div style="border-style: solid;">
 							<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p>
 						</div>
