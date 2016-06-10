@@ -102,8 +102,10 @@ if(isset($_SESSION['user'])){
 if(isset($_POST['submit']))
 {
 	$tipoUser = Login(); //Tipo de usuario 
-	echo $tipoUser;
-	RedirectToURL("$tipoUser.php", 0);
+	if ($tipoUser != ""){
+		echo $tipoUser;
+		RedirectToURL("$tipoUser.php", 0);
+	}
 }
 
 if(isset($_POST['registro']))
