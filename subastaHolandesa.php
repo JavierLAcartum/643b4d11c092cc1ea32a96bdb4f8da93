@@ -1,60 +1,26 @@
 <?php
     	
-    if(isset($_GET['id'])){
-        $idSubasta = $_GET['id'];
-    }
-    //Conexion($idSubasta);
-    $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		$selectSubastas;
-		$resultSubastas;
-    	if(session_id() == '') {
-            session_start();
-		}
-    function RedirectToURL($url, $tiempo)
-    {
-        header("Refresh: $tiempo, URL=$url");
-        exit;
-    }
+if(isset($_GET['id'])){
+    $idSubasta = $_GET['id'];
+}
+//Conexion($idSubasta);
+$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+$selectSubastas;
+$resultSubastas;
+if(session_id() == '') {
+    session_start();
+}
+function RedirectToURL($url, $tiempo)
+{
+    header("Refresh: $tiempo, URL=$url");
+    exit;
+}
 
 
-   function valorMinimo($idSubasta){
-       $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		$selectSubastas;
-		$resultSubastas;
-    	if(session_id() == '') {
-            session_start();
-		}
-        //$selectPujas = "SELECT id FROM usuarios WHERE id = '".$_SESSION['user']['postor']."'";
-        //$resultSubastas = $conn->query($selectSubastas);
-       $select = "SELECT tipo, precioinicial  FROM subastas WHERE id='$idSubasta'";
-       $result = $conn->query($select);
-       $row=$result->fetch_assoc();
-       $tipoSubasta = $row['tipo'];
-       $precio = $row['precioinicial'];
-        $select = "SELECT cantidad FROM pujas WHERE idsubasta='$idSubasta'";
-	   $result = $conn->query($select);
-	   $idUser = '';
-        if ($result->num_rows> 0) {
-            //$precio=0;
-            while( $row=$result->fetch_assoc()){
-                $precioronda = $row['cantidad'];
-                if($precio<$precioronda && ($tipoSubasta==1 || $tipoSubasta==3)){
-                    $precio = $precioronda;
-                }else if($precio>$precioronda && ($tipoSubasta==2 || $tipoSubasta==4)){
-                    $precio = $precioronda;
-                }
-            }
-            return $precio;
-		
-	   }else{
-            $select = "SELECT precioinicial FROM subastas WHERE id='$idSubasta'";
-            $result = $conn->query($select);
-            $row = $result->fetch_assoc();
-            $precio = $row['precioinicial'];
-            return $precio;
-	   }
-       
-    }
+function checkCambioPrecio($idSubasta){
+
+       $var="<table><tr><td>Fecha</td><td>Puja</td></tr>";
+}
 
 
     
@@ -72,59 +38,6 @@
 				$idUser = $_SESSION['user']['postor'];
                 $tipoUser = "postor";
 			}
-if(isset($_POST['puja'])){
-$pujactual = $_POST['puja'];
-$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		$selectSubastas;
-		$resultSubastas;
-    	if(session_id() == '') {
-            session_start();
-		}
-       $select = "SELECT tipo FROM subastas WHERE id='$idSubasta'";
-       $result = $conn->query($select);
-       $row=$result->fetch_assoc();
-       $tipoSubasta = $row['tipo'];
-       
-if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
-    {
-        $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		$selectSubastas;
-		$resultSubastas;	
-                        
-        // Then call the date functions
-        $date = date('Y-m-d H:i:s');
-        // Or
-        $date = date('Y/m/d H:i:s');
-        $puja = $_POST['puja'];
-        $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja',    '$idSubasta', '$idUser')";
-        if ($conn->query($select) === TRUE) {
-            echo "Usuario Puja Correcta.";
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
-}else if($pujactual < valorMinimo($idSubasta)&& ($tipoSubasta==2 || $tipoSubasta==4)){
-        $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		$selectSubastas;
-		$resultSubastas;
-    	  
-        $idUser = $_SESSION['user']['postor'];		
-                        
-        // Then call the date functions
-        $date = date('Y-m-d H:i:s');
-        // Or
-        $date = date('Y/m/d H:i:s');
-        $puja = $_POST['puja'];
-        $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja',    '$idSubasta', '$idUser')";
-        if ($conn->query($select) === TRUE) {
-            echo "Usuario Puja Correcta.";
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
-}else{
-    echo "La puja tiene un valor incorrecto!";
-}
-}
-
 ?>
     <html>
 
@@ -231,6 +144,9 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
             }*/
             function loadDoc() {
 
+                <?php
+                    
+                ?>
                 var xhttp = new XMLHttpRequest();
                 console.log(xhttp.status);
                 xhttp.onreadystatechange = function () {
@@ -239,13 +155,13 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
-                xhttp.open("GET", "listaPujasDescubierta.php?id=<?php echo $idSubasta; ?>", true);
+                xhttp.open("GET", "checkFecha.php?id=<?php echo $idSubasta; ?>", true);
                 xhttp.send();
             }  
 
             setInterval(function () {
                 loadDoc();
-            }, 500);
+            }, 100);
         </script>
 
 
