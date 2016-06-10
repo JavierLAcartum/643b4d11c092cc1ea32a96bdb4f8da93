@@ -171,6 +171,12 @@
 					
 					$paginaSubastas;
 					
+					 if($tipoSubasta == 1){
+                        $tipoSubastaPhp = "dinamicaDescAscendente";
+                    }
+                    if($tipoSubasta == 2){
+                        $tipoSubastaPhp = "dinamicaDescDescendente";
+                    }
 					if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
 						$tipoSubastaPhp = "sobreCerrado";
 					}
