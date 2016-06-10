@@ -1,4 +1,5 @@
 <?php
+
 		
 
 	function mostrarLogs(){
@@ -13,15 +14,29 @@
 		
         $selectLog = "SELECT * FROM log ORDER BY id DESC";
 		$resultLog = $conn->query($selectLog);
-		crearTableLog($resultLog, $conn);
+
+        crearTableLog($resultLog, $conn);
+        
+        }
+		
 				
 	
-		
-			
-	}
+
 	
 	function crearTableLog($resultLog, $conn){
-		if($resultLog->num_rows > 0){//LISTA DE LOGS
+		?>
+        <table>
+            <tr>
+                <td>idLog</td>
+                <td>fecha</td>
+                <td>Descripción</td>
+                <td>Id Usuario</td>
+                <td>idSubasta</td>
+                <td>idProducto</td>
+            </tr>
+
+            <?php
+        if($resultLog->num_rows > 0){//LISTA DE LOGS
 				while($rowLog = $resultLog->fetch_assoc()) {//ITERACION SOBRE LOS LOGS
 					//VARIABLES A MOSTRAR
 					//**************************************************************************
@@ -45,25 +60,40 @@
 					
 					
 				?>
+
+
+                <tr>
+                    <td>
+                        <?php echo $idLog?>
+                    </td>
+                    <td>
+                        <?php echo $fecha?>
+                    </td>
+                    <td>
+                        <?php echo $descripcion?>
+                    </td>
+                    <td>
+                        <?php echo $idUsuario?>
+                    </td>
+                    <td>
+                        <?php echo $idSubasta?>
+                    </td>
+                    <td>
+                        <?php echo $idProducto?>
+                    </td>
+                </tr>
+
+
+
+
+
+                <?php
 				
-                <table>
-                    <tr>
-                        <td><?php echo $idLog?></td>
-                        <td><?php echo $fecha?></td>
-                        <td><?php echo $descripcion?></td>
-                        <td><?php echo $idUsuario?></td>
-                        <td><?php echo $idSubasta?></td>
-                        <td><?php echo $idProducto?></td>
-                    </tr>
-                </table>
-				
-				
-				
-				
-				<?php
-				
-				}
-				
+				}//Cierre del While
+                ?>
+        </table>
+
+        <?php
 			}else{
 				echo "No existen logs actualmente.";
 			}
