@@ -174,6 +174,11 @@
 					 if($tipoSubasta == 1 || $tipoSubasta == 2 || $tipoSubasta == 3 || $tipoSubasta == 4){
                         $tipoSubastaPhp = "dinamicaDescAscendente";
                     }
+                    
+                    if($tipoSubasta == 5 || $tipoSubasta == 6){
+                        $tipoSubastaPhp = "subastaHolandesa";
+                    }
+                    
 					if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
 						$tipoSubastaPhp = "sobreCerrado";
 					}
