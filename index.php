@@ -30,6 +30,11 @@ function Login()
 		$row = $result->fetch_assoc();
 		$tipoUser = $row['tipo'];
 		$idUser = $row['id'];
+        
+        //esto es para escribir el log
+        include("escribirLog.php");
+        escribirLog("Inicio de sesión de un " .$tipoUser. ".", $idUser, "NULL", "NULL");
+        //fin de escribir el log
 		
 	}else{
 		echo "";
@@ -90,6 +95,15 @@ function Registro(){
 		
 		if ($conn->query($insert) === TRUE) {
 			echo "Usuario ".$username." registrado correctamente.";
+            
+            //esto es para escribir el log
+            $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$username'");
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$idusuario = $rowNombreUsuario['id'];
+            include("escribirLog.php");
+            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
+            //fin de escribir el log
+            
 			return true;
 		} else {
 			echo "Error updating record: " . $conn->error;

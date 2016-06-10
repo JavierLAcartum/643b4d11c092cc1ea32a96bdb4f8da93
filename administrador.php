@@ -31,11 +31,14 @@ function Registro(){
 		if ($conn->query($insert) === TRUE) {
 			echo "Usuario ".$username." registrado correctamente.";
             
+            //esto es para escribir el log
             $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$username'");
             $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
 			$idusuario = $rowNombreUsuario['id'];
             include("escribirLog.php");
-            escribirLog("Se ha insertado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
+            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
+            //fin de escribir el log
+            
 			return true;
 		} else {
 			echo "Error updating record: " . $conn->error;
