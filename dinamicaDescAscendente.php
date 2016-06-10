@@ -230,9 +230,10 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
             /*function refreshTable() {
                 $('#tableHolder').load('listaPujas.php', function());
             }*/
-
-
             function loadDoc() {
+                <?php
+            if($tipoSubasta==1 || $tipoSubasta==2){
+            ?>
 
                 var xhttp = new XMLHttpRequest();
                 console.log(xhttp.status);
@@ -242,9 +243,23 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
-                xhttp.open("GET", "listaPujas.php?id=<?php echo $idSubasta; ?>", true);
+                xhttp.open("GET", "listaPujasDescubierta.php?id=<?php echo $idSubasta; ?>", true);
+                xhttp.send();
+                <?php
+            }else if($tipoSubasta==3 || $tipoSubasta==4)
+            ?>
+                 var xhttp = new XMLHttpRequest();
+                console.log(xhttp.status);
+                xhttp.onreadystatechange = function () {
+                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
+
+                        document.getElementById("demo").innerHTML = xhttp.responseText;
+                    }
+                };
+                xhttp.open("GET", "listaPujasAnonima.php?id=<?php echo $idSubasta; ?>", true);
                 xhttp.send();
             }
+                
 
             setInterval(function () {
                 loadDoc();
