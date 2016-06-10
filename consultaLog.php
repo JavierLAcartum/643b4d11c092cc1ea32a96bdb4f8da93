@@ -7,7 +7,7 @@
         <option value="4">idSubasta</option>
         <option value="5">idProducto</option>
     </select>
-    <div id="consulta"> <input type='number' name='id' step='1' min='1' required/></div>
+    <span id="consulta"> <input type='number' name='id' step='1' min='1' required/></span>
 </form>
 
 <script>
