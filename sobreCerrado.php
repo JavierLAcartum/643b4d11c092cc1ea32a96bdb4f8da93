@@ -186,11 +186,12 @@
 		if($tipoSubasta == 7){ //De primer precio ascendente
 		
 			echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La ganadora es la puja con mayor cantidad.
-			
+			echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //Paga el precio más alto
 		}
 		else if($tipoSubasta == 8){ //De primer precio descendente
 		
 			echo "La puja ganadora es: ".$arrayCantidadPujas[0]; //La puja ganadora es la puja más baja
+			echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
 		}
 		else if($tipoSubasta == 9){ //De segundo precio ascendente
 		

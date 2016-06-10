@@ -139,12 +139,6 @@
 					$selectPujas = "SELECT * FROM pujas WHERE idsubasta='".$idSubasta."' ORDER BY fecha DESC";
 					$resultPujas = $conn->query($selectPujas);
 					$pujasRealizadas = $resultPujas;
-                    if($tipoSubasta == 1){
-                        $tipoSubastaPhp = "dinamicaDescAscendente";
-                    }
-                    if($tipoSubasta == 2){
-                        $tipoSubastaPhp = "dinamicaDescDescendente";
-                    }
 					
 					if($resultSubastador->num_rows == 1){
 						$rowSubastador = $resultSubastador->fetch_assoc();
@@ -178,16 +172,14 @@
 					$paginaSubastas;
 					
 					if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
-						$paginaSubastas = "sobreCerrado.php";
+						$tipoSubastaPhp = "sobreCerrado";
 					}
 				?>
 				
 				<div style="border-style: solid;">
-<<<<<<< HEAD
-					<a href= "<?php echo $paginaSubastas;?>?id=<?php echo $idSubasta; ?>">
-=======
+
 					<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
->>>>>>> origin/master
+
 						<div style="border-style: solid;">
 							<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p>
 						</div>
