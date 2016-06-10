@@ -30,6 +30,12 @@ function Registro(){
 		
 		if ($conn->query($insert) === TRUE) {
 			echo "Usuario ".$username." registrado correctamente.";
+            
+            $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$username'");
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$idusuario = $rowNombreUsuario['id'];
+            include("escribirLog.php");
+            escribirLog("Se ha insertado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
 			return true;
 		} else {
 			echo "Error updating record: " . $conn->error;
@@ -89,6 +95,8 @@ if(isset($_POST['salir'])){
 	
 	RedirectToURL("index.php", 0);
 }
+
+
 
 
 
