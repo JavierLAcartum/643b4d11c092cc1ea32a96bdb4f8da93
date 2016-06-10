@@ -93,8 +93,8 @@ if(isset($_POST['salir'])){
             <a href="administrador.php?page=registroAdminSubas">
                 <button class="buttonSub"> Crear Usuario </button>
             </a>
-            <a href="administrador.php?page=verLog">
-                <button class="buttonSub"> Ver Log </button>
+            <a href="administrador.php?page=consultaLog">
+                <button class="buttonSub"> Consultar Log </button>
             </a>
             <a href="administrador.php?page=cerrarSesion">
                 <?php echo "Cerrar sesion"?>
@@ -109,14 +109,12 @@ if(isset($_POST['salir'])){
 
             <?php
 				if(!isset($_GET['page'])){
-					include("listaSubastas.php");
-					crearTablaSubastas("");
+					include("verLog.php");
+					    mostrarLogs();
 				}else{
 					$page = $_GET['page'];
 					include("$page.php");
-                    if($page == 'verLog'){
-                        mostrarLogs();
-                    }
+                    
 				}
 				?>
 
