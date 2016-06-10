@@ -190,12 +190,12 @@
 		}
 		else if($tipoSubasta == 8){ //De primer precio descendente
 		
-			echo "La puja ganadora es: ".$arrayCantidadPujas[0]; //La puja ganadora es la puja más baja
+			echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
 			echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
 		}
 		else if($tipoSubasta == 9){ //De segundo precio ascendente
 		
-			echo "La puja ganadora es: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //La puja ganadora es la puja más alta
+			echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La puja ganadora es la puja más alta
 			
 			//Comprobar que hay más de una puja
 			if(count($arrayIdPujas) >=2){
@@ -208,7 +208,7 @@
 		}
 		else if($tipoSubasta == 10) { //De segundo precio descendente
 		
-			echo "La puja ganadora es: ".$arrayCantidadPujas[0]; //La puja ganadora es la puja más baja
+			echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
 			
 			//Comprobar que hay más de una puja
 			if(count($arrayIdPujas) >=2){
