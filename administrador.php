@@ -1,4 +1,5 @@
 <?php 
+
 function RedirectToURL($url, $tiempo)
 {
 	header("Refresh: $tiempo, URL=$url");
@@ -36,6 +37,19 @@ function Registro(){
 		}
 	}
 }
+
+
+function consultarLog(){
+    
+?>
+    <script>
+        document.getElementById("prueba").innerHTML='hola';
+    </script>
+<?php
+}
+
+
+
 
 if(session_id() == '') {
     session_start();
@@ -75,6 +89,10 @@ if(isset($_POST['salir'])){
 	
 	RedirectToURL("index.php", 0);
 }
+
+
+
+
 
 ?>
     <!DOCTYPE html>
@@ -116,10 +134,19 @@ if(isset($_POST['salir'])){
 					include("$page.php");
                     
 				}
+                if(isset($_REQUEST['enviarConsultaLog'])){
+                    include("verLog.php");
+                    $tipoConsulta = $_POST['consultaLog'];
+		            $valorConsulta = $_POST['valor'];
+                    mostrarConsulta($tipoConsulta, $valorConsulta);
+	
+                }
+
+
 				?>
 
         </div>
-
+        
         <!-- Pie de pagina -->
         <div id="footer">
             <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
