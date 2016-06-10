@@ -32,7 +32,17 @@ function Login()
 		$idUser = $row['id'];
 		
 	}else{
-		echo "NO EXISTE";
+		echo "";
+		?>
+			<!-- Titulo -->
+	        <div id="tittle">
+	            <p> Aplicaciones<b>Web</b> </p>
+	        </div>
+        	<!-- end #tittle -->
+
+			<label style="position: absolute; left: 920px; top: 35px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *USUARIO O CONTRASEÑA INCORRECTOS* </label> </br>
+
+		<?php
 		return false;
 	}
 	
@@ -89,6 +99,14 @@ function Registro(){
 }
 if(session_id() == '') {
     session_start();
+    
+    ?>
+		<!-- Titulo -->
+        <div id="tittle">
+            <p> Aplicaciones<b>Web</b> </p>
+        </div>
+        <!-- end #tittle -->
+	<?php
 }
 
 if(isset($_SESSION['user'])){
@@ -127,21 +145,13 @@ if(isset($_POST['registro']))
     </head>
 	<body>
 
-		  <!-- Titulo -->
-        <div id="tittle">
-            <p> Aplicaciones<b>Web</b> </p>
-        </div>
-        <!-- end #tittle -->
-
-  
-
         <!-- Cabecera -->
         <div id="header">
 
           <!-- Login -->
 			<a class="active">
 				<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
-					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px;" required />
+					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px; margin-top: 50px;" required />
 					<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
 					<button name = 'submit'> Log in </button>
 				</form>

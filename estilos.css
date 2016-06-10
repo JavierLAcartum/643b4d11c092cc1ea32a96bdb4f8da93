@@ -8,11 +8,11 @@ body {
 
 #tittle{
     font-size: 15px;
-    margin-left: 10px;
     margin-top: 0px;
     text-align: left;
     color: #000;
     margin-left: 15px;
+    position: absolute;
     font-family: "Segoe UI";
 }
 
