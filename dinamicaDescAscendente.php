@@ -61,17 +61,8 @@ if($pujactual > valorMinimo($idSubasta))
     	if(session_id() == '') {
             session_start();
 		}
-        //$selectPujas = "SELECT id FROM usuarios WHERE id = '".$_SESSION['user']['postor']."'";
-        //$resultSubastas = $conn->query($selectSubastas);
-        $select = "SELECT id FROM usuarios WHERE usuario='postor' AND password='sekretp'";
-	   $result = $conn->query($select);
-	   $idUser = '';
-            $result->num_rows;
-            $row = $result->fetch_assoc();
-            $idUser = $row['id'];
-		
-
-		
+     
+        $idUser = $_SESSION['user']['postor'];		
                         
         // Then call the date functions
         $date = date('Y-m-d H:i:s');
@@ -102,16 +93,37 @@ if($pujactual > valorMinimo($idSubasta))
             </a>
         
         <script type="text/javascript">
-            $(document).ready(function () {
-                refreshTable();
-            });
+            //setInterval(function(){ refreshTable(); }, 3000);
+            //setTimeout(refreshTable, 5000);
 
-            function refreshTable() {
-                $('#tableHolder').load('listaPujas.php', function () {
-                    setTimeout(refreshTable, 5000);
-                });
+            /*function refreshTable() {
+                $('#tableHolder').load('listaPujas.php', function());
+            }*/
+                                       
+                                       
+        function loadDoc() {
+           
+          var xhttp = new XMLHttpRequest();
+            console.log(xhttp.status);
+            xhttp.onreadystatechange = function() {
+            if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
+                
+             document.getElementById("demo").innerHTML = xhttp.responseText;
             }
+          };
+                    xhttp.open("GET", "listaPujas.php?id=<?php echo $id; ?>", true);
+                    xhttp.send();
+        }
+                                       
+        setInterval(function(){
+            loadDoc();
+        }, 2000);
+            
         </script>
+        
+        
+        <div id="demo"></div>
+        
         <div id="tableHolder"></div>
     </body>
 
