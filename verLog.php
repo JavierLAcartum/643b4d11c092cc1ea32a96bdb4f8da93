@@ -28,6 +28,12 @@
 		if(session_id() == '') {
 			session_start();
 		}
+        
+        if($tipoConsulta == 'idusuario'){
+            $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$valorConsulta'");
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$valorConsulta = $rowNombreUsuario['id'];
+        }
 		
         $selectLog = "SELECT * FROM log WHERE $tipoConsulta ='$valorConsulta'  ORDER BY id DESC";
 		$resultLog = $conn->query($selectLog);
@@ -46,7 +52,7 @@
                 <td>idLog</td>
                 <td>fecha</td>
                 <td>Descripción</td>
-                <td>Nombre Usuario</td>
+                <td>Nombre de usuario</td>
                 <td>idSubasta</td>
                 <td>idProducto</td>
             </tr>
@@ -59,7 +65,7 @@
 					$idLog = '';
 					$fecha;
                     $descripcion = '';
-                    $idUsuario = '';
+                    $nombreUsuario = '';
                     $idSubasta = '';
                     $idProducto = '';
 					
@@ -70,7 +76,11 @@
 					$idLog = $rowLog['id'];
 					$fecha = $rowLog['fecha'];
                     $descripcion = $rowLog['descripcion'];
-					$idUsuario = $rowLog['idusuario'];
+                    
+                    $resultNombreUsuario = $conn->query( "SELECT usuario FROM usuarios WHERE id='".$rowLog['idusuario']."'");
+                    $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+					$nombreUsuario = $rowNombreUsuario['usuario'];
+                    
                     $idSubasta = $rowLog['idsubasta'];
 					$idProducto = $rowLog['idproducto'];
 					
@@ -89,7 +99,7 @@
                         <?php echo $descripcion?>
                     </td>
                     <td>
-                        <?php echo $idUsuario?>
+                        <?php echo $nombreUsuario?>
                     </td>
                     <td>
                         <?php echo $idSubasta?>
