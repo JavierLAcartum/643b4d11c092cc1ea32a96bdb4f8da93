@@ -46,7 +46,7 @@
                 <td>idLog</td>
                 <td>fecha</td>
                 <td>Descripción</td>
-                <td>Id Usuario</td>
+                <td>Nombre Usuario</td>
                 <td>idSubasta</td>
                 <td>idProducto</td>
             </tr>
