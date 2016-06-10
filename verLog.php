@@ -1,6 +1,7 @@
 <?php
 		
 
+	function mostrarLogs(){
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		$selectLog;
@@ -20,6 +21,8 @@
 	}
 	
 	function crearTableLog($resultLog, $conn){
+		if($resultLog->num_rows > 0){//LISTA DE LOGS
+				while($rowLog = $resultLog->fetch_assoc()) {//ITERACION SOBRE LOS LOGS
 					//VARIABLES A MOSTRAR
 					//**************************************************************************
 					$idLog = '';
@@ -36,6 +39,9 @@
 					$idLog = $rowLog['id'];
 					$fecha = $rowLog['fecha'];
                     $descripcion = $rowLog['descripcion'];
+					$idUsuario = $rowLog['idusuario'];
+                    $idSubasta = $rowLog['idsubasta'];
+					$idProducto = $rowLog['idproducto'];
 					
 					
 				?>
@@ -59,6 +65,7 @@
 				}
 				
 			}else{
+				echo "No existen logs actualmente.";
 			}
 	}
 	?>

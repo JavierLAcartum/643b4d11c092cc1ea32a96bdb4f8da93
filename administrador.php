@@ -115,6 +115,7 @@ if(isset($_POST['salir'])){
 					$page = $_GET['page'];
 					include("$page.php");
                     if($page == 'verLog'){
+                        mostrarLogs();
                     }
 				}
 				?>
