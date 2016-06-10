@@ -175,10 +175,12 @@ if(isset($_POST['registro']))
 			<table style="width:100%; padding: 100px; margin-top: 300px; font-family:'Segoe UI'; font-weight: bold;">
 			    <tr>
 			        <td>Tipo</td>
+			        <td>id</td>
 			        <td>Imagen</td>
 			        <td>Nombre</td>
 			        <td>Fecha finalización</td>
-			        <td>Pujar</td>
+			        <td>Producto/lote</td>
+			        <!-- pujar -->
 			    </tr>
            	</table>
 

@@ -181,30 +181,35 @@
 				
 
 				<!-- TABLA -->
+					<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold; border: 1px solid black;">
+					    <tr>
 
-					<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
+						<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 
-						<div style="border-style: solid;">
-							<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p>
-						</div>
-						<div style="border-style: solid;">
-							<?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } ?> 
-						</div>
-						<div style="border-style: solid; color:white;">
-							<h1><?php echo $nombreObjeto; ?></h1>
-						</div>
-						<div style="border-style: solid; float: right;">
-							<p> Fecha de finalizacion: <?php echo $fechaFinSubasta; ?></p> 
-							<h3> <?php if(isset($pujaActual)){
-										echo $pujaActual;
-										if(is_int($pujaActual)){
-								        echo " euros";
-										}
-								} ?> </h3>
-						</div>
-						<h3><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></h3>
-					
-					</a>
+							
+								<td><?php echo pasarTipoSubastaAString($tipoSubasta) ?></td>
+								<td><?php echo $idSubasta ?></td>
+								 <!--<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p> -->
+							
+								<td><?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } ?></td>
+							
+								<td><?php echo $nombreObjeto; ?></td>
+						
+							
+								<td> <?php echo $fechaFinSubasta; ?></td> 
+								 <?php if(isset($pujaActual)){
+											echo $pujaActual;
+											if(is_int($pujaActual)){
+									        echo " euros";
+											}
+									} ?> 
+							
+							<td><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
+						
+						</a>
+
+						</tr>
+		           	</table>
 				
 				<!-- FIN TABLA -->	
 				
