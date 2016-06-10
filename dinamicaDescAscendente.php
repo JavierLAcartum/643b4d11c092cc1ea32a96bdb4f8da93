@@ -45,6 +45,10 @@
        
     }
 
+    function tablaPostores(){
+        echo '<table><tr><td>TEST</td></tr></table>';
+    }
+
     
 
 //***********************************************************************************//
@@ -92,22 +96,23 @@ if($pujactual > valorMinimo($idSubasta))
         <!-- Puja -->
         <a class="active">
                 <form id='login' class="input-list style-4 clearfix" action='dinamicaDescAscendente.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
-                    <input type='number' name='puja' id='puja' style="width:100px;" required />
+                    <input type='number' name='puja' id='puja' placeholder="<?php echo valorMinimo($idSubasta) ?>" style="width:100px;" required />
                     <button name='submit'>Puja</button>
                 </form>
             </a>
-
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 refreshTable();
             });
 
             function refreshTable() {
-                $('#tableHolder').load('dinamicaDescAscendente.php', function () {
+                $('#tableHolder').load('listaPujas.php', function () {
                     setTimeout(refreshTable, 5000);
                 });
             }
         </script>
+        <div id="tableHolder"></div>
     </body>
 
     </html>
