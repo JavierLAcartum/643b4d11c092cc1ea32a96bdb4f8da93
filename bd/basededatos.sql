@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2016 a las 18:04:16
+-- Tiempo de generación: 11-06-2016 a las 01:10:19
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -42,6 +42,7 @@ CREATE TABLE `log` (
   `idproducto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +73,7 @@ CREATE TABLE `productos` (
   `idusuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
@@ -85,6 +87,7 @@ CREATE TABLE `pujas` (
   `idsubasta` int(11) NOT NULL,
   `idpostor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -101,9 +104,11 @@ CREATE TABLE `subastas` (
   `fechasegundapuja` datetime DEFAULT NULL,
   `cambioprecio` float DEFAULT NULL,
   `tiempocambioprecio` time DEFAULT NULL,
+  `precioactual` float DEFAULT NULL,
   `idsubastador` int(11) DEFAULT NULL,
   `idpujaganadora` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -125,9 +130,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `tipo`, `usuario`, `password`, `nombre`, `apellidos`) VALUES
-(1, 'administrador', 'admin', 'sekret', 'Juan', 'García'),
-(2, 'subastador', 'subastador', 'sekrets', 'María', 'González'),
-(3, 'postor', 'postor', 'sekretp', 'Daniel', 'Pérez');
+(12, 'administrador', 'admin', 'sekret', 'Juan', 'García'),
+(13, 'subastador', 'subastador', 'sekrets', 'María', 'González'),
+(14, 'postor', 'postor', 'sekretp', 'Daniel', 'Pérez');
 
 --
 -- Índices para tablas volcadas
@@ -189,7 +194,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `lotes`
 --
@@ -199,22 +204,22 @@ ALTER TABLE `lotes`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Restricciones para tablas volcadas
 --
