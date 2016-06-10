@@ -21,6 +21,10 @@
 		}
         //$selectPujas = "SELECT id FROM usuarios WHERE id = '".$_SESSION['user']['postor']."'";
         //$resultSubastas = $conn->query($selectSubastas);
+       $select = "SELECT tipo FROM subastas WHERE id='$idSubasta'";
+       $result = $conn->query($select);
+       $row=$result->fetch_assoc();
+       $tipoSubasta = $row['tipo'];
         $select = "SELECT cantidad FROM pujas WHERE idsubasta='$idSubasta'";
 	   $result = $conn->query($select);
 	   $idUser = '';
@@ -28,7 +32,9 @@
             $precio=0;
             while( $row=$result->fetch_assoc()){
                 $precioronda = $row['cantidad'];
-                if($precio<$precioronda){
+                if($precio<$precioronda && ($tipoSubasta==1 || $tipoSubasta==3)){
+                    $precio = $precioronda;
+                }else if($precio>$precioronda && ($tipoSubasta==2 || $tipoSubasta==4)){
                     $precio = $precioronda;
                 }
             }
@@ -39,15 +45,11 @@
             $result = $conn->query($select);
             $row = $result->fetch_assoc();
             $precio = $row['precioinicial'];
-            echo 'OK!';
             return $precio;
 	   }
        
     }
 
-    function tablaPostores(){
-        echo '<table><tr><td>TEST</td></tr></table>';
-    }
 
     
 
@@ -111,13 +113,13 @@ if($pujactual > valorMinimo($idSubasta))
              document.getElementById("demo").innerHTML = xhttp.responseText;
             }
           };
-                    xhttp.open("GET", "listaPujas.php?id=<?php echo $id; ?>", true);
+                    xhttp.open("GET", "listaPujas.php?id=<?php echo $idSubasta; ?>", true);
                     xhttp.send();
         }
                                        
         setInterval(function(){
             loadDoc();
-        }, 2000);
+        }, 500);
             
         </script>
         
