@@ -40,7 +40,7 @@ function Login()
 	        </div>
         	<!-- end #tittle -->
 
-			<label style="position: absolute; left: 920px; top: 35px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *USUARIO O CONTRASEÑA INCORRECTOS* </label> </br>
+			<label style="position: absolute; left: 915px; top: 35px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *USUARIO Y/O CONTRASEÑA INCORRECTOS* </label> </br>
 
 		<?php
 		return false;

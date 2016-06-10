@@ -165,7 +165,7 @@
 						$pA = $resultPujas->fetch_assoc();
 						$pujaActual = $pA['cantidad'];
 					}else{
-						$pujaActual = "Sea el primero en pujar ^^";
+						$pujaActual = "Sea el primero en pujar";
 					}
 					
 					
@@ -182,7 +182,7 @@
 					}
 				?>
 				
-				<div style="border-style: solid;">
+				<div style="border-style: solid; color:white;">
 
 					<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 
@@ -216,7 +216,10 @@
 				}
 				
 			}else{
-				echo "No existen subastas actualmente.";
+				echo "";
+				?>
+					<label style="margin-left: 470px; margin-top:600px; font-family:'Segoe UI'; font-size: 20px;"> No existen subastas actualmente </label>
+				<?php
 			}
 	}
 	?>
