@@ -114,6 +114,8 @@ if(isset($_POST['salir'])){
 				}else{
 					$page = $_GET['page'];
 					include("$page.php");
+                    if($page == 'verLog'){
+                    }
 				}
 				?>
 
