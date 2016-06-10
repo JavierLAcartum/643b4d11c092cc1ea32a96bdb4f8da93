@@ -84,10 +84,8 @@
 				
 				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='text' id='tiempoCambioPrecio'  name = 'tiempoCambioPrecio' required/> <br/> <br/>"
 				
-				/*AnyTime.picker("tiempoCambioPrecio",
-				{
-					format: "%Y-%m-%d %H:%i:%s"} );
-					*/
+				AnyTime.picker("tiempoCambioPrecio",
+				{format: "%H:%i:%s"} );
 				
 				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
 			
@@ -102,9 +100,9 @@
 				
 				segundaPuja.innerHTML = "Seleccione una fecha para la segunda puja: <input type='text' id = 'fechaSegundaPuja' name = 'fechaSegundaPuja' required/> <br/> <br/>";
 				
-				/*AnyTime.picker("fechaSegundaPuja",
-				{
-					format: "%Y-%m-%d %H:%i:%s"} );*/
+				AnyTime.picker("fechaSegundaPuja",
+				{format: "%Y-%m-%d %H:%i:%s"} );
+			}
 					
 			else{
 				segundaPuja.innerHTML = "";
