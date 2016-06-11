@@ -21,7 +21,7 @@ function subirP(){
 			echo "";
 			?>
 			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Ya existe otro producto con el mismo nombre* </label>
+			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro producto con el mismo nombre* </label>
 			<?php
 				return false;
 	}
@@ -29,7 +29,7 @@ function subirP(){
 			echo "";
 			?>
 			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Ya existe otro lote con el mismo nombre* </label>
+			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro lote con el mismo nombre* </label>
 			<?php
 			return false;
 	}
@@ -56,7 +56,7 @@ function subirP(){
 					echo "";
 					?>
 					</br>
-					<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Ocurrió un error al subir la imagen* </label>
+					<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ocurrió un error al subir la imagen* </label>
 					<?php
 					return false;
 				}
@@ -66,7 +66,7 @@ function subirP(){
 				echo "";
 				?>
 				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Tipo de archivo no permitido, elija una imagen en formato jpg, jpeg, o png* </label>
+				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Tipo de archivo no permitido, elija una imagen en formato jpg, jpeg, o png* </label>
 				<?php
 				return false;
 			}
@@ -140,7 +140,7 @@ function subirLote(){
 				echo "";
 				?>
 				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Ya existe otro producto con el mismo nombre* </label>
+				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro producto con el mismo nombre* </label>
 				<?php
 				return false;
 			}
@@ -150,7 +150,7 @@ function subirLote(){
 				echo "";
 				?>
 				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Ya existe otro lote con el mismo nombre* </label>
+				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro lote con el mismo nombre* </label>
 				<?php
 				return false;
 			}
@@ -194,7 +194,7 @@ function subirLote(){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Debe seleccionar al menos 2 productos* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Debe seleccionar al menos 2 productos* </label>
 		<?php
 		return false;
 	}
@@ -299,7 +299,7 @@ function crearSubasta(){
 
             ?>
 			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Subasta creada correctamente* </label>
+			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Subasta creada correctamente* </label>
 			<?php
 
             //esto es para escribir el log
@@ -330,7 +330,7 @@ function crearSubasta(){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Debe seleccionar un producto o lote para subastar* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Debe seleccionar un producto o lote para subastar* </label>
 		<?php
 	}
 		
@@ -433,7 +433,7 @@ function borrarProducto(){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No ha seleccionado ningún producto o lote para eliminar* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *No ha seleccionado ningún producto o lote para eliminar* </label>
 		<?php
 		return false;
 	}
@@ -460,7 +460,7 @@ if(isset($_POST['subirProducto']))
 		//exec("NO SE HA PODIDO CREAR EL PRODUCTO");
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *NO SE HA PODIDO CREAR EL PRODUCTO* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *NO SE HA PODIDO CREAR EL PRODUCTO* </label>
 		<?php
 
 	}else{
@@ -468,7 +468,7 @@ if(isset($_POST['subirProducto']))
 		//exec("PRODUCTO CREADO CORRECTAMENTE");
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *PRODUCTO CREADO CORRECTAMENTE* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO CREADO CORRECTAMENTE* </label>
 		<?php
 		//RedirectToURL('subastador.php', 0);
 	}
@@ -479,7 +479,7 @@ if(isset($_POST['crearLote'])){
 		//exec("LOTE CREADO CORRECTAMENTE");
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *LOTE CREADO CORRECTAMENTE* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *LOTE CREADO CORRECTAMENTE* </label>
 		<?php
 		//RedirectToURL('subastador.php', 0);
 	}else{
@@ -490,7 +490,7 @@ if(isset($_POST['crearLote'])){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Error al crear lote* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al crear lote* </label>
 		<?php
 	}
 }
@@ -510,7 +510,7 @@ if(isset($_POST['borrarProducto'])){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *PRODUCTO/LOTE BORRADO CORRECTAMENTE* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO/LOTE BORRADO CORRECTAMENTE* </label>
 		<?php
 		//RedirectToURL('subastador.php', 0);
 		//exec("PRODUCTO/LOTE BORRADO CORRECTAMENTE");
@@ -523,7 +523,7 @@ if(isset($_POST['borrarProducto'])){
 		echo "";
 		?>
 		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *Error al borrar producto* </label>
+		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al borrar producto* </label>
 		<?php
 	}
 }
