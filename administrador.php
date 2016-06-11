@@ -32,11 +32,15 @@ function Registro(){
 			echo "Usuario ".$username." registrado correctamente.";
             
             //esto es para escribir el log
+            $resultNombreAdmin = $conn->query( "SELECT usuario FROM usuarios WHERE id = '".$_SESSION['user']['administrador']."'");
+            $rowNombreAdmin = $resultNombreAdmin->fetch_assoc();
+			$nombreAdmin = $rowNombreAdmin['usuario'];
+            
             $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$username'");
             $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
 			$idusuario = $rowNombreUsuario['id'];
             include("escribirLog.php");
-            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL", "NULL", "NULL");
+            escribirLog("El administrador \""."$nombreAdmin"."\" ha creado un " .$tipoUsuario. ".", $idusuario, "NULL", "NULL", "NULL", "NULL");
             //fin de escribir el log
             
 			return true;
@@ -46,17 +50,6 @@ function Registro(){
 		}
 	}
 }
-
-
-function consultarLog(){
-    
-?>
-    <script>
-        document.getElementById("prueba").innerHTML='hola';
-    </script>
-<?php
-}
-
 
 
 
@@ -83,6 +76,11 @@ if(isset($_POST['salir'])){
 	if(session_id() == '') {
 		session_start();
 	}
+    
+    //esto es para escribir el log
+    include("escribirLog.php");
+    escribirLog("Cierre de sesión de un administrador." , $_SESSION['user']['administrador'], "NULL", "NULL", "NULL", "NULL");
+    //fin de escribir el log
 	
 	$_SESSION['user']=NULL;
 	

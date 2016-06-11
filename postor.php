@@ -22,6 +22,11 @@ if(isset($_POST['salir'])){
 	if(session_id() == '') {
 		session_start();
 	}
+    
+    //esto es para escribir el log
+    include("escribirLog.php");
+    escribirLog("Cierre de sesión de un postor." , $_SESSION['user']['postor'], "NULL", "NULL", "NULL", "NULL");
+    //fin de escribir el log
 	
 	$_SESSION['user']=NULL;
 	
