@@ -11,6 +11,7 @@
 	if ($result->num_rows > 1) {
 		?><form action="subastador.php" method="post">
 		<input type='text' name='nombreLote' placeholder="Nombre del lote" maxlength="44" required/>
+		<textarea rows="4" cols="50" name="descripcionLote" placeholder="Descripción del Lote" maxlength="200" required></textarea>
 		<?php
 		while($row = $result->fetch_assoc()) {
 		?>

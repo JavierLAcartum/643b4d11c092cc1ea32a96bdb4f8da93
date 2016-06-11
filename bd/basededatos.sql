@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2016 a las 01:10:19
+-- Tiempo de generación: 11-06-2016 a las 13:30:28
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -26,7 +26,6 @@ create database 643b4d11c092cc1ea32a96bdb4f8da93;
 grant all on 643b4d11c092cc1ea32a96bdb4f8da93.* to '643b4d11c092cc1e'@'localhost' identified by 'sekret';
 
 USE `643b4d11c092cc1ea32a96bdb4f8da93` ;
-
 -- --------------------------------------------------------
 
 --
@@ -39,7 +38,9 @@ CREATE TABLE `log` (
   `descripcion` varchar(200) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL,
   `idsubasta` int(11) DEFAULT NULL,
-  `idproducto` int(11) DEFAULT NULL
+  `idproducto` int(11) DEFAULT NULL,
+  `idpuja` int(11) DEFAULT NULL,
+  `idlote` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -51,12 +52,13 @@ CREATE TABLE `log` (
 
 CREATE TABLE `lotes` (
   `id` int(11) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `idsubasta` int(11) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- Estructura de tabla para la tabla `productos`
@@ -65,7 +67,7 @@ CREATE TABLE `lotes` (
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `descripcion` varchar(100) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
   `fecha` date NOT NULL,
   `imagen` varchar(45) DEFAULT NULL,
   `idlote` int(11) DEFAULT NULL,
@@ -74,7 +76,6 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pujas`
@@ -89,7 +90,6 @@ CREATE TABLE `pujas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `subastas`
@@ -109,8 +109,6 @@ CREATE TABLE `subastas` (
   `idpujaganadora` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
@@ -145,7 +143,9 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idusuario_idx` (`idusuario`),
   ADD KEY `idsubasta_idx` (`idsubasta`),
-  ADD KEY `idproducto_idx` (`idproducto`);
+  ADD KEY `idproducto_idx` (`idproducto`),
+  ADD KEY `idpujaindex` (`idpuja`),
+  ADD KEY `idloteindex` (`idlote`);
 
 --
 -- Indices de la tabla `lotes`
@@ -194,27 +194,27 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `lotes`
 --
 ALTER TABLE `lotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
@@ -228,7 +228,9 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `log`
 --
 ALTER TABLE `log`
+  ADD CONSTRAINT `loglote` FOREIGN KEY (`idlote`) REFERENCES `lotes` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `logproducto` FOREIGN KEY (`idproducto`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `logpuja` FOREIGN KEY (`idpuja`) REFERENCES `pujas` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `logsubasta` FOREIGN KEY (`idsubasta`) REFERENCES `subastas` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `logusuario` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 

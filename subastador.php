@@ -111,6 +111,7 @@ function subirLote(){
 	
 	if(count($_POST)>=4){
 		$nombrelote = $_POST['nombreLote'];
+		$descripcionLote = $_POST['descripcionLote'];
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		$selectProductos = ("SELECT nombre FROM productos WHERE nombre='$nombrelote' AND idusuario='".$_SESSION['user']['subastador']."'");
@@ -131,6 +132,7 @@ function subirLote(){
 			}
 		}
 		
+<<<<<<< HEAD
 		$sql = ("INSERT INTO lotes (nombre, idusuario) VALUES ('$nombrelote', '".$_SESSION['user']['subastador']."')");
         
         /*CUANDO SE AÑADA LA COLUMNA idlote A LA TABLA log DESCOMENTAR ESO Y REORGANIZAR LOS PARAMETROS DE LA FUNCION
@@ -142,6 +144,9 @@ function subirLote(){
         escribirLog("Lote creado.", $_SESSION['user']['subastador'], "NULL", $id );
         //fin de escribir el log
         */
+=======
+		$sql = ("INSERT INTO lotes (nombre, descripcion, idusuario) VALUES ('$nombrelote', '$descripcionLote', '".$_SESSION['user']['subastador']."')");
+>>>>>>> origin/master
 		
 		if ($conn->query($sql) === TRUE) {
 			echo "New record created successfully";
@@ -486,14 +491,23 @@ if(isset($_POST['salir'])){
 				</a>
 				<a class="active" href="subastador.php?page=subirProducto">
 					<button class="buttonSub" style="margin-top: 130px;"> Subir producto </button>
+				</a>
 				<a href="subastador.php?page=crearLotes">
 					<button class="buttonSub"> Crear lotes </button>
+				</a>
 				<a href="subastador.php?page=borrarProducto">
 					<button class="buttonSub"> Borrar productos / lotes </button>
 				</a>
 				<a href="subastador.php?page=crearSubasta">
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
+				<?php 
+				if(isset($_GET['page'])){
+						?>
+						<button onclick="location.href='subastador.php'"> Volver</button>
+						<?php
+				}
+				?>
 		</div>
 
 		<div class="wrapper">
