@@ -161,14 +161,7 @@
 								array_push($arrayProductos, $rowProductos['nombre']);
 							}
 						}
-					}
-					if($resultPujas->num_rows > 0){
-						$pA = $resultPujas->fetch_assoc();
-						$pujaActual = $pA['cantidad'];
-					}else{
-						$pujaActual = "Pujar";
-					}
-					
+					}					
 					
 					$paginaSubastas;
 					
@@ -202,12 +195,8 @@
 								
 								<td style="width: 150px; text-align: center;">
 									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
-										<?php if(isset($pujaActual)){
-												echo $pujaActual;
-												/*if(is_int($pujaActual)){
-										        echo " euros";
-												}*/
-										} ?> 
+										<?php
+												echo "Pujar"?> 
 									</a>
 								</td>
 								
