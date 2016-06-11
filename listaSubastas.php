@@ -204,9 +204,9 @@
 									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 										<?php if(isset($pujaActual)){
 												echo $pujaActual;
-												if(is_int($pujaActual)){
+												/*if(is_int($pujaActual)){
 										        echo " euros";
-												}
+												}*/
 										} ?> 
 									</a>
 								</td>
