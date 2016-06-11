@@ -8,7 +8,7 @@
 	<script src="anytime.5.1.2.js"></script>
 
 <form action="administrador.php?page=consultaLog" method="post">
-    </br></br></br></br></br></br></br></br></br>
+    </br></br></br></br></br>
     <label style="margin-left: 300px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;">Realizar consulta por:</label>
     <select style="font-family:'Segoe UI'; font-size: 13px;" id="consultaLog" name="consultaLog" onchange="cambiar_formulario()">
         <option style="font-family:'Segoe UI'; font-size: 13px;" selected value="id">Id del Log</option>

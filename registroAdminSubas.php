@@ -1,6 +1,6 @@
 <form action="administrador.php" method="post">
 
-    <select name='tipoUsuario' style="width:105px; margin-left: 580px; margin-top: 200px;">
+    <select name='tipoUsuario' style="width:105px; margin-left: 580px; margin-top: 100px;">
         <option selected value='administrador'>Administrador</option>
         <option value='subastador'>Subastador</option>
     </select>

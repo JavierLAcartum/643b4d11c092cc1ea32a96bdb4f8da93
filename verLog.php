@@ -55,7 +55,7 @@
 	function crearTableLog($resultLog, $conn){
 		?>
 
-        <table style="width:100%; padding: 30px; margin-top: 100px; font-family:'Segoe UI'; font-weight: bold;">
+        <table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
                 <tr>
                     <td style="width: 130px; text-align: center;">idLOG</td>
                     <td style="width: 100px; text-align: center;">FECHA</td>
