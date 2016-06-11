@@ -347,7 +347,7 @@ function borrarProducto(){
 	
 	if(count($_POST)> 1){
 		foreach ($_POST['productoSeleccionado'] as $field){
-			echo $field;
+			//echo $field;
 				if($field!="borrarProducto"){
                     
                     //para el escribir log:
@@ -386,9 +386,7 @@ function borrarProducto(){
 					}
 					
 					$deleteLote = "DELETE FROM lotes WHERE nombre='$field' AND idusuario = '".$_SESSION['user']['subastador']."'";
-					$conn->query ($deleteLote);
-					
-					echo "Los productos o lotes seleccionados han sido borrados correctamente\n\n";					
+					$conn->query ($deleteLote);				
 				}
 				 
 			}
