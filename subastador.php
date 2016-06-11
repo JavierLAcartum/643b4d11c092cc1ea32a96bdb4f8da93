@@ -132,6 +132,16 @@ function subirLote(){
 		}
 		
 		$sql = ("INSERT INTO lotes (nombre, idusuario) VALUES ('$nombrelote', '".$_SESSION['user']['subastador']."')");
+        
+        /*CUANDO SE AÑADA LA COLUMNA idlote A LA TABLA log DESCOMENTAR ESO Y REORGANIZAR LOS PARAMETROS DE LA FUNCION
+        //esto es para escribir el log
+        $resultNombre = $conn->query( "SELECT id FROM lotes WHERE nombre='$nombrelote'");
+        $rowNombre = $resultNombre->fetch_assoc();
+		$id = $rowNombre['id'];
+        include("escribirLog.php");
+        escribirLog("Lote creado.", $_SESSION['user']['subastador'], "NULL", $id );
+        //fin de escribir el log
+        */
 		
 		if ($conn->query($sql) === TRUE) {
 			echo "New record created successfully";
@@ -271,6 +281,10 @@ function crearSubasta(){
 						return false;
 				}
 			}
+            //esto es para escribir el log
+            include("escribirLog.php");
+            escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, "NULL");
+            //fin de escribir el log
 		}
 		else {
 			echo "Error inserting record: " . $conn->error; 
@@ -299,6 +313,15 @@ function insertInDB($nombre, $descripcion, $imagen){
 	if ($conn->query($sql) === TRUE) {
 		echo "New record created successfully";
 		echo $imagen;
+        
+        //esto es para escribir el log
+        $resultNombreProd = $conn->query( "SELECT id FROM productos WHERE nombre='$nombre'");
+        $rowNombre = $resultNombreProd->fetch_assoc();
+		$idprod = $rowNombre['id'];
+        include("escribirLog.php");
+        escribirLog("Producto insertado.", $_SESSION['user']['subastador'], "NULL", $idprod);
+        //fin de escribir el log
+        
 		$res = true;
 	} else {
 		$res = false;
@@ -324,8 +347,20 @@ function borrarProducto(){
 		foreach ($_POST['productoSeleccionado'] as $field){
 			echo $field;
 				if($field!="borrarProducto"){
+                    /*
+                    //para el escribir log:
+                    $resultNombre = $conn->query( "SELECT id FROM productos WHERE nombre='$field'AND idusuario = '".$_SESSION['user']['subastador']."'");
+                    $rowNombre = $resultNombre->fetch_assoc();
+		            $id = $rowNombre['id'];
+                    //fin datos log*/
+                    
 					$deleteProducto = "DELETE FROM productos WHERE nombre='$field' AND idusuario = '".$_SESSION['user']['subastador']."'";					
 					$conn->query ($deleteProducto); //Si selecciona un producto, borrar producto
+                    
+                    /*//esto es para escribir el log
+                    include("escribirLog.php");
+                    escribirLog("Producto borrado.", $_SESSION['user']['subastador'], "NULL", $id );
+                    //fin de escribir el log*/
 					
 					$selectLote = "SELECT id FROM lotes WHERE nombre = '$field' AND idusuario = '".$_SESSION['user']['subastador']."'";
 					$resultSelectLote = $conn->query($selectLote);
