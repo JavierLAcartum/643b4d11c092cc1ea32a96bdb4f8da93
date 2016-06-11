@@ -146,7 +146,7 @@ function subirLote(){
             
             //esto es para escribir el log
             include("escribirLog.php");
-            escribirLog("Lote creado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLote, "NULL" );
+            escribirLog("Lote \""."$nombrelote"."\" creado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLote, "NULL" );
             //fin de escribir el log
        
 			foreach (array_keys($_POST) as $field)
@@ -336,7 +336,7 @@ function insertInDB($nombre, $descripcion, $imagen){
         $rowNombre = $resultNombreProd->fetch_assoc();
 		$idprod = $rowNombre['id'];
         include("escribirLog.php");
-        escribirLog("Producto insertado.", $_SESSION['user']['subastador'], "NULL", $idprod, "NULL", "NULL");
+        escribirLog("Producto \""."$nombre"."\" insertado.", $_SESSION['user']['subastador'], "NULL", $idprod, "NULL", "NULL");
         //fin de escribir el log
         
 		$res = true;
@@ -377,7 +377,7 @@ function borrarProducto(){
                     
                     if($id!=""){
                         //esto es para escribir el log
-                        escribirLog("Producto borrado.", $_SESSION['user']['subastador'], "NULL", $id, "NULL", "NULL" );
+                        escribirLog("Producto \""."$field"."\" borrado.", $_SESSION['user']['subastador'], "NULL", $id, "NULL", "NULL" );
                         //fin de escribir el log
                     }
                     
@@ -395,7 +395,7 @@ function borrarProducto(){
 							$conn->query($updateProducto);
                             
                             //esto es para escribir el log
-                            escribirLog("Lote borrado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLoteActual, "NULL" );
+                            escribirLog("Lote \""."$field"."\" borrado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLoteActual, "NULL" );
                             //fin de escribir el log
                             
 						}
