@@ -490,7 +490,7 @@ if(isset($_POST['salir'])){
 	<head>
 		<title>SUBASTAS</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 	</head>
 	<body>
 
@@ -501,7 +501,7 @@ if(isset($_POST['salir'])){
 				<?php 
 				if(isset($_GET['page'])){
 						?>
-						<button class="buttonVolver" onclick="location.href='subastador.php'"> Volver</button>
+						<button class="buttonVolver" onclick="location.href='subastador.php'">Volver</button>
 						<?php
 				}
 				?>

@@ -51,7 +51,7 @@ if(isset($_POST['salir'])){
 			POSTOR
 		</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
 	</head>
 	<body>
 		<div id="header">
@@ -61,7 +61,7 @@ if(isset($_POST['salir'])){
 			<?php 
 				if(isset($_GET['page'])){
 						?>
-						<button class="buttonVolver" onclick="location.href='subastador.php'"> Volver</button>
+						<button class="buttonVolver" onclick="location.href='subastador.php'">Volver</button>
 						<?php
 				}
 			?>
@@ -85,7 +85,7 @@ if(isset($_POST['salir'])){
 				?>
 			
 		</div>
-		
+
 		<!-- Pie de pagina -->
             <div id="footer">
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -

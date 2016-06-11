@@ -155,7 +155,7 @@ if(isset($_POST['registro']))
     </meta>
     <head>
         <title>SUBASTAS</title>
-        <link rel="stylesheet" href="estilos.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
     </head>
 	<body>
 
