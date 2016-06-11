@@ -52,8 +52,9 @@
 		<div id="segunda-puja"> </div>		
 		
 
-		<label style="font-family:'Segoe UI'; font-size: 15px;">Precio inicial:</label></br>
+		
 		<div id="precio-inicial" style="margin-left: 135px;">
+		<label style="font-family:'Segoe UI'; font-size: 15px;">Precio inicial:</label></br>
 		<input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/></div></br>
 		
 		<div id="tiempo-cambio-precio"></div>
