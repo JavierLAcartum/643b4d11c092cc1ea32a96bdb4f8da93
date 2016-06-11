@@ -1,6 +1,10 @@
+
+<div id="pujaFinalizada"> </div>
+
 <?php
 
 	$idSubasta = $_GET['id'];
+	$pujado = 0; //Para comprobar si el usuario actual ya ha pujado
 
 	echo "Identificador de la subasta: ".$idSubasta."\n";
 
@@ -87,18 +91,14 @@
 				$tipoUsuario = "postor";
 			}
 			
-			visualizarPujas($idSubasta,$tipoUsuario);
+			visualizarPujas($idSubasta,$tipoUsuario, $pujado);
 			
 			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta'";
 			$resultPujas = $conn->query($selectPujas);
-			
-			if ($resultPujas->num_rows > 0){ //Si se han realizado pujas, se comprueba quién ha ganado la subasta			
-				comprobarGanador($fechaCierre, $idSubasta, $tipoSubasta);
-			}
 		}		
 	}
 	
-	function visualizarPujas($idSubasta, $tipoUsuario){
+	function visualizarPujas($idSubasta, $tipoUsuario, $pujado){
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		
@@ -149,80 +149,46 @@
 		<?php
 	
 		if(isset($_POST['puja'])){
-			$fecha = date("Y-m-d H:m:s");
+			$fecha = date("Y-m-d H:i:s");
 			$cantidad = $_POST['puja'];
 			
 			$insertPuja = ("INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$fecha', '$cantidad', '$idSubasta', '".$_SESSION['user']['postor']."')");
 			$conn->query($insertPuja);
-		}
-	}
-	
-	function comprobarGanador($fechaCierre, $idSubasta, $tipoSubasta){
-		
-		$fechaActual = date("Y-m-d H:m:s");
-		//if($fechaCierre == $fechaActual){
 			
-			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-			$arrayIdPujas = array();	
-			$arrayCantidadPujas = array();
-			$selectPujas = "SELECT id, cantidad FROM pujas WHERE idsubasta='$idSubasta'";
-			$resultPujas = $conn->query($selectPujas);
+			?>
 			
-			if ($resultPujas->num_rows > 0){
-		
-				while($rowPuja= $resultPujas->fetch_assoc()) {
-					
-					$idPuja = $rowPuja['id'];
-					$cantidadPuja = $rowPuja['cantidad'];
-					array_push($arrayIdPujas, $idPuja);
-					array_push($arrayCantidadPujas, $cantidadPuja);
-				}
-			}			
-		//}
-		
-		array_multisort($arrayCantidadPujas, $arrayIdPujas); //Ordenar los arrays de menor a mayor por cantidad
-		
-		
-		if($tipoSubasta == 7){ //De primer precio ascendente
-		
-			echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La ganadora es la puja con mayor cantidad.
-			echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //Paga el precio más alto
-		}
-		else if($tipoSubasta == 8){ //De primer precio descendente
-		
-			echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
-			echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
-		}
-		else if($tipoSubasta == 9){ //De segundo precio ascendente
-		
-			echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La puja ganadora es la puja más alta
+			<script>
+				document.getElementById('pujar').style.display='none'; //Si ya ha realizado una puja, se oculta el formulario para pujar
+			</script>
 			
-			//Comprobar que hay más de una puja
-			if(count($arrayIdPujas) >=2){
-				echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-2]; //Paga el segundo precio más alto
-			}
-			else{ //Si no hay más pujas paga lo que él haya pujado
-				
-				echo "Con la cantidad de: ".$arrayCantidadPujas[0];
-			}
+			<?php
 		}
-		else if($tipoSubasta == 10) { //De segundo precio descendente
-		
-			echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
-			
-			//Comprobar que hay más de una puja
-			if(count($arrayIdPujas) >=2){
-				echo "Con la cantidad de: ".$arrayCantidadPujas[1]; //Paga el segundo precio más bajo
-			}
-			else{ //Si no hay más pujas paga lo que él haya pujado
-				
-				echo "Con la cantidad de: ".$arrayCantidadPujas[0];
-			}
-		
-		}
-		
-		
 	}
 
 	?>
 
+	<script type="text/javascript">
+	
+	var respuestaXhttp;
+	function comprobarGanador() {
+               
+                var xhttp = new XMLHttpRequest();
+                console.log(xhttp.status);
+                xhttp.onreadystatechange = function () {
+                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
+
+						respuestaXhttp = xhttp.responseText;
+                        document.getElementById("pujaFinalizada").innerHTML = respuestaXhttp;
+						if(respuestaXhttp != ""){
+							document.getElementById('pujar').style.display='none'; //Si ya ha realizado una puja, se oculta el formulario para pujar
+						}
+                    }
+                };
+                xhttp.open("GET", "comprobarGanador.php?id=<?php echo $idSubasta;?>", true);
+                xhttp.send(); 
+	}				
+	
+	        setInterval(function () {
+                comprobarGanador();
+			}, 500);
+	</script>

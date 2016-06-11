@@ -111,6 +111,7 @@ function subirLote(){
 	
 	if(count($_POST)>=4){
 		$nombrelote = $_POST['nombreLote'];
+		$descripcionLote = $_POST['descripcionLote'];
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		$selectProductos = ("SELECT nombre FROM productos WHERE nombre='$nombrelote' AND idusuario='".$_SESSION['user']['subastador']."'");
@@ -131,7 +132,7 @@ function subirLote(){
 			}
 		}
 		
-		$sql = ("INSERT INTO lotes (nombre, idusuario) VALUES ('$nombrelote', '".$_SESSION['user']['subastador']."')");
+		$sql = ("INSERT INTO lotes (nombre, descripcion, idusuario) VALUES ('$nombrelote', '$descripcionLote', '".$_SESSION['user']['subastador']."')");
 		
 		if ($conn->query($sql) === TRUE) {
 			echo "New record created successfully";

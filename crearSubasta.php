@@ -118,7 +118,7 @@
 			echo "Elija un producto para subastar"; 		
 			while($row = $resultProductos->fetch_assoc()) {
 		?>
-						<input type="radio" name="seleccion"value = <?php echo $row['nombre'];?>>
+						<input type="radio" name="seleccion" value = "<?php echo $row['nombre'];?>">
 							<?php echo $row['nombre'];?>
 							</input>
 							<?php
