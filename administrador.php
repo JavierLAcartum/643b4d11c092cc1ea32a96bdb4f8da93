@@ -117,14 +117,14 @@ if(isset($_POST['salir'])){
 
         <div id="header">
 
+        	<a href="administrador.php?page=cerrarSesion">
+                <button class="buttonSesion"> Cerrar Sesion </button>
+            </a>
             <a href="administrador.php?page=registroAdminSubas">
                 <button class="buttonSub"> Crear Usuario </button>
             </a>
             <a href="administrador.php?page=consultaLog">
                 <button class="buttonSub"> Consultar Log </button>
-            </a>
-            <a href="administrador.php?page=cerrarSesion">
-                <button class="buttonSub"> Cerrar Sesion </button>
             </a>
 			<?php 
 			if(isset($_GET['page'])){

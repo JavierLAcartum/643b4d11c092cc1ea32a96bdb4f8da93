@@ -186,7 +186,7 @@
 				
 
 				<!-- TABLA -->
-					<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold; border: 1px solid black;">
+					<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
 					    <tr>
 
 										

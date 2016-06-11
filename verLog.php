@@ -54,17 +54,22 @@
 	
 	function crearTableLog($resultLog, $conn){
 		?>
-        <table>
-            <tr>
-                <td>idLog</td>
-                <td>Fecha</td>
-                <td>Descripción</td>
-                <td>Nombre de usuario</td>
-                <td>idSubasta</td>
-                <td>idProducto</td>
-                <td>idLote</td>
-                <td>idPuja</td>
-            </tr>
+
+        <table style="width:100%; padding: 30px; margin-top: 100px; font-family:'Segoe UI'; font-weight: bold;">
+                <tr>
+                    <td style="width: 130px; text-align: center;">idLOG</td>
+                    <td style="width: 100px; text-align: center;">FECHA</td>
+                    <td style="width:140px; text-align: center;">DESCRIPCIÓN</td>
+                    <td style="width: 135px; text-align: center;">NOMBRE DE USUARIO</td>
+                    <td style="width: 130px; text-align: center;">idSUBASTA</td>
+                    <td style="width: 130px; text-align: center;">idPRODUCTO</td>
+                    <td style="width: 130px; text-align: center;">idLOTE</td>
+                    <td style="width: 150px; text-align: center;">idPUJA</td>
+                </tr>
+            </table>
+        
+
+        <table style="width:100%; padding: 10px; padding-left: 30px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
 
             <?php
         if($resultLog->num_rows > 0){//LISTA DE LOGS
@@ -102,40 +107,37 @@
 
 
                 <tr>
-                    <td>
+                    <td style="width: 130px; text-align: center;">
                         <?php echo $idLog?>
                     </td>
-                    <td>
+                    <td style="width: 100px; text-align: center;">
                         <?php echo $fecha?>
                     </td>
-                    <td>
+                    <td style="width:140px; text-align: center;">
                         <?php echo $descripcion?>
                     </td>
-                    <td>
+                    <td style="width: 135px; text-align: center;">
                         <?php echo $nombreUsuario?>
                     </td>
-                    <td>
+                    <td style="width: 130px; text-align: center;">
                         <?php echo $idSubasta?>
                     </td>
-                    <td>
+                    <td style="width: 130px; text-align: center;">
                         <?php echo $idProducto?>
                     </td>
-                    <td>
+                    <td style="width: 130px; text-align: center;">
                         <?php echo $idLote?>
                     </td>
-                    <td>
+                    <td style="width: 150px; text-align: center;">
                         <?php echo $idPuja?>
                     </td>
                 </tr>
-
-
-
-
 
                 <?php
 				
 				}//Cierre del While
                 ?>
+
         </table>
 
         <?php
