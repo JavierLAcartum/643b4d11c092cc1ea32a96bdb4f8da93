@@ -9,9 +9,9 @@
 		}
 	?>
 <form id='cerrarSesion' action='<?php echo  $user ?>.php' method='post' enctype="multipart/form-data" accept-charset='UTF-8'>
-	</br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
-	<label style="margin-left: 510px; font-family:'Segoe UI'; font-size: 20px;"> ¿Estás seguro de que quieres cerrar sesión? </label> 
+	</br></br></br></br></br></br>
+	<label style="position: relative; margin-left: 510px; top: 150px; font-family:'Segoe UI'; font-size: 20px;"> ¿Estás seguro de que quieres cerrar sesión? </label> 
 	</br> </br>
-	<input type='submit' name="salir" value="Cerrar sesion" style="margin-left: 625px;" />
-	<button onclick="location.href='subastador.php'"> Volver</button>
+	<input type='submit' name="salir" value="Cerrar sesion" style="position: relative; margin-left: 625px; top: 150px;" />
+	<button style="position: relative; top:150px;" onclick="location.href='subastador.php'"> Volver</button>
 </form>
