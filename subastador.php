@@ -141,7 +141,7 @@ function subirLote(){
 
 		
 		if ($conn->query($sql) === TRUE) {
-			echo "New record created successfully";
+			echo "";
 			$idLote = $conn->insert_id;
             
             //esto es para escribir el log
@@ -312,7 +312,7 @@ function insertInDB($nombre, $descripcion, $imagen){
 	$sql = ("INSERT INTO productos (nombre, descripcion, fecha, idusuario, imagen) VALUES ('$nombre', '$descripcion', '$fecha', '".$_SESSION['user']['subastador']."', '$imagen')");
 	
 	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
+		echo "";
 		echo $imagen;
         
         //esto es para escribir el log
