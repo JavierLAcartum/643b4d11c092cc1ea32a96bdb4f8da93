@@ -18,27 +18,30 @@
 	<link rel="stylesheet" href="css/anytime.5.1.2.css"/>
 	<script src="jquery-1.11.0.min.js"></script>
 	<script src="anytime.5.1.2.js"></script>
-	<br/><br/>Elija el tipo de subasta<br/><br/>
+	<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Elija el tipo de subasta</label> </br></br>
 	
+<<<<<<< HEAD
 	<form name = "formulario" action="subastador.php" method="post" onsubmit = "return revisar_campos()">
+=======
+	<form action="subastador.php?page=crearSubasta" method="post" style="margin-left: 450px;">
+>>>>>>> origin/master
 		<select id="tipoSubasta" name="tipoSubasta" onchange="cambiar_formulario()">
-			<option selected value="1">Dinámica descubierta</option>
-			<option value="2">Dinámica anónima</option>
-			<option value="3">Dinámica de tipo holandés</option>
-			<option value="4">Sobre cerrado de primer precio</option>
-			<option value="5">Sobre cerrado de segundo precio</option>
-			<option value="6">Round Robin</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" selected value="1">Dinámica descubierta</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" value="2">Dinámica anónima</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" value="3">Dinámica de tipo holandés</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" value="4">Sobre cerrado de primer precio</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" value="5">Sobre cerrado de segundo precio</option>
+			<option style="font-family:'Segoe UI'; font-size: 15px;" value="6">Round Robin</option>
 		</select>
-		
 		<select name="subtipo">
 			<option selected value="1">Ascendente</option>
 			<option value="0">Descendente</option>
 		</select><br/><br/>
-
-		Fecha de apertura		
-		<input type="text" id="fechainicio" name = 'fechainicio' required/>
-		Fecha de cierre
-		<input type="text" id="fechacierre" name = 'fechacierre' required/> <br/> <br/>
+		</br>
+		<label style="font-family:'Segoe UI'; font-size: 15px;">Fecha de apertura</label>		
+		<input style="font-family:'Segoe UI'; font-size: 15px; margin-left: 10px;" type="text" id="fechainicio" name = 'fechainicio' required/> </br></br>
+		<label style="font-family:'Segoe UI'; font-size: 15px;">Fecha de cierre</label>
+		<input style="font-family:'Segoe UI'; font-size: 15px; margin-left: 30px;" type="text" id="fechacierre" name = 'fechacierre' required/> <br/> <br/>
 		
 		<script>
 			AnyTime.picker("fechainicio",
@@ -52,7 +55,14 @@
 		
 		<div id="segunda-puja"> </div>		
 		
+<<<<<<< HEAD
 		<div id="precio-inicial"><input type='number'  id = 'precioInicial' name= 'precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
+=======
+		</br>
+		<label style="font-family:'Segoe UI'; font-size: 15px;">Precio inicial:</label></br>
+		<div id="precio-inicial" style="margin-left: 135px;">
+		<input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/></div></br>
+>>>>>>> origin/master
 		
 		<div id="tiempo-cambio-precio"></div>
 		<div id="cambio-precio"></div>
@@ -114,7 +124,10 @@
 		<?php
 		
 		if ($resultProductos->num_rows >= 1){
-			echo "Elija un producto para subastar"; 		
+			echo ""; 
+			?>
+			<label style="font-family:'Segoe UI'; font-size: 15px;">Elija un producto para subastar</label>
+			<?php		
 			while($row = $resultProductos->fetch_assoc()) {
 		?>
 						<input type="radio" name="seleccion" value = "<?php echo $row['nombre'];?>">
@@ -139,17 +152,21 @@
 		<?php
 		}
 		?>
+<<<<<<< HEAD
 		<br/><br/>
 		<input type="submit" name="crearSubasta">
 		
+=======
+		</br></br></br>
+		<input style="font-family:'Segoe UI'; font-size: 15px; margin-left: 130px;" type="submit" name="crearSubasta">
+>>>>>>> origin/master
 	<?php
 	}
 	
 	else{
 		echo "";
 		?>
-		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 20px;"> No tiene productos para subastar </label>
-		<button style="margin-left: 10px; font-size: 15px;" onclick="location.href='subastador.php'"> Volver</button>
+		<label style="margin-left: 550px; font-family:'Segoe UI'; font-size: 20px;"> No tiene productos para subastar </label>
 	<?php	
 	}
 	?>

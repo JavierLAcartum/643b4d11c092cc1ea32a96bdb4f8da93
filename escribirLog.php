@@ -10,7 +10,7 @@ function escribirLog($descripcion, $idusuario, $idsubasta, $idproducto, $idlote,
 	$sql = ("INSERT INTO log (fecha, descripcion, idusuario, idsubasta, idproducto, idlote, idpuja) VALUES ('$fecha', '$descripcion', $idusuario, $idsubasta, $idproducto, $idlote, $idpuja)");
 	
 	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
+		echo "";
 		
 	} else {
 		

@@ -29,8 +29,15 @@ function Registro(){
 		$insert = "INSERT INTO usuarios (tipo, usuario, password, nombre, apellidos) VALUES ('$tipoUsuario', '$username', '$password', '$nombre', '$apellidos')";
 		
 		if ($conn->query($insert) === TRUE) {
-			echo "Usuario ".$username." registrado correctamente.";
-            
+			//echo "Usuario ".$username." registrado correctamente.";
+			?>
+			</br></br>
+			<label style="margin-left: 550px; font-family:'Segoe UI'; font-size: 13px;">*Usuario </label>
+			<?php
+				echo $username
+			?>
+			<label style="font-family:'Segoe UI'; font-size: 13px;"> registrado correctamente* </label>
+			<?php           
             //esto es para escribir el log
             $resultNombreAdmin = $conn->query( "SELECT usuario FROM usuarios WHERE id = '".$_SESSION['user']['administrador']."'");
             $rowNombreAdmin = $resultNombreAdmin->fetch_assoc();
@@ -110,7 +117,7 @@ if(isset($_POST['salir'])){
     <head>
         <title>SUBASTAS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
     </head>
 
     <body>

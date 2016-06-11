@@ -195,11 +195,11 @@
 								<td style="width: 100px; text-align: center;"><?php echo $idSubasta ?></td>
 								 							
 								<td style="font-size: 12px; width:140px; text-align: center;"><?php if($nombreObjeto!=''){ echo $nombreObjeto; } else{ echo "*Sin nombre*";} ?></td>
-								<td style="font-size: 12px; width: 135px; text-align: center;"><?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } else{ echo "*Sin imagen*";} ?></td>
+								<td style="font-size: 12px; width: 135px; text-align: center;"><?php if($imagenObjeto!=null){ echo "<img src='".$imagenObjeto."' width='100px' height='75px'>"; } else{ echo "*Sin imagen*";} ?></td> <!--isset($imagenObjeto)-->
 													
 								<td style="width: 200px; text-align: center;"> <?php echo $fechaFinSubasta; ?></td> 							
 								<td style="width: 170px; text-align: center;"><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
-								
+								<!--
 								<td style="width: 150px; text-align: center;">
 									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 										<?php if(isset($pujaActual)){
@@ -210,6 +210,7 @@
 										} ?> 
 									</a>
 								</td>
+								-->
 
 						</tr>
 		           	</table>

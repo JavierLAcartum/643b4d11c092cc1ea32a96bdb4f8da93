@@ -9,17 +9,26 @@
 	$result = $conn->query($select);
 
 	if ($result->num_rows > 1) {
-		?><form action="subastador.php" method="post">
-		<input type='text' name='nombreLote' placeholder="Nombre del lote" maxlength="44" required/>
-		<textarea rows="4" cols="50" name="descripcionLote" placeholder="Descripción del Lote" maxlength="200" required></textarea>
+		?><form action="subastador.php?page=crearLotes" method="post">
+		<p>
+			<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Nombre del lote:</label>
+			<input style="margin-left: 15px;" type='text' name='nombreLote' placeholder="Nombre del lote" maxlength="44" required/>
+		</p>
+		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Descripción:</label>
+		<p>
+			<textarea style="margin-left: 450px;" rows="4" cols="50" name="descripcionLote" placeholder="Descripción del Lote" maxlength="200" required></textarea>
+		</p>
+		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Seleccione los productos a incluir en el lote:</label>
 		<?php
 		while($row = $result->fetch_assoc()) {
 		?>
-		<input type="checkbox" name="<?php echo $row['id']; ?>" > <?php echo $row['nombre']?> </input>
+		<input type="checkbox" name="<?php echo $row['id']; ?>"> <?php echo $row['nombre']?> </input>
 		<?php
 		}
-		?><input type="submit" name="crearLote" value="Crear lote">
-		<button onclick="location.href='subastador.php'"> Volver</button>
+		?>
+		<p>
+			<input style="font-family:'Segoe UI'; font-size: 15px; margin-left: 450px;" type="submit" name="crearLote" value="Crear lote">
+		</p>
 		
 		</form>
 		
