@@ -120,20 +120,22 @@ if(isset($_POST['salir'])){
         	<a href="administrador.php?page=cerrarSesion">
                 <button class="buttonSesion"> Cerrar Sesion </button>
             </a>
+            
+            <?php 
+			if(isset($_GET['page'])){
+					?>
+					<button class="buttonVolver" onclick="location.href='administrador.php'"> Volver</button>
+					<?php
+			}
+			?>
+
             <a href="administrador.php?page=registroAdminSubas">
                 <button class="buttonSub"> Crear Usuario </button>
             </a>
             <a href="administrador.php?page=consultaLog">
                 <button class="buttonSub"> Consultar Log </button>
             </a>
-			<?php 
-			if(isset($_GET['page'])){
-					?>
-					<button onclick="location.href='administrador.php'"> Volver</button>
-					<?php
-			}
-			?>
-
+		
         </div>
 
         <div class="wrapper">
