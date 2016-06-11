@@ -16,7 +16,7 @@
 		echo "";
 		?>
 		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Seleccione los productos o lotes que desea eliminar</label>
-		<form action="subastador.php" method="post">
+		<form action="subastador.php?page=borrarProducto" method="post">
 		<?php
 		if($resultProductos->num_rows >= 1){
 		?>

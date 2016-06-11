@@ -1,4 +1,4 @@
-<form id='subirProducto' class="input-list style-2 clearfix" action='subastador.php' method='post' enctype="multipart/form-data" accept-charset='UTF-8'>
+<form id='subirProducto' class="input-list style-2 clearfix" action='subastador.php?page=subirProducto' method='post' enctype="multipart/form-data" accept-charset='UTF-8'>
 	<input type='text' name='nombreProducto' placeholder="Nombre del producto" maxlength="44" style="margin-left: 370px; margin-top: 30px;" required/>
 	<br>
 	<br>

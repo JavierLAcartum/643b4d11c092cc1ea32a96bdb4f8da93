@@ -9,7 +9,7 @@
 	$result = $conn->query($select);
 
 	if ($result->num_rows > 1) {
-		?><form action="subastador.php" method="post">
+		?><form action="subastador.php?page=crearLotes" method="post">
 		<p>
 			<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Nombre del lote:</label>
 			<input style="margin-left: 15px;" type='text' name='nombreLote' placeholder="Nombre del lote" maxlength="44" required/>

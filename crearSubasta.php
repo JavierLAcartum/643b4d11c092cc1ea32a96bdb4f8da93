@@ -20,7 +20,7 @@
 	<script src="anytime.5.1.2.js"></script>
 	<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Elija el tipo de subasta</label> </br></br>
 	
-	<form action="subastador.php" method="post" style="margin-left: 450px;">
+	<form action="subastador.php?page=crearSubasta" method="post" style="margin-left: 450px;">
 		<select id="tipoSubasta" name="tipoSubasta" onchange="cambiar_formulario()">
 			<option style="font-family:'Segoe UI'; font-size: 15px;" selected value="1">Dinámica descubierta</option>
 			<option style="font-family:'Segoe UI'; font-size: 15px;" value="2">Dinámica anónima</option>

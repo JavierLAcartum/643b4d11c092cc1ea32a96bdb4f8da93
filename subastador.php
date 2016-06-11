@@ -457,6 +457,7 @@ if(isset($_POST['subirProducto']))
 	$sub = subirP();
 	if($sub == false){
 		echo "";
+		//exec("NO SE HA PODIDO CREAR EL PRODUCTO");
 		?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *NO SE HA PODIDO CREAR EL PRODUCTO* </label>
@@ -464,21 +465,23 @@ if(isset($_POST['subirProducto']))
 
 	}else{
 		echo "";
+		//exec("PRODUCTO CREADO CORRECTAMENTE");
 		?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *PRODUCTO CREADO CORRECTAMENTE* </label>
 		<?php
-		RedirectToURL('subastador.php', 3);
+		//RedirectToURL('subastador.php', 0);
 	}
 }
 if(isset($_POST['crearLote'])){
 	if(subirLote()==true){
 		echo "";
+		//exec("LOTE CREADO CORRECTAMENTE");
 		?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *LOTE CREADO CORRECTAMENTE* </label>
 		<?php
-		RedirectToURL('subastador.php', 3);
+		//RedirectToURL('subastador.php', 0);
 	}else{
 		foreach (array_keys($_POST) as $field)
 		{
@@ -494,7 +497,7 @@ if(isset($_POST['crearLote'])){
 if(isset($_REQUEST['crearSubasta'])){
 		
 	if(crearSubasta()==true){	
-		RedirectToURL('subastador.php');
+		RedirectToURL('subastador.php', 0);
 	}
 	else {
 		foreach (array_keys($_POST) as $field){
@@ -509,7 +512,9 @@ if(isset($_POST['borrarProducto'])){
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *PRODUCTO/LOTE BORRADO CORRECTAMENTE* </label>
 		<?php
-		RedirectToURL('subastador.php', 3);
+		//RedirectToURL('subastador.php', 0);
+		//exec("PRODUCTO/LOTE BORRADO CORRECTAMENTE");
+
 	}else{
 		foreach (array_keys($_POST) as $field)
 		{
