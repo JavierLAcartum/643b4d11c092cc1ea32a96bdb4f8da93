@@ -20,11 +20,7 @@
 	<script src="anytime.5.1.2.js"></script>
 	<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Elija el tipo de subasta</label> </br></br>
 	
-<<<<<<< HEAD
-	<form name = "formulario" action="subastador.php" method="post" onsubmit = "return revisar_campos()">
-=======
-	<form action="subastador.php?page=crearSubasta" method="post" style="margin-left: 450px;">
->>>>>>> origin/master
+	<form name = "formulario" action="subastador.php" method="post" style="margin-left: 450px;" onsubmit = "return revisar_campos()">
 		<select id="tipoSubasta" name="tipoSubasta" onchange="cambiar_formulario()">
 			<option style="font-family:'Segoe UI'; font-size: 15px;" selected value="1">Dinámica descubierta</option>
 			<option style="font-family:'Segoe UI'; font-size: 15px;" value="2">Dinámica anónima</option>
@@ -55,14 +51,10 @@
 		
 		<div id="segunda-puja"> </div>		
 		
-<<<<<<< HEAD
-		<div id="precio-inicial"><input type='number'  id = 'precioInicial' name= 'precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
-=======
-		</br>
+
 		<label style="font-family:'Segoe UI'; font-size: 15px;">Precio inicial:</label></br>
 		<div id="precio-inicial" style="margin-left: 135px;">
 		<input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/></div></br>
->>>>>>> origin/master
 		
 		<div id="tiempo-cambio-precio"></div>
 		<div id="cambio-precio"></div>
@@ -152,14 +144,9 @@
 		<?php
 		}
 		?>
-<<<<<<< HEAD
-		<br/><br/>
-		<input type="submit" name="crearSubasta">
 		
-=======
 		</br></br></br>
 		<input style="font-family:'Segoe UI'; font-size: 15px; margin-left: 130px;" type="submit" name="crearSubasta">
->>>>>>> origin/master
 	<?php
 	}
 	
@@ -287,6 +274,7 @@
 					alert('Debe introducir un tiempo para cambiar el precio');
 					return false;
 				}
+				
 				else if(document.getElementById("cambioPrecio").value == ""){
 					return false;
 					
