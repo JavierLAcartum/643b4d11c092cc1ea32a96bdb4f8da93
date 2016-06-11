@@ -153,7 +153,7 @@ if(isset($_POST['salir'])){
                 if(isset($_REQUEST['enviarConsultaLog'])){
                     include("verLog.php");
                     $tipoConsulta = $_POST['consultaLog'];
-                    if($tipoConsulta = "fecha"){
+                    if($tipoConsulta == "fecha"){
                         $valorConsulta = array( $_POST['fechainicio'], $_POST['fechafin']);
                     }else{
                         $valorConsulta = $_POST['valor'];

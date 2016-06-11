@@ -172,19 +172,6 @@ function subirLote(){
 	}
 }
 
-function cambiarFormatoFecha($fecha){
-	//El formato que devuelve el input datetime es YYYY-MM-DDTHH:MM:SS
-	//Para introducirlo en la base de datos tiene que tener el formato YYYY-MM-DD HH:MM:SS
-	
-	$date = substr($fecha,0,10); //YYYY-MM-DD
-	$tiempo = substr($fecha,11,8); 
-									 
-	$fecha = $date." ".$tiempo;
-
-									 
-	return $fecha;
-}
-
 function crearSubasta(){
 	
 		
@@ -218,9 +205,6 @@ function crearSubasta(){
 		$seleccion = $_POST['seleccion'];
 		
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		 
-		$fechainicio = cambiarFormatoFecha($fechainicio);
-		$fechacierre = cambiarFormatoFecha($fechacierre);
 		
 		if(session_id() == '') {
 			session_start();
