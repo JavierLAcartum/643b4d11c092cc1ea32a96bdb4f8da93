@@ -20,7 +20,7 @@
 	<script src="anytime.5.1.2.js"></script>
 	<br/><br/>Elija el tipo de subasta<br/><br/>
 	
-	<form action="subastador.php" method="post">
+	<form name = "formulario" action="subastador.php" method="post" onsubmit = "return revisar_campos()">
 		<select id="tipoSubasta" name="tipoSubasta" onchange="cambiar_formulario()">
 			<option selected value="1">Dinámica descubierta</option>
 			<option value="2">Dinámica anónima</option>
@@ -52,7 +52,7 @@
 		
 		<div id="segunda-puja"> </div>		
 		
-		<div id="precio-inicial"><input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
+		<div id="precio-inicial"><input type='number'  id = 'precioInicial' name= 'precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/></div> 
 		
 		<div id="tiempo-cambio-precio"></div>
 		<div id="cambio-precio"></div>
@@ -72,7 +72,7 @@
 			
 			if (tipoSubasta == "1" | tipoSubasta == "2"| tipoSubasta == "3"){ //Si es dinámica descubierta, anónima o de tipo holandés parte de un precio inicial
 				
-				precioInicial.innerHTML = "<input type='number' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/>";
+				precioInicial.innerHTML = "<input type='number' id = 'precioInicial' name='precioInicial' placeholder='Precio inicial' step='0.01' min='0' required/> <br/> <br/>";
 			}
 			else{
 				
@@ -87,7 +87,7 @@
 				AnyTime.picker("tiempoCambioPrecio",
 				{format: "%H:%i:%s"} );
 				
-				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
+				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' id = 'cambioPrecio' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
 			
 			}
 			else{
@@ -108,8 +108,7 @@
 				segundaPuja.innerHTML = "";
 			}
 			
-		}	
-		
+		}		
 
 		</script>
 		<?php
@@ -142,6 +141,7 @@
 		?>
 		<br/><br/>
 		<input type="submit" name="crearSubasta">
+		
 	<?php
 	}
 	
@@ -155,6 +155,133 @@
 	?>
 
 	</form>
+	
+	<script>
+	
+		function pasarStringADate(fechaString){ //String en forma YYYY-MM-DD HH:MM:SS
+			
+			
+			var fecha = fechaString.split(" ");
+			var dias = fecha[0].split("-");
+			var tiempo = fecha[1].split(":");
+			
+			var arrayFecha = dias.concat(tiempo);
+			
+			var fechaDate = new Date(arrayFecha[0],arrayFecha[1],arrayFecha[2],arrayFecha[3],arrayFecha[4],arrayFecha[5]);
+			
+			return fechaDate;			
+		}
+	
+	function cogerFechaActual() {
+		  now = new Date();
+		  year = "" + now.getFullYear();
+		  month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+		  day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+		  hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+		  minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+		  second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+		  
+		  fechaActual = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+		  
+		  return fechaActual;
+	}
+	
+		function revisar_campos(){
+			
+			var selectSubasta = document.getElementById("tipoSubasta");
+			var tipoSubasta = selectSubasta.value;
+			var fechaInicio;
+			var fechaCierre;
+			var fechaActual;
+			
+			if(document.getElementById("fechainicio").value == ""){
+				alert('Debe introducir una fecha de inicio de la subasta');
+				return false;
+			}
+			else if(document.getElementById("fechacierre").value == ""){
+				alert('Debe introducir una fecha de fin de la subasta');
+				return false;
+			}
+			else{
+				
+				var fechaInicio = document.getElementById("fechainicio").value;
+				
+				var fechaCierre = document.getElementById("fechacierre").value;
+		
+				var fechaActual = cogerFechaActual();
+				
+				
+				var fechaInicioDate = pasarStringADate(fechaInicio);
+				var fechaCierreDate = pasarStringADate(fechaCierre);
+				
+				if(fechaInicioDate >= fechaCierreDate){
+					
+					alert('La fecha de cierre de la subasta debe ser posterior a la de finalización');
+					return false;
+					
+				}
+				
+				if(fechaInicio < fechaActual){
+					alert('La fecha de inicio de la subasta debe ser posterior a la fecha actual');
+					return false;
+				}
+			}
+			
+			if (tipoSubasta == "1" | tipoSubasta == "2"){
+					
+				if(document.getElementById("precioInicial").value == ""){
+				
+				}
+			}
+			
+			else if (tipoSubasta == "6"){
+				
+				
+				if(document.getElementById("fechaSegundaPuja").value == ""){
+				
+					alert('Debe introducir una fecha para la segunda puja');
+					return false;
+				}
+				else{
+					
+					var fechaSegundaPuja = document.getElementById("fechaSegundaPuja").value;
+					
+					if(fechaSegundaPuja <= fechaInicio){
+						
+						alert('La fecha para la segunda puja debe ser posterior a la fecha de inicio de la subasta');
+						return false;
+					}
+					else if(fechaSegundaPuja >= fechaCierre){
+						
+						alert('La fecha para la segunda puja debe ser anterior a la fecha de fin de la subasta');
+						return false;
+					}
+				}				
+			}
+			
+			else if (tipoSubasta == "3"){
+				
+				if(document.getElementById("precioInicial").value == ""){
+					return false;
+				}
+				
+				else if(document.getElementById("tiempoCambioPrecio").value == ""){
+					
+					alert('Debe introducir un tiempo para cambiar el precio');
+					return false;
+				}
+				else if(document.getElementById("cambioPrecio").value == ""){
+					return false;
+					
+				}
+			}		
+			else{
+				
+				return true;
+			}
+		}
+	
+	</script>
 
 	<?php
 		$conn->close();

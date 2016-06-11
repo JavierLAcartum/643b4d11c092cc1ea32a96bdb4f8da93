@@ -228,7 +228,6 @@ function crearSubasta(){
 		else if($tipoSubasta == "11"| $tipoSubasta == "12"){ //Subastas Round Robin ascendentes y descendentes
 		
 			$fechaSegundaPuja = $_POST['fechaSegundaPuja'];
-			$fechaSegundaPuja = cambiarFormatoFecha($fechaSegundaPuja);
 			
 			$sql = ("INSERT INTO subastas (tipo,fechainicio,fechacierre, fechasegundapuja, idsubastador) VALUES ('$tipoSubasta', '$fechainicio', '$fechacierre', '$fechaSegundaPuja', '".$_SESSION['user']['subastador']."')");
 			
