@@ -58,11 +58,21 @@ if(isset($_POST['salir'])){
 			<a href="postor.php?page=cerrarSesion">
 				<button class="buttonSesion"> Cerrar sesión </button>
 			</a>
+			<?php 
+				if(isset($_GET['page'])){
+						?>
+						<button class="buttonVolver" onclick="location.href='subastador.php'"> Volver</button>
+						<?php
+				}
+			?>
 			<a href="postor.php?page=historialSubastas">
 				<button class="buttonSub"> Historial subastas </button>
 			</a>
 		</div>
 			
+		</br></br></br>
+		</br></br></br>
+
 		<div>				
 				<?php
 				if(!isset($_GET['page'])){
