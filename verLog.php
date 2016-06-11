@@ -50,7 +50,7 @@
         <table>
             <tr>
                 <td>idLog</td>
-                <td>fecha</td>
+                <td>Fecha</td>
                 <td>Descripción</td>
                 <td>Nombre de usuario</td>
                 <td>idSubasta</td>
