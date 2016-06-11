@@ -36,7 +36,7 @@ function Registro(){
             $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
 			$idusuario = $rowNombreUsuario['id'];
             include("escribirLog.php");
-            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
+            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL", "NULL", "NULL");
             //fin de escribir el log
             
 			return true;

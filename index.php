@@ -33,7 +33,7 @@ function Login()
         
         //esto es para escribir el log
         include("escribirLog.php");
-        escribirLog("Inicio de sesión de un " .$tipoUser. ".", $idUser, "NULL", "NULL");
+        escribirLog("Inicio de sesión de un " .$tipoUser. ".", $idUser, "NULL", "NULL", "NULL", "NULL");
         //fin de escribir el log
 		
 	}else{
@@ -101,7 +101,7 @@ function Registro(){
             $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
 			$idusuario = $rowNombreUsuario['id'];
             include("escribirLog.php");
-            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL");
+            escribirLog("Se ha creado un " .$tipoUsuario. " nuevo", $idusuario, "NULL", "NULL", "NULL", "NULL");
             //fin de escribir el log
             
 			return true;

@@ -132,25 +132,23 @@ function subirLote(){
 			}
 		}
 		
-<<<<<<< HEAD
-		$sql = ("INSERT INTO lotes (nombre, idusuario) VALUES ('$nombrelote', '".$_SESSION['user']['subastador']."')");
-        
-        /*CUANDO SE AÑADA LA COLUMNA idlote A LA TABLA log DESCOMENTAR ESO Y REORGANIZAR LOS PARAMETROS DE LA FUNCION
-        //esto es para escribir el log
-        $resultNombre = $conn->query( "SELECT id FROM lotes WHERE nombre='$nombrelote'");
-        $rowNombre = $resultNombre->fetch_assoc();
-		$id = $rowNombre['id'];
-        include("escribirLog.php");
-        escribirLog("Lote creado.", $_SESSION['user']['subastador'], "NULL", $id );
-        //fin de escribir el log
-        */
-=======
+
+		      
+
 		$sql = ("INSERT INTO lotes (nombre, descripcion, idusuario) VALUES ('$nombrelote', '$descripcionLote', '".$_SESSION['user']['subastador']."')");
->>>>>>> origin/master
+        
+        
+
 		
 		if ($conn->query($sql) === TRUE) {
 			echo "New record created successfully";
 			$idLote = $conn->insert_id;
+            
+            //esto es para escribir el log
+            include("escribirLog.php");
+            escribirLog("Lote creado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLote, "NULL" );
+            //fin de escribir el log
+       
 			foreach (array_keys($_POST) as $field)
 			{
 				if($field!="crearLote" && $field!="enviar"){
@@ -266,7 +264,7 @@ function crearSubasta(){
 			$resultLotes = $conn->query($selectLotes);
 			while($resultProductos->fetch_assoc()) {
 
-				$sqlUpdate = "UPDATE productos SET idsubasta='$idSubasta' WHERE nombre='$seleccion'";
+				$sqlUpdate = "UPDATE productos SET idsubasta='$idSubasta' WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
 				if ($conn->query($sqlUpdate) === TRUE) {
 						echo "Record updated successfully";
 				} else {
@@ -276,7 +274,7 @@ function crearSubasta(){
 		
 			while($resultLotes->fetch_assoc()) {
 					
-				$sqlUpdate = "UPDATE lotes SET idsubasta='$idSubasta' WHERE nombre='$seleccion'";
+				$sqlUpdate = "UPDATE lotes SET idsubasta='$idSubasta' WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
 		
 				if ($conn->query($sqlUpdate) === TRUE) {
 						echo "Record updated successfully";
@@ -286,10 +284,24 @@ function crearSubasta(){
 						return false;
 				}
 			}
+            
             //esto es para escribir el log
             include("escribirLog.php");
-            escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, "NULL");
+            $queryBuscarProd = "SELECT id FROM productos WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
+            if($conn->query($queryBuscarProd)==TRUE){
+                $resultNombreProd = $conn->query( $queryBuscarProd);
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+			    $idprod = $rowNombreProd['id'];
+                escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, $idprod, "NULL", "NULL");
+            }else{
+                $queryBuscarLote= "SELECT id FROM lote WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+			    $idlote = $rowNombreLote['id'];
+                escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, "NULL",$idlote,  "NULL");
+            }
             //fin de escribir el log
+            
 		}
 		else {
 			echo "Error inserting record: " . $conn->error; 
@@ -324,7 +336,7 @@ function insertInDB($nombre, $descripcion, $imagen){
         $rowNombre = $resultNombreProd->fetch_assoc();
 		$idprod = $rowNombre['id'];
         include("escribirLog.php");
-        escribirLog("Producto insertado.", $_SESSION['user']['subastador'], "NULL", $idprod);
+        escribirLog("Producto insertado.", $_SESSION['user']['subastador'], "NULL", $idprod, "NULL", "NULL");
         //fin de escribir el log
         
 		$res = true;

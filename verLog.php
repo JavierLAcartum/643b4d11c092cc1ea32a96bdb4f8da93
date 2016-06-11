@@ -55,6 +55,8 @@
                 <td>Nombre de usuario</td>
                 <td>idSubasta</td>
                 <td>idProducto</td>
+                <td>idLote</td>
+                <td>idPuja</td>
             </tr>
 
             <?php
@@ -68,6 +70,8 @@
                     $nombreUsuario = '';
                     $idSubasta = '';
                     $idProducto = '';
+                    $idLote = '';
+                    $idPuja = '';
 					
 					
 					//****************************************************************************
@@ -83,6 +87,8 @@
                     
                     $idSubasta = $rowLog['idsubasta'];
 					$idProducto = $rowLog['idproducto'];
+                    $idLote = $rowLog['idlote'];
+					$idPuja = $rowLog['idpuja'];
 					
 					
 				?>
@@ -106,6 +112,12 @@
                     </td>
                     <td>
                         <?php echo $idProducto?>
+                    </td>
+                    <td>
+                        <?php echo $idLote?>
+                    </td>
+                    <td>
+                        <?php echo $idPuja?>
                     </td>
                 </tr>
 

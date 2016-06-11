@@ -6,6 +6,8 @@
         <option value="idusuario">Nombre de usuario</option>
         <option value="idsubasta">idSubasta</option>
         <option value="idproducto">idProducto</option>
+        <option value="idlote">idProducto</option>
+        <option value="idpuja">idProducto</option>
     </select>
     <span id="consulta"> <input type='number' name='valor' step='1' min='1' required/></span>
     <input type="submit" name="enviarConsultaLog">
