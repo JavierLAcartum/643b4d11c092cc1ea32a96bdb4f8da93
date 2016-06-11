@@ -85,5 +85,16 @@ if(isset($_POST['salir'])){
 				?>
 			
 		</div>
-	</body
+		
+		<!-- Pie de pagina -->
+            <div id="footer">
+                <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
+                <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
+                <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
+                <a href="mailto:sestrn00@estudiantes.unileon.es">sestrn00@estudiantes.unileon.es</a> -
+                <a href="mailto:sleons00@estudiantes.unileon.es">sleons00@estudiantes.unileon.es</a>
+                <address> 09/06/2016 </address>
+            </div>
+            <!-- end #footer -->   
+	</body>
 	</html>
