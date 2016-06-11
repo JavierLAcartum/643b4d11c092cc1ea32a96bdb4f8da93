@@ -1,10 +1,35 @@
 <?php	
 	
-	function comprobarGanador(){
-       	
-		if(isset($_GET['id'])){
-			$idSubasta = $_GET['id'];
+	if(isset($_GET['id'])){
+		$idSubasta = $_GET['id'];
+	}
+		
+	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+	
+		
+	$selectSubasta = "SELECT fechacierre, tipo FROM subastas WHERE id='$idSubasta'";
+	$result = $conn->query($selectSubasta);
+	$tipoSubasta;
+	if($result->num_rows > 0){
+			
+		while($row = $result->fetch_assoc()){				
+				$tipoSubasta = $row['tipo'];
 		}
+	}
+	if($tipoSubasta == 1 || $tipoSubasta == 2 || $tipoSubasta == 3 || $tipoSubasta == 4){
+        comprobarGanadorDinamica($tipoSubasta, $idSubasta);
+    }
+                    
+	else if($tipoSubasta == 5 || $tipoSubasta == 6){
+		comprobarGanadorHolandesa();
+	}
+                    
+	else if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
+		comprobarGanadorSobreCerrado($tipoSubasta, $idSubasta);
+	}
+	
+	function comprobarGanadorSobreCerrado($tipoSubasta, $idSubasta){
+       	
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		if(session_id() == '') {
 			session_start();
@@ -12,7 +37,6 @@
 		
 		$selectSubasta = "SELECT fechacierre, tipo FROM subastas WHERE id='$idSubasta'";
 		$result = $conn->query($selectSubasta);
-		$tipoSubasta;
 		$arrayIdPujas = array();	
 		$arrayCantidadPujas = array();
 		if($result->num_rows > 0){
@@ -24,8 +48,6 @@
 				
 				
 				if($fechaActual >= $fechaCierre){
-				
-					$tipoSubasta = $row['tipo'];				
 					
 					$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 					$selectPujas = "SELECT id, cantidad FROM pujas WHERE idsubasta='$idSubasta'";
@@ -105,5 +127,50 @@
 		
 	}
 	
-	comprobarGanador();
+	
+	
+	function comprobarGanadorDinamica($tipoSubasta, $idSubasta){
+		
+		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+		if(session_id() == '') {
+			session_start();
+		}
+		
+		$selectSubasta = "SELECT fechacierre, tipo FROM subastas WHERE id='$idSubasta'";
+		$result = $conn->query($selectSubasta);
+		if($result->num_rows > 0){
+			
+			while($row = $result->fetch_assoc()){
+		
+				$fechaActual = strtotime(date("Y-m-d H:i:s"));
+				$fechaCierre = strtotime($row['fechacierre']);
+				
+				
+				if($fechaActual >= $fechaCierre){
+					
+					include("valorMinimo.php");
+					$valorPujaFinal = valorMinimo($idSubasta);
+					$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+					$selectPujas = "SELECT id FROM pujas WHERE cantidad='$valorPujaFinal'";
+					$resultPujas = $conn->query($selectPujas);
+					
+					if ($resultPujas->num_rows > 0){
+							$rowPuja=$resultPujas->fetch_assoc();
+							$idPuja = $rowPuja['id'];
+							$cantidadPuja = $valorPujaFinal;
+							
+							echo "La id de la puja ganadora es: ".$idPuja;
+							echo "Con la cantidad de: ".$valorPujaFinal;
+													
+					}
+					
+					else{
+						
+						echo "La subasta ha finalizado sin pujas";
+					}
+				}
+			}
+			
+		}		
+	}
 ?>

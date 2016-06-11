@@ -9,11 +9,12 @@ function crearTabla(){
         session_start();
     }
     
-    $select = "SELECT fecha, cantidad, idpostor FROM pujas WHERE idsubasta='$idSubasta'";
+    $select = "SELECT id, fecha, cantidad, idpostor FROM pujas WHERE idsubasta='$idSubasta'";
     $result = $conn->query($select);
     if($result->num_rows>0){
-        $tabla='<table><tr><td>Fecha</td><td>Puja</td><td>Usuario</td></tr>';
+        $tabla='<table><tr><td>ID Puja</td><td>Fecha</td><td>Cantidad</td><td>Usuario</td></tr>';
         while($row = $result->fetch_assoc()){
+			$idPuja = $row['id'];
             $fechasub= $row['fecha'];
             $cantidad= $row['cantidad'];
             $idpostor= $row['idpostor'];
@@ -21,7 +22,7 @@ function crearTabla(){
                 $result2 = $conn->query($select);   
                 $row2 = $result2->fetch_assoc();
                 $user = $row2['usuario'];
-                $tabla=$tabla.'<tr><td>'.$fechasub.'</td><td>'.$cantidad.'</td><td>'.$user.'</td></tr>';
+                $tabla=$tabla.'<tr><td>'.$idPuja.'<td><td>'.$fechasub.'</td><td>'.$cantidad.'</td><td>'.$user.'</td></tr>';
         }
         $tabla=$tabla.'</table>';
         echo $tabla;

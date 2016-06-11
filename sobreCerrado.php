@@ -131,20 +131,20 @@
 		
 		if ($resultPujas->num_rows > 0){
 		
+			$tabla='<table><tr><td>ID Puja</td><td>Fecha</td><td>Cantidad</td></tr>';
 			while($rowPuja= $resultPujas->fetch_assoc()) {
 			
+				$idPuja = $rowPuja['id'];
 				$fechaPuja = $rowPuja['fecha'];
 				$cantidadPuja = $rowPuja['cantidad'];
 				
-				?>
 				
-				<br/><br/>PUJAS
+				$tabla=$tabla.'<tr><td>'.$idPuja.'</td><td>'.$fechaPuja.'</td><td>'.$cantidadPuja.'</td><tr>';
 				
-				<?php 
-				echo "Fecha de la puja: ".$fechaPuja."\n";
-				echo "Cantidad pujada: ".$cantidadPuja."\n";
 			}	
 		}	
+			$tabla=$tabla.'</table>';
+			echo $tabla;
 	}
 	
 	
@@ -184,7 +184,6 @@
 	function comprobarGanador() {
                
                 var xhttp = new XMLHttpRequest();
-                console.log(xhttp.status);
                 xhttp.onreadystatechange = function () {
                     if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
 
