@@ -94,7 +94,7 @@ function Registro(){
 		$insert = "INSERT INTO usuarios (tipo, usuario, password, nombre, apellidos) VALUES ('$tipoUsuario', '$username', '$password', '$nombre', '$apellidos')";
 		
 		if ($conn->query($insert) === TRUE) {
-			echo "Usuario ".$username." registrado correctamente.";
+			//echo "Usuario ".$username." registrado correctamente.";
             
             //esto es para escribir el log
             $resultNombreUsuario = $conn->query( "SELECT id FROM usuarios WHERE usuario='$username'");

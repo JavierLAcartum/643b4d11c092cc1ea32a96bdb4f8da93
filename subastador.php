@@ -452,14 +452,23 @@ if(isset($_POST['salir'])){
 				</a>
 				<a class="active" href="subastador.php?page=subirProducto">
 					<button class="buttonSub" style="margin-top: 130px;"> Subir producto </button>
+				</a>
 				<a href="subastador.php?page=crearLotes">
 					<button class="buttonSub"> Crear lotes </button>
+				</a>
 				<a href="subastador.php?page=borrarProducto">
 					<button class="buttonSub"> Borrar productos / lotes </button>
 				</a>
 				<a href="subastador.php?page=crearSubasta">
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
+				<?php 
+				if(isset($_GET['page'])){
+						?>
+						<button onclick="location.href='subastador.php'"> Volver</button>
+						<?php
+				}
+				?>
 		</div>
 
 		<div class="wrapper">

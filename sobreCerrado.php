@@ -16,6 +16,17 @@
 	$resultSubastas = $conn->query($selectSubastas);
 	$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
 	
+	//BOTON DE VOLVER CUANDO ESTAS EN UNA SUBASTAS
+	//*********************************************
+	foreach (array_keys($_SESSION['user']) as $field)
+	{
+			?>
+				<button onclick="location.href='<?php echo $field; ?>.php'"> Volver</button>
+			<?php
+			
+	}
+	//*********************************************
+	
 	include("listaSubastas.php");
 	
 	if($resultSubastas->num_rows > 0){

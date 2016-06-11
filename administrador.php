@@ -126,9 +126,15 @@ if(isset($_POST['salir'])){
                 <button class="buttonSub"> Consultar Log </button>
             </a>
             <a href="administrador.php?page=cerrarSesion">
-                <?php echo "Cerrar sesion"?>
+                <button class="buttonSub"> Cerrar Sesion </button>
             </a>
-
+			<?php 
+			if(isset($_GET['page'])){
+					?>
+					<button onclick="location.href='administrador.php'"> Volver</button>
+					<?php
+			}
+			?>
 
         </div>
 
@@ -139,11 +145,10 @@ if(isset($_POST['salir'])){
             <?php
 				if(!isset($_GET['page'])){
 					include("verLog.php");
-					    mostrarLogs();
+					mostrarLogs();
 				}else{
 					$page = $_GET['page'];
 					include("$page.php");
-                    
 				}
                 if(isset($_REQUEST['enviarConsultaLog'])){
                     include("verLog.php");
