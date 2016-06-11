@@ -193,12 +193,39 @@
 								<td style="width: 200px; text-align: center;"> <?php echo $fechaFinSubasta; ?></td> 							
 								<td style="width: 170px; text-align: center;"><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
 								
-								<td style="width: 150px; text-align: center;">
-									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
-										<?php
-												echo "Pujar"?> 
+								<?php
+								
+								if(session_id() == '') {
+									session_start();
+								}
+								if(array_key_exists('user', $_SESSION)){ //Si no está logueado, no puede acceder a las subastas
+									if(array_key_exists('subastador', $_SESSION['user'])){ //Si es un subastador puede ver la subasta pero no pujar
+									?>
+										<td style="width: 150px; text-align: center;">
+										<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
+										<?php echo "Ver subasta"?> 
 									</a>
-								</td>
+									</td>
+									<?php
+									}
+									else if(array_key_exists('postor', $_SESSION['user'])){ //Si es un postor puede pujar
+									?>
+										<td style="width: 150px; text-align: center;">
+										<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
+										<?php echo "Pujar"?> 
+									<?php
+									}
+									?>
+									
+								<?php
+								}
+								else{
+									?>
+									<td style="width: 170px; text-align: center;"> </td>
+								<?php
+								}
+								?>
+								
 								
 
 						</tr>
