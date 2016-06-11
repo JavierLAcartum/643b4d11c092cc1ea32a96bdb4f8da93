@@ -15,7 +15,7 @@
 	<head>
 	<meta charset="utf-8" />
 	<title>Crea una subasta</title>
-	<link rel="stylesheet" href="anytime.5.1.2.css" />
+	<link rel="stylesheet" href="css/anytime.5.1.2.css"/>
 	<script src="jquery-1.11.0.min.js"></script>
 	<script src="anytime.5.1.2.js"></script>
 	<br/><br/>Elija el tipo de subasta<br/><br/>

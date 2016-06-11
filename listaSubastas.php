@@ -23,7 +23,8 @@
 			case 1:
 			return "Din&aacutemica descubierta ascendente";
 			break;
-			case 2: "Din&aacutemica descubierta descendente";
+			case 2: 
+			return "Din&aacutemica descubierta descendente";
 			break;
 			case 3:
 			return "Din&aacutemica an&oacutenima ascendente";
@@ -190,7 +191,7 @@
 					    <tr>
 
 										
-								<td style="width: 250px; text-align: center;"><?php echo pasarTipoSubastaAString($tipoSubasta) ?></td>
+								<td style="width: 250px; text-align: center;"><?php echo pasarTipoSubastaAString($tipoSubasta); ?></td>
 								<td style="width: 100px; text-align: center;"><?php echo $idSubasta ?></td>
 								 							
 								<td style="font-size: 12px; width:140px; text-align: center;"><?php if($nombreObjeto!=''){ echo $nombreObjeto; } else{ echo "*Sin nombre*";} ?></td>

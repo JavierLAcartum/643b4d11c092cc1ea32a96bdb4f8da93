@@ -1,3 +1,12 @@
+<!doctype html>
+	<html>
+	<head>
+	<meta charset="utf-8" />
+	<title>Consulta Log</title>
+	<link rel="stylesheet" href="css/anytime.5.1.2.css"/>
+	<script src="jquery-1.11.0.min.js"></script>
+	<script src="anytime.5.1.2.js"></script>
+
 <form action="administrador.php?page=consultaLog" method="post">
     Realizar consulta por:
     <select id="consultaLog" name="consultaLog" onchange="cambiar_formulario()">
@@ -20,7 +29,13 @@
         var tipoConsulta = document.getElementById("consultaLog").value;
        
         if(tipoConsulta == "fecha"){
-            consulta.innerHTML = "Desde: <input type='datetime-local' name = 'fechainicio' step='1' required/> Hasta: <input type='datetime-local' name = 'fechafin' step='1' required/>";
+			
+            consulta.innerHTML = "Desde: <input type='text' id= 'fechainicio' name = 'fechainicio' required/> Hasta: <input type='text' id = 'fechafin' name = 'fechafin' required/>";
+			AnyTime.picker("fechainicio",
+				{format: "%Y-%m-%d %H:%i:%s"} );
+			AnyTime.picker("fechafin",
+				{format: "%Y-%m-%d %H:%i:%s"} );
+			
         }
         else if(tipoConsulta == "idusuario"){
             consulta.innerHTML = "<input type='text' name='valor' maxlength='20' required/>";
