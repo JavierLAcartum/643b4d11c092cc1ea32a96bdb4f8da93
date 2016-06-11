@@ -6,8 +6,8 @@
         <option value="idusuario">Nombre de usuario</option>
         <option value="idsubasta">idSubasta</option>
         <option value="idproducto">idProducto</option>
-        <option value="idlote">idProducto</option>
-        <option value="idpuja">idProducto</option>
+        <option value="idlote">idLote</option>
+        <option value="idpuja">idPuja</option>
     </select>
     <span id="consulta"> <input type='number' name='valor' step='1' min='1' required/></span>
     <input type="submit" name="enviarConsultaLog">
@@ -20,7 +20,7 @@
         var tipoConsulta = document.getElementById("consultaLog").value;
        
         if(tipoConsulta == "fecha"){
-            consulta.innerHTML = "<input type='datetime-local' name = 'valor' step='1' required/> ";
+            consulta.innerHTML = "Desde: <input type='datetime-local' name = 'fechainicio' step='1' required/> Hasta: <input type='datetime-local' name = 'fechafin' step='1' required/>";
         }
         else if(tipoConsulta == "idusuario"){
             consulta.innerHTML = "<input type='text' name='valor' maxlength='20' required/>";

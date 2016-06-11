@@ -12,7 +12,7 @@
 			session_start();
 		}
 		
-        $selectLog = "SELECT * FROM log ORDER BY id DESC";
+        $selectLog = "SELECT * FROM log ORDER BY fecha DESC";
 		$resultLog = $conn->query($selectLog);
 
         crearTableLog($resultLog, $conn);
@@ -34,9 +34,16 @@
             $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
 			$valorConsulta = $rowNombreUsuario['id'];
         }
+        
+        if($tipoConsulta == 'fecha'){
+            $selectLog = "SELECT * FROM log WHERE $tipoConsulta BETWEEN '$valorConsulta[0]' AND '$valorConsulta[1]' ORDER BY fecha DESC";
+		    
+        }else{
+            $selectLog = "SELECT * FROM log WHERE $tipoConsulta ='$valorConsulta'  ORDER BY fecha DESC";
+		    
+        }
 		
-        $selectLog = "SELECT * FROM log WHERE $tipoConsulta ='$valorConsulta'  ORDER BY id DESC";
-		$resultLog = $conn->query($selectLog);
+        $resultLog = $conn->query($selectLog);
 
         crearTableLog($resultLog, $conn);
         
