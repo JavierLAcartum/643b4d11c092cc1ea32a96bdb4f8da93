@@ -110,7 +110,7 @@ if(isset($_POST['salir'])){
     <head>
         <title>SUBASTAS</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="estilos.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen" />
     </head>
 
     <body>
