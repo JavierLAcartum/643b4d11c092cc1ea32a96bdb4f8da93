@@ -199,7 +199,7 @@
 													
 								<td style="width: 200px; text-align: center;"> <?php echo $fechaFinSubasta; ?></td> 							
 								<td style="width: 170px; text-align: center;"><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
-								
+								<!--
 								<td style="width: 150px; text-align: center;">
 									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 										<?php if(isset($pujaActual)){
@@ -210,6 +210,7 @@
 										} ?> 
 									</a>
 								</td>
+								-->
 
 						</tr>
 		           	</table>

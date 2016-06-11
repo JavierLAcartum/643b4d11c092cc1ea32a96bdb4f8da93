@@ -498,8 +498,15 @@ if(isset($_POST['salir'])){
 				<a href="subastador.php?page=cerrarSesion">
 					<button class="buttonSesion"> Cerrar sesión </button>
 				</a>
+				<?php 
+				if(isset($_GET['page'])){
+						?>
+						<button class="buttonVolver" onclick="location.href='subastador.php'"> Volver</button>
+						<?php
+				}
+				?>
 				<a class="active" href="subastador.php?page=subirProducto">
-					<button class="buttonSub" style="margin-top: 130px;"> Subir producto </button>
+					<button class="buttonSub" style="margin-top: 70px;"> Subir producto </button>
 				</a>
 				<a href="subastador.php?page=crearLotes">
 					<button class="buttonSub"> Crear lotes </button>
@@ -510,19 +517,13 @@ if(isset($_POST['salir'])){
 				<a href="subastador.php?page=crearSubasta">
 					<button class="buttonSub"> Crear subasta </button>
 				</a>
-				<?php 
-				if(isset($_GET['page'])){
-						?>
-						<button onclick="location.href='subastador.php'"> Volver</button>
-						<?php
-				}
-				?>
 		</div>
 
 		<div class="wrapper">
 			<div id="num_table"	style="display:inline-block">
 			</div>
-
+			</br></br></br></br></br></br></br></br>
+			</br></br></br></br></br></br></br></br>
 			<?php
 				if(!isset($_GET['page'])){
 					include("listaSubastas.php");

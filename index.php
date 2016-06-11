@@ -194,7 +194,7 @@ if(isset($_POST['registro']))
 			        <td style="width: 135px; text-align: center;">IMAGEN</td>
 			        <td style="width: 200px; text-align: center;">FECHA FINALIZACIÓN</td>
 			        <td style="width: 170px; text-align: center;">PRODUCTO/LOTE</td>
-			        <td style="width: 150px; text-align: center;"> </td>
+			        <!--<td style="width: 150px; text-align: center;"> </td>-->
 			    </tr>
            	</table>
 
