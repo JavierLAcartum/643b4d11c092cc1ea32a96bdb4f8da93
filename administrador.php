@@ -148,7 +148,7 @@ if(isset($_POST['salir'])){
         <div class="wrapper">
             <div id="num_table" style="display:inline-block">
             </div>
-
+            </br></br></br></br></br></br></br></br>
             <?php
 				if(!isset($_GET['page'])){
 					include("verLog.php");
