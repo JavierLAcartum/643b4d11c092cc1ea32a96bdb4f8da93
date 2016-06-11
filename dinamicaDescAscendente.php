@@ -91,10 +91,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 		$selectSubastas;
 		$resultSubastas;	
                         
-        // Then call the date functions
         $date = date('Y-m-d H:i:s');
-        // Or
-        $date = date('Y/m/d H:i:s');
         $puja = $_POST['puja'];
         $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja',    '$idSubasta', '$idUser')";
         if ($conn->query($select) === TRUE) {
@@ -225,12 +222,6 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         ?>
 
         <script type="text/javascript">
-            //setInterval(function(){ refreshTable(); }, 3000);
-            //setTimeout(refreshTable, 5000);
-
-            /*function refreshTable() {
-                $('#tableHolder').load('listaPujas.php', function());
-            }*/
             function loadDoc() {
                 <?php
             if($tipoSubasta==1 || $tipoSubasta==2){

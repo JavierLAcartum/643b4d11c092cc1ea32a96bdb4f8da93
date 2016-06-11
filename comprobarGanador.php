@@ -25,9 +25,7 @@
 				
 				if($fechaActual >= $fechaCierre){
 				
-					$tipoSubasta = $row['tipo'];
-					echo "fechaActual";
-				
+					$tipoSubasta = $row['tipo'];				
 					
 					$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 					$selectPujas = "SELECT id, cantidad FROM pujas WHERE idsubasta='$idSubasta'";
