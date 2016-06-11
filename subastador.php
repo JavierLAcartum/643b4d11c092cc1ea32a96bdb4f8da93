@@ -103,7 +103,7 @@ function generarNombreArchivoRec($nombre, $contador, $tipo){
 
 function subirLote(){
 	//Mayor o igual que 4 porque tambien hay un campo nombre y el campo de enviar
-	echo "Numero de campos marcados en formulario: ".count($_POST);
+	//echo "Numero de campos marcados en formulario: ".count($_POST);
 	
 	if(session_id() == '') {
 		session_start();
@@ -154,9 +154,9 @@ function subirLote(){
 				if($field!="crearLote" && $field!="enviar"){
 					$sqlUpdate = "UPDATE productos SET idlote='$idLote' WHERE id='$field'";
 					if ($conn->query($sqlUpdate) === TRUE) {
-						echo "Record updated successfully";
+						//echo "Record updated successfully";
 					} else {
-						echo "Error updating record: " . $conn->error;
+						//echo "Error updating record: " . $conn->error;
 					}
 				}
 				 
@@ -250,9 +250,9 @@ function crearSubasta(){
 
 				$sqlUpdate = "UPDATE productos SET idsubasta='$idSubasta' WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
 				if ($conn->query($sqlUpdate) === TRUE) {
-						echo "Record updated successfully";
+						//echo "Record updated successfully";
 				} else {
-						echo "Error updating record: " . $conn->error;
+						//echo "Error updating record: " . $conn->error;
 				}
 			}		
 		
@@ -261,10 +261,10 @@ function crearSubasta(){
 				$sqlUpdate = "UPDATE lotes SET idsubasta='$idSubasta' WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
 		
 				if ($conn->query($sqlUpdate) === TRUE) {
-						echo "Record updated successfully";
+						//echo "Record updated successfully";
 						
 				} else {
-						echo "Error updating record: " . $conn->error;
+						//echo "Error updating record: " . $conn->error;
 						return false;
 				}
 			}
@@ -288,7 +288,7 @@ function crearSubasta(){
             
 		}
 		else {
-			echo "Error inserting record: " . $conn->error; 
+			//echo "Error inserting record: " . $conn->error; 
 		}
 		
 	}
@@ -446,7 +446,7 @@ if(isset($_REQUEST['crearSubasta'])){
 }
 if(isset($_POST['borrarProducto'])){
 	if(borrarProducto()==true){
-		echo "PRODUCTO BORRADO CORRECTAMENTE";
+		echo "PRODUCTO/LOTE BORRADO CORRECTAMENTE";
 		RedirectToURL('subastador.php', 3);
 	}else{
 		foreach (array_keys($_POST) as $field)
