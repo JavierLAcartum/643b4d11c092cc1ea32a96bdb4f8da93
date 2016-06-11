@@ -186,14 +186,15 @@ if(isset($_POST['registro']))
 
 		<div class="wrapper">
 
-			<table style="width:100%; padding: 100px; margin-top: 300px; font-family:'Segoe UI'; font-weight: bold;">
+			<table style="width:100%; padding: 30px; margin-top: 390px; font-family:'Segoe UI'; font-weight: bold;">
 			    <tr>
-			        <td>Tipo</td>
-			        <td>id</td>
-			        <td>Imagen</td>
-			        <td>Nombre</td>
-			        <td>Fecha finalización</td>
-			        <td>Producto/lote</td>
+			        <td style="width: 250px; text-align: center;">TIPO</td>
+			        <td style="width: 100px; text-align: center;">ID</td>
+			        <td style="width:140px; text-align: center;">NOMBRE</td>
+			        <td style="width: 135px; text-align: center;">IMAGEN</td>
+			        <td style="width: 200px; text-align: center;">FECHA FINALIZACIÓN</td>
+			        <td style="width: 170px; text-align: center;">PRODUCTO/LOTE</td>
+			        <td style="width: 150px; text-align: center;"> </td>
 			        <!-- pujar -->
 			    </tr>
            	</table>

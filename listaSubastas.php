@@ -165,7 +165,7 @@
 						$pA = $resultPujas->fetch_assoc();
 						$pujaActual = $pA['cantidad'];
 					}else{
-						$pujaActual = "Sea el primero en pujar";
+						$pujaActual = "Pujar";
 					}
 					
 					
@@ -189,29 +189,26 @@
 					<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold; border: 1px solid black;">
 					    <tr>
 
-						<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
-
-							
-								<td><?php echo pasarTipoSubastaAString($tipoSubasta) ?></td>
-								<td><?php echo $idSubasta ?></td>
-								 <!--<h3><?php echo pasarTipoSubastaAString($tipoSubasta) ?></h3><p align="right"> <?php echo $idSubasta?></p> -->
-							
-								<td><?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } ?></td>
-							
-								<td><?php echo $nombreObjeto; ?></td>
-						
-							
-								<td> <?php echo $fechaFinSubasta; ?></td> 
-								 <?php if(isset($pujaActual)){
-											echo $pujaActual;
-											if(is_int($pujaActual)){
-									        echo " euros";
-											}
-									} ?> 
-							
-							<td><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
-						
-						</a>
+										
+								<td style="width: 250px; text-align: center;"><?php echo pasarTipoSubastaAString($tipoSubasta) ?></td>
+								<td style="width: 100px; text-align: center;"><?php echo $idSubasta ?></td>
+								 							
+								<td style="font-size: 12px; width:140px; text-align: center;"><?php if($nombreObjeto!=''){ echo $nombreObjeto; } else{ echo "*Sin nombre*";} ?></td>
+								<td style="font-size: 12px; width: 135px; text-align: center;"><?php if(isset($imagenObjeto)){ echo "<img src='".$imagenObjeto."'"; } else{ echo "*Sin imagen*";} ?></td>
+													
+								<td style="width: 200px; text-align: center;"> <?php echo $fechaFinSubasta; ?></td> 							
+								<td style="width: 170px; text-align: center;"><?php if($producto_lote==0){echo "Producto"; }else{ echo "Lote";} ?></td>
+								
+								<td style="width: 150px; text-align: center;">
+									<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
+										<?php if(isset($pujaActual)){
+												echo $pujaActual;
+												if(is_int($pujaActual)){
+										        echo " euros";
+												}
+										} ?> 
+									</a>
+								</td>
 
 						</tr>
 		           	</table>
