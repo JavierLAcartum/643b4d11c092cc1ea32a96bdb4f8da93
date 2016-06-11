@@ -355,6 +355,7 @@ function insertInDB($nombre, $descripcion, $imagen){
 
 
 function borrarProducto(){
+    include("escribirLog.php");
 	$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 	if(session_id() == '') {
 		session_start();
@@ -364,20 +365,22 @@ function borrarProducto(){
 		foreach ($_POST['productoSeleccionado'] as $field){
 			echo $field;
 				if($field!="borrarProducto"){
-                    /*
+                    
                     //para el escribir log:
                     $resultNombre = $conn->query( "SELECT id FROM productos WHERE nombre='$field'AND idusuario = '".$_SESSION['user']['subastador']."'");
                     $rowNombre = $resultNombre->fetch_assoc();
 		            $id = $rowNombre['id'];
-                    //fin datos log*/
+                    //fin datos log
                     
 					$deleteProducto = "DELETE FROM productos WHERE nombre='$field' AND idusuario = '".$_SESSION['user']['subastador']."'";					
 					$conn->query ($deleteProducto); //Si selecciona un producto, borrar producto
                     
-                    /*//esto es para escribir el log
-                    include("escribirLog.php");
-                    escribirLog("Producto borrado.", $_SESSION['user']['subastador'], "NULL", $id );
-                    //fin de escribir el log*/
+                    if($id!=""){
+                        //esto es para escribir el log
+                        escribirLog("Producto borrado.", $_SESSION['user']['subastador'], "NULL", $id, "NULL", "NULL" );
+                        //fin de escribir el log
+                    }
+                    
 					
 					$selectLote = "SELECT id FROM lotes WHERE nombre = '$field' AND idusuario = '".$_SESSION['user']['subastador']."'";
 					$resultSelectLote = $conn->query($selectLote);
@@ -390,6 +393,11 @@ function borrarProducto(){
 							$idLoteActual = $row['id'];
 							$updateProducto = "UPDATE productos SET idlote=NULL WHERE idlote='$idLoteActual'";
 							$conn->query($updateProducto);
+                            
+                            //esto es para escribir el log
+                            escribirLog("Lote borrado.", $_SESSION['user']['subastador'], "NULL", "NULL", $idLoteActual, "NULL" );
+                            //fin de escribir el log
+                            
 						}
 					}
 					
