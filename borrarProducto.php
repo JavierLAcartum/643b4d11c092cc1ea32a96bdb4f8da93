@@ -13,12 +13,15 @@
 
 	if ($resultProductos->num_rows >= 1 | $resultLotes->num_rows >= 1) {
 		
-		echo "Seleccione los productos o lotes que desea eliminar:";
-		?><form action="subastador.php" method="post">
+		echo "";
+		?>
+		<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px;">Seleccione los productos o lotes que desea eliminar</label>
+		<form action="subastador.php" method="post">
 		<?php
 		if($resultProductos->num_rows >= 1){
 		?>
-			PRODUCTOS: <br/>
+			</br>
+			<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold; margin-right: 15px;">Productos:</label>
 		
 		<?php
 		
@@ -31,7 +34,8 @@
 		
 		if($resultLotes->num_rows >= 1){
 		?>
-			<br/><br/>LOTES: <br/>
+			</br>
+			<label style="margin-left: 450px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold; margin-right: 15px;">Lotes:</label>
 			
 		<?php
 		}
@@ -43,9 +47,8 @@
 		}
 		?>
 		
-		<br/><br/><input type="submit" name="borrarProducto">
+		</br></br></br><input style="margin-left: 575px; font-family:'Segoe UI'; font-size: 15px;" type="submit" name="borrarProducto">
 		</form>
-		<button onclick="location.href='subastador.php'"> Volver</button>
 		<?php
 
 	}else{
