@@ -88,7 +88,6 @@
 			$selectPujas = "SELECT DISTINCT idsubasta FROM pujas WHERE idpostor = '".$_SESSION['user']['postor']."'";
 			$resultPujas = $conn->query($selectPujas);
 			if($resultPujas->num_rows > 0){//LISTA DE SUBASTAS
-				echo "<br>BIENVENIDO AL HISTORIAL DE SUBASTAS, AQUI APARECEN TODAS LAS SUBASTAS EN LAS QUE UDS. HA PUJADO, SELECCIONE LA QUE QUIERA PARA VER SUS LAS PUJAS EN DICHA SUBASTA<br>";
 				while($rowPujas = $resultPujas->fetch_assoc()) {
 					$selectSubastas = "SELECT * FROM subastas WHERE id = '".$rowPujas['idsubasta']."'";
 					$resultSubastas = $conn->query($selectSubastas);
