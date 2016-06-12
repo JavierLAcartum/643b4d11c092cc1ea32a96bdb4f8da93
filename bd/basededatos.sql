@@ -52,12 +52,12 @@ CREATE TABLE `log` (
 -- Volcado de datos para la tabla `log`
 --
 
-INSERT INTO `log` (`id`, `fecha`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
-(1, '2016-06-12 17:36:51', 'Se ha creado el administrador "admin".', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '2016-06-12 17:36:51', 'El administrador "admin" ha creado un subastador.', 2, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, '2016-06-12 17:36:51', 'Se ha creado un postor nuevo.', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, '2016-06-12 17:36:51', 'Producto "Coche Tesla" insertado.', 2, NULL, 1, NULL, NULL, 'Coche Tesla', ''),
-(5, '2016-06-12 17:36:51', 'Producto "Ordenador Asus GL-552" insertado.', 2, NULL, 2, NULL, NULL, 'Ordenador Asus GL-552', '');
+INSERT INTO `log` (`id`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
+(1, 'Se ha creado el administrador "admin".', 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'El administrador "admin" ha creado un subastador.', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Se ha creado un postor nuevo.', 3, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Producto "Coche Tesla" insertado.', 2, NULL, 1, NULL, NULL, 'Coche Tesla', ''),
+(5, 'Producto "Ordenador Asus GL-552" insertado.', 2, NULL, 2, NULL, NULL, 'Ordenador Asus GL-552', '');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,9 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `fecha`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
-(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12 17:36:51', 'img/imagen1.jpeg', NULL, 79, 2),
-(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12 17:36:51', '', NULL, 80, 2);
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
+(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', 'img/imagen1.jpeg', NULL, 79, 2),
+(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB','', NULL, 80, 2);
 
 -- --------------------------------------------------------
 
