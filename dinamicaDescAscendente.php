@@ -228,7 +228,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
                     <input type='number' name='puja' id='puja' placeholder="<?php echo valorMinimo($idSubasta) ?>" style="width:100px;" required />
                     <button name='submit'>Puja</button>
                 </form>
-            </a>
+        </a>
         <?php
         }
         ?>
