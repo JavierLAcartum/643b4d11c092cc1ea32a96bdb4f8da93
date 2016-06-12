@@ -190,6 +190,7 @@
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
 				<?php
+                 escribirLogNoPujas($conn, $idSubasta, $fechacierre);
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
@@ -198,6 +199,7 @@
 					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, cuya id es <?php echo sacarIdPuja($idSubasta); ?> </label> </td>
 					</table>
 				<?php
+                escribirLogGanador($conn, $idSubasta, $fechacierre);
 			}
 
 			
@@ -266,6 +268,7 @@
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
 				<?php
+                 escribirLogNoPujas($conn, $idSubasta, $fechacierre);
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
@@ -274,35 +277,36 @@
 					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, cuya id es <?php echo sacarIdPuja($idSubasta); ?> </label> </td>
 					</table>
 				<?php
+                escribirLogGanador($conn, $idSubasta, $fechacierre);
 			}
 
 		}
 	}
 
-//    //para el log
-//     if(strtotime($fechaActual) >= strtotime($fechacierre)){
-//        
-//        $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .valorMinimoRR($idSubasta, $fechacierre). "€.'";
-//        $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
-//        if($resultQueryFinSubasta->num_rows == 0){
-//            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
-//            $resultNombreProd = $conn->query( $queryBuscarProd);
-//            if($resultNombreProd->num_rows > 0){
-//                $rowNombreProd = $resultNombreProd->fetch_assoc();
-//                $idprod = $rowNombreProd['id'];
-//                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", "NULL", $idSubasta, $idprod, "NULL", $idPuja);
-//            }else{
-//                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
-//                $resultNombreLote = $conn->query( $queryBuscarLote);
-//                $rowNombreLote = $resultNombreLote->fetch_assoc();
-//                $idlote = $rowNombreLote['id'];
-//                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", "NULL", $idSubasta, "NULL", idlote, $idPuja);
-//            }
-//            
-//        }
-//                    
-//     }
-//    //fin de para el log
+    //para el log
+     if(strtotime($fechaActual) >= strtotime($fechacierre)){
+        
+        $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta "  .$idSubasta.  " ha finalizado.'";
+        $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+        if($resultQueryFinSubasta->num_rows == 0){
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+                $idprod = $rowNombreProd['id'];
+                escribirLog("La subasta "  .$idSubasta.  " ha finalizado.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+                $idlote = $rowNombreLote['id'];
+                escribirLog("La subasta "  .$idSubasta.  " ha finalizado.", "NULL", $idSubasta, "NULL", idlote, "NULL");
+            }
+            
+        }
+                    
+     }
+    //fin de para el log
 	
 	function haPujado_SI_NO($idSubasta){
 
@@ -362,5 +366,54 @@
 		<?php
 	
 	}
+
+    function escribirLogGanador($conn, $idSubasta, $fechacierre){
+        $queryIdGnador = "SELECT * FROM pujas WHERE id = '".sacarIdPuja($idSubasta)."'";
+        $resultQueryIdGanador = $conn ->query($queryIdGnador);
+        $rowIdGanador = $resultQueryIdGanador->fetch_assoc();
+        $idganador = $rowIdGanador['idpostor'];
+        
+        $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .valorMinimoRR($idSubasta, $fechacierre). "€.'";
+        $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+        if($resultQueryFinSubasta->num_rows == 0){
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+                $idprod = $rowNombreProd['id'];
+                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", $idganador, $idSubasta, $idprod, "NULL", sacarIdPuja($idSubasta));
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+                $idlote = $rowNombreLote['id'];
+                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", $idganador, $idSubasta, "NULL", idlote, sacarIdPuja($idSubasta));
+            }
+            
+        }
+    }
+
+    function escribirLogNoPujas($conn, $idSubasta, $fechacierre){
+        
+        
+        $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
+        $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+        if($resultQueryFinSubasta->num_rows == 0){
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+                $idprod = $rowNombreProd['id'];
+                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+                $idlote = $rowNombreLote['id'];
+                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, "NULL", idlote, "NULL");
+            }
+            
+        }
+    }
 	
 ?>
