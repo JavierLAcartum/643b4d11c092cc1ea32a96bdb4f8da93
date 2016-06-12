@@ -19,14 +19,19 @@ if(session_id() == '') {
 
 $idUser = $_SESSION['user']['postor'];
 
-$select = "SELECT precioactual FROM subastas WHERE id='$idSubasta'";
+$select = "SELECT precioactual, precioinicial FROM subastas WHERE id='$idSubasta'";
 $result = $conn->query($select);
 $row=$result->fetch_assoc();
 $valor = $row['precioactual'];
+$valor2 = $row['precioinicial'];
 
 $date = date('Y-m-d H:i:s');
+if(valor==null){
+    $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$valor',    '$idSubasta', '$idUser')";
 
-$select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$valor',    '$idSubasta', '$idUser')";
+}else{
+$select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$valor2',    '$idSubasta', '$idUser')";
+}
 
 if ($conn->query($select) === TRUE) {
     echo "PUJA GUARDADA CORRECTAMENTE";
