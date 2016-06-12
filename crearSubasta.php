@@ -85,10 +85,7 @@
 			
 			if(tipoSubasta == "3"){ //Si es de tipo holandés tiene que elegir un tiempo tras el que se cambiará el precio y cada cuanto se cambiará
 				
-				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='text' id='tiempoCambioPrecio'  name = 'tiempoCambioPrecio' required/> <br/> <br/>"
-				
-				AnyTime.picker("tiempoCambioPrecio",
-				{format: "%H:%i:%s"} );
+				tiempoCambioPrecio.innerHTML = "Elija cada cuánto tiempo desea variar el precio de la subasta: <input type='number' id='tiempoCambioPrecio'  name = 'tiempoCambioPrecio' min ='0'required/> segundos <br/> <br/>"
 				
 				cambioPrecio.innerHTML = "Elija la cantidad que desea que el precio varíe cada vez: <input type='number' id = 'cambioPrecio' name='cambioPrecio' step='0.01' min='0' required/> <br/> <br/>";
 			

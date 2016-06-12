@@ -89,8 +89,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `fecha`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
-(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12', 'img/imagen1.jpeg', NULL, NULL, 1),
-(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12', '', NULL, NULL, 1);
+(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12', 'img/imagen1.jpeg', NULL, NULL, 2),
+(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12', '', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
