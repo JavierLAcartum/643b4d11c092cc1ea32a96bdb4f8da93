@@ -68,11 +68,7 @@
             return $precio;
 		
 	   }else{
-            $select = "SELECT precioinicial FROM subastas WHERE id='$idSubasta'";
-            $result = $conn->query($select);
-            $row = $result->fetch_assoc();
-            $precio = $row['precioinicial'];
-            return $precio;
+            return false;
 	   }
        
     }

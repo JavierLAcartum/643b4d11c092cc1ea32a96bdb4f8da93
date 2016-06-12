@@ -67,51 +67,63 @@
 				pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "puja");
 			}			
 		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
-			
-			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-			
-			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
-			$result = $conn->query($update);
-			
-			if($tipoSubasta==11){
+			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			if($resultado==false){
+				echo "Nadie ha pujado en la subasta";
+			}else{
+				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+				
+				$update = "UPDATE subastas SET cantidadsegundapuja='".$resultado."' WHERE id='$idSubasta'";
+				$result = $conn->query($update);
+				if($tipoSubasta==11){
 				echo "<br>";
 				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja mayor que la actual.";
-			}else if($tipoSubasta==12){
-				echo "<br>";
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
-			}
-			$posicionFecha = 3;
-			if(empty($haPujado)){
-				?><p>Ya no puede pujar, porque no participó en la primera ronda</p><?php
-			}else{
-				if($haPujado->num_rows == 1){
-					pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "pujaSegunda");
-					echo"AAAAAAAAAAAAH";
-					echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
-					while($row = $haPujado->fetch_assoc()){
-						echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
-					}
-				echo "</table>";
-				}else if($haPujado->num_rows == 2){
-					echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
-					while($row = $haPujado->fetch_assoc()){
-						echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
-					}
-					echo "</table>";
-				}else{
-					
-					echo "Ha pujado ".$haPujado->num_rows." veces.";
+				}else if($tipoSubasta==12){
+					echo "<br>";
+					echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
 				}
 				
+				$posicionFecha = 3;
+				if(empty($haPujado)){
+					?><p>Ya no puede pujar, porque no participó en la primera ronda</p><?php
+				}else{
+					if($haPujado->num_rows == 1){
+						pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "pujaSegunda");
+						echo"AAAAAAAAAAAAH";
+						echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
+						while($row = $haPujado->fetch_assoc()){
+							echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
+						}
+					echo "</table>";
+					}else if($haPujado->num_rows == 2){
+						echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
+						while($row = $haPujado->fetch_assoc()){
+							echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
+						}
+						echo "</table>";
+					}else{
+						
+						echo "Ha pujado ".$haPujado->num_rows." veces.";
+					}
+					
+				}
 			}
+			
+			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
 			//Subasta finalizada, mostrar ganador
 			?><p>Subasta finalizada</p><?php
-			listaPujas($idSubasta);
-			$posicionFecha = 4;
-			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta, $fechacierre)." euros.";
+			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			if($resultado==false){
+				echo "Nadie ha pujado en la subasta";
+			}else{
+				listaPujas($idSubasta);
+				$posicionFecha = 4;
+				echo "La puja ganadora de esta subasta es de: ".$resultado." euros.";
+			}
 		}
 	}
+	
 	if($tipoUsuario == "subastador"){
 		if(strtotime($fechaActual) < strtotime($fechainicio)){ 
 			echo "<br><p>La subasta no ha comenzado aun</p><br>";
@@ -120,25 +132,35 @@
 			$posicionFecha = 2;
 			listaPujas($idSubasta);			
 		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
-			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-			
-			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
-			$result = $conn->query($update);
-			if($tipoSubasta==11){
+			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			if($resultado==false){
+				echo "Nadie ha pujado en la subasta";
+			}else{
+				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+				
+				$update = "UPDATE subastas SET cantidadsegundapuja='".$resultado."' WHERE id='$idSubasta'";
+				$result = $conn->query($update);
+				if($tipoSubasta==11){
 				echo "<br>";
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros.";
-			}else if($tipoSubasta==12){
-				echo "<br>";
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros.";
+				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja mayor que la actual.";
+				}else if($tipoSubasta==12){
+					echo "<br>";
+					echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
+				}
+				listaPujas($idSubasta);
 			}
-			$posicionFecha = 3;
-			listaPujas($idSubasta);
+			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
 			//Subasta finalizada, mostrar ganador
 			?><p>Subasta finalizada</p><?php
-			listaPujas($idSubasta);
-			$posicionFecha = 4;
-			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta, $fechacierre)." euros.";
+			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			if($resultado==false){
+				echo "Nadie ha pujado en la subasta";
+			}else{
+				listaPujas($idSubasta);
+				$posicionFecha = 4;
+				echo "La puja ganadora de esta subasta es de: ".$resultado." euros.";
+			}
 		}
 	}
 	
