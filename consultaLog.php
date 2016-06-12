@@ -15,8 +15,8 @@
         <option style="font-family:'Segoe UI'; font-size: 13px;" value="fecha">Fecha</option>
         <option style="font-family:'Segoe UI'; font-size: 13px;" value="idusuario">Nombre de usuario</option>
         <option style="font-family:'Segoe UI'; font-size: 13px;" value="idsubasta">idSubasta</option>
-        <option style="font-family:'Segoe UI'; font-size: 13px;" value="idproducto">idProducto</option>
-        <option style="font-family:'Segoe UI'; font-size: 13px;" value="idlote">idLote</option>
+        <option style="font-family:'Segoe UI'; font-size: 13px;" value="nombreproducto">Nombre Producto</option>
+        <option style="font-family:'Segoe UI'; font-size: 13px;" value="nombrelote">Nombre Lote</option>
         <option style="font-family:'Segoe UI'; font-size: 13px;" value="idpuja">idPuja</option>
     </select>
     <span id="consulta"> <input type='number' name='valor' step='1' min='1' required/></span>
@@ -38,7 +38,7 @@
 				{format: "%Y-%m-%d %H:%i:%s"} );
 			
         }
-        else if(tipoConsulta == "idusuario"){
+        else if(tipoConsulta == "idusuario"||tipoConsulta == "nombreproducto"|| tipoConsulta == "nombrelote"){
             consulta.innerHTML = "<input type='text' name='valor' maxlength='20' required/>";
         }
         else{
