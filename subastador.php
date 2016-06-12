@@ -583,7 +583,7 @@ if(isset($_POST['salir'])){
 
 		<div class="wrapper">
 
-		<table style="width:100%; padding: 30px; margin-top: 230px; font-family:'Segoe UI'; font-weight: bold;">
+		<table style="width:100%; padding: 30px; margin-top: 250px; font-family:'Segoe UI'; font-weight: bold;">
 							    <tr>
 							        <td style="width: 250px; text-align: center;">TIPO</td>
 							        <td style="width: 100px; text-align: center;">ID</td>
@@ -597,7 +597,6 @@ if(isset($_POST['salir'])){
 
 			<div id="num_table"	style="display:inline-block">
 			</div>
-			</br></br></br>
 			<?php
 				if(!isset($_GET['page'])){
 					?>
