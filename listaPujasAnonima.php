@@ -23,7 +23,6 @@ function crearTabla(){
                         <tr>
                             <td style="width: 100px; text-align: center;"> <?php echo $fechasub; ?> </td>
                             <td style="width: 135px; text-align: center;"> <?php echo $cantidad; ?> </td>
-                            <td style="width: 135px; text-align: center;"> <?php echo $user ?> </td>
                         </tr>
                     </table>
 
