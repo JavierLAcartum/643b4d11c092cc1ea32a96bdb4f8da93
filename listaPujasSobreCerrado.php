@@ -51,7 +51,7 @@ function visualizarPujas(){
 		else{
 			echo "";
 			 ?>
-            	<label style="position: absolute; margin-left: 515px; margin-top: 135px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No ha realizado ninguna puja* </label> 
+            	<label style="position: absolute; margin-left: 515px; margin-top: 435px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No ha realizado ninguna puja* </label> 
         	<?php
 		}
 			
