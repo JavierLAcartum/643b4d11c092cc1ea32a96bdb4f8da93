@@ -238,7 +238,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
     			<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
 	    	</div>
 
-	    		<table style="width:100%; padding: 30px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
+	    		<table style="width:100%; padding: 10px; padding-left: 15px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
 	                <tr>
 	                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
 	                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
@@ -249,7 +249,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 	            </table>
 
 
-       		<table style="width:100%; padding: 1px; padding-left: 15px; margin-top: 0px; margin-bottom: 60px; font-family:'Segoe UI';">
+       		<table style="width:100%; padding: 10px; padding-left: 15px; margin-top: 0px; margin-bottom: 60px; font-family:'Segoe UI';">
 
 
 				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
