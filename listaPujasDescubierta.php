@@ -29,7 +29,10 @@ function crearTabla(){
         
     
     }else{
-        echo "No hay pujas actualmente";
+        echo "";
+        ?>
+            <label style="position: absolute; margin-left: 515px; margin-top: 135px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No hay pujas actualmente* </label> 
+        <?php
     }
     
     

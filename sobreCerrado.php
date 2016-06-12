@@ -118,47 +118,49 @@
 
 	<script type="text/javascript">
 	
-	function visualizarPujas() {
-               
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
+		function visualizarPujas() {
+	               
+	                var xhttp = new XMLHttpRequest();
+	                xhttp.onreadystatechange = function () {
+	                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
 
-						respuestaXhttp = xhttp.responseText;
-                        document.getElementById("tablaPujas").innerHTML = respuestaXhttp;
-						
-                    }
-                };
-                xhttp.open("GET", "listaPujasSobreCerrado.php?id=<?php echo $idSubasta;?>", true);
-                xhttp.send(); 
-	}				
-	
-	        setInterval(function () {
-                visualizarPujas();
-			}, 500);
-	
-	var respuestaXhttp;
-	function comprobarGanador() {
-               
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
+							respuestaXhttp = xhttp.responseText;
+	                        document.getElementById("tablaPujas").innerHTML = respuestaXhttp;
+							
+	                    }
+	                };
+	                xhttp.open("GET", "listaPujasSobreCerrado.php?id=<?php echo $idSubasta;?>", true);
+	                xhttp.send(); 
+		}				
+		
+		        setInterval(function () {
+	                visualizarPujas();
+				}, 500);
+		
+		var respuestaXhttp;
+		
+		function comprobarGanador() {
+	               
+	                var xhttp = new XMLHttpRequest();
+	                xhttp.onreadystatechange = function () {
+	                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
 
-						respuestaXhttp = xhttp.responseText;
-                        document.getElementById("pujaFinalizada").innerHTML = respuestaXhttp;
-						if(respuestaXhttp != ""){
-							document.getElementById('pujar').style.display='none'; //Si ya ha realizado una puja, se oculta el formulario para pujar
-						}
-                    }
-                };
-                xhttp.open("GET", "comprobarGanador.php?id=<?php echo $idSubasta;?>", true);
-                xhttp.send(); 
-	}				
-	
-	        setInterval(function () {
-                comprobarGanador();
+							respuestaXhttp = xhttp.responseText;
+	                        document.getElementById("pujaFinalizada").innerHTML = respuestaXhttp;
+							if(respuestaXhttp != ""){
+								document.getElementById('pujar').style.display='none'; //Si ya ha realizado una puja, se oculta el formulario para pujar
+							}
+	                    }
+	                };
+	                xhttp.open("GET", "comprobarGanador.php?id=<?php echo $idSubasta;?>", true);
+	                xhttp.send(); 
+		}				
+		
+		setInterval(function () {
+	        comprobarGanador();
+	    }
 				
-		</script>
+	</script>
 
 
 <!DOCTYPE html>
