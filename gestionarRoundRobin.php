@@ -104,12 +104,14 @@
 				$update = "UPDATE subastas SET cantidadsegundapuja='".$resultado."' WHERE id='$idSubasta'";
 				$result = $conn->query($update);
 				if($tipoSubasta==11){
-				echo "<br>";
-<<<<<<< HEAD
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja mayor que la actual.";
+					?>
+					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
+				<?php
 				}else if($tipoSubasta==12){
 					echo "<br>";
-					echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
+					?>
+						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
+					<?php
 				}
 				
 				$posicionFecha = 3;
@@ -118,115 +120,85 @@
 				}else{
 					if($haPujado->num_rows == 1){
 						pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "pujaSegunda");
-						echo"AAAAAAAAAAAAH";
-						echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
+						//echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
+						?>
+							<table style="width:50%; padding: 10px; padding-left: 15px; padding-bottom: 1px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+								<tr>
+									<td style="width: 100px; text-align: center;">Fecha</td>
+									<td style="width: 100px; text-align: center;">Puja</td>
+								</tr>
+							</table>
+							<table style="width:50%; padding: 1px; padding-left: 15px; padding-bottom: 5px; margin-top: 1px; font-family:'Segoe UI';">
+						<?php
 						while($row = $haPujado->fetch_assoc()){
-							echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
+							?>
+								<tr>
+									<td style="width: 100px; text-align: center;"> <?php echo $row['fecha'];?> </td>
+									<td style="width: 100px; text-align: center;"> <?php echo $row['cantidad'];?> </td>
+								</tr>
+							<?php
 						}
-					echo "</table>";
+						?>
+							</table>
+						<?php
 					}else if($haPujado->num_rows == 2){
-						echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
+						?>
+							<table style="width:50%; padding: 10px; padding-left: 15px; padding-bottom: 1px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+								<tr>
+									<td style="width: 100px; text-align: center;">Fecha</td>
+									<td style="width: 100px; text-align: center;">Puja</td>
+								</tr>
+							</table>
+							<table style="width:50%; padding: 1px; padding-left: 15px; padding-bottom: 5px; margin-top: 1px; font-family:'Segoe UI';">
+						<?php
 						while($row = $haPujado->fetch_assoc()){
-							echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
+							?>
+								<tr>
+									<td style="width: 100px; text-align: center;"> <?php echo $row['fecha'];?> </td>
+									<td style="width: 100px; text-align: center;"> <?php echo $row['cantidad'];?> </td>
+								</tr>
+							<?php
 						}
-						echo "</table>";
+						?>
+							</table>
+						<?php
 					}else{
-						
-						echo "Ha pujado ".$haPujado->num_rows." veces.";
-					}
-					
-=======
-				?>
-					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
-				<?php
-			}else if($tipoSubasta==12){
-				echo "<br>";
-				?>
-					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
-				<?php
-			}
-			$posicionFecha = 3;
-			if(empty($haPujado)){
-				?><p>Ya no puede pujar, porque no participó en la primera ronda</p><?php
-			}else{
-				if($haPujado->num_rows == 1){
-					pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "pujaSegunda");
-					//echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
-					?>
-						<table style="width:50%; padding: 10px; padding-left: 15px; padding-bottom: 1px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
-			                <tr>
-			                	<td style="width: 100px; text-align: center;">Fecha</td>
-			                    <td style="width: 100px; text-align: center;">Puja</td>
-			                </tr>
-						</table>
-						<table style="width:50%; padding: 1px; padding-left: 15px; padding-bottom: 5px; margin-top: 1px; font-family:'Segoe UI';">
-					<?php
-					while($row = $haPujado->fetch_assoc()){
 						?>
-							<tr>
-			                	<td style="width: 100px; text-align: center;"> <?php echo $row['fecha'];?> </td>
-			                    <td style="width: 100px; text-align: center;"> <?php echo $row['cantidad'];?> </td>
-			                </tr>
-			            <?php
+							<label style="margin-left: 515px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Ha pujado <?php echo $haPujado->num_rows; ?> veces* </label>
+						<?php
+						//echo "Ha pujado ".$haPujado->num_rows." veces.";
+
 					}
-					?>
-						</table>
-					<?php
-				}else if($haPujado->num_rows == 2){
-					?>
-						<table style="width:50%; padding: 10px; padding-left: 15px; padding-bottom: 1px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
-			                <tr>
-			                	<td style="width: 100px; text-align: center;">Fecha</td>
-			                    <td style="width: 100px; text-align: center;">Puja</td>
-			                </tr>
-						</table>
-						<table style="width:50%; padding: 1px; padding-left: 15px; padding-bottom: 5px; margin-top: 1px; font-family:'Segoe UI';">
-					<?php
-					while($row = $haPujado->fetch_assoc()){
-						?>
-							<tr>
-			                	<td style="width: 100px; text-align: center;"> <?php echo $row['fecha'];?> </td>
-			                    <td style="width: 100px; text-align: center;"> <?php echo $row['cantidad'];?> </td>
-			                </tr>
-			            <?php
-					}
-					?>
-						</table>
-					<?php
-				}else{
-					?>
-						<label style="margin-left: 515px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Ha pujado <?php echo $haPujado->num_rows; ?> veces* </label>
-					<?php
-					//echo "Ha pujado ".$haPujado->num_rows." veces.";
->>>>>>> 88d7b4dd47654c39920efc221f5ec71c731c086a
 				}
 			}
+					
+
+			
+			
 			
 			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
 			//Subasta finalizada, mostrar ganador
-<<<<<<< HEAD
-			?><p>Subasta finalizada</p><?php
+
+			?>
+				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
+			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
 				echo "Nadie ha pujado en la subasta";
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
-				echo "La puja ganadora de esta subasta es de: ".$resultado." euros.";
+				?>
+					<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
+					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, cuya id es <?php echo sacarIdPuja($idSubasta); ?> </label> </td>
+					</table>
+				<?php
 			}
-=======
-			?>
-				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
-			<?php
-			listaPujas($idSubasta);
-			$posicionFecha = 4;
-			?>
-				<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
-				<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros </label> </td>
-				</table>
-			<?php
->>>>>>> 88d7b4dd47654c39920efc221f5ec71c731c086a
+
+			
+			
+
 		}
 	}
 	
@@ -240,7 +212,7 @@
 			$posicionFecha = 2;
 			listaPujas($idSubasta);			
 		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
-<<<<<<< HEAD
+
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
 				echo "Nadie ha pujado en la subasta";
@@ -257,50 +229,43 @@
 					echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
 				}
 				listaPujas($idSubasta);
-=======
-			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-			
-			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
-			$result = $conn->query($update);
-			if($tipoSubasta==11){
-				echo "<br>";
-				?>
-					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros* </label>
-				<?php
-				//echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros.";
-			}else if($tipoSubasta==12){
-				echo "<br>";
-				?>
-					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros* </label>
-				<?php
->>>>>>> 88d7b4dd47654c39920efc221f5ec71c731c086a
+
+				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+				
+				$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
+				$result = $conn->query($update);
+				if($tipoSubasta==11){
+					echo "<br>";
+					?>
+						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros* </label>
+					<?php
+					//echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros.";
+				}else if($tipoSubasta==12){
+					echo "<br>";
+					?>
+						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros* </label>
+					<?php
+				}
 			}
 			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
 			//Subasta finalizada, mostrar ganador
-<<<<<<< HEAD
-			?><p>Subasta finalizada</p><?php
+			?>
+				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
+			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
 				echo "Nadie ha pujado en la subasta";
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
-				echo "La puja ganadora de esta subasta es de: ".$resultado." euros.";
+				?>
+					<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
+					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, cuya id es <?php echo sacarIdPuja($idSubasta); ?> </label> </td>
+					</table>
+				<?php
 			}
-=======
-			?>
-				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
-			<?php
-			
-			listaPujas($idSubasta);
-			$posicionFecha = 4;
-			?>
-				<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
-				<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros </label> </td>
-				</table>
-			<?php
->>>>>>> 88d7b4dd47654c39920efc221f5ec71c731c086a
+
 		}
 	}
 
