@@ -1,6 +1,6 @@
 <?php
 
-
+include("escribirLog.php");
 if(isset($_GET['id'])){
     $idSubasta = $_GET['id'];
 }
@@ -159,5 +159,27 @@ $conn->query($update);
             </br>
         <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *No ha habido pujas en la subasta* </label>
 <?php
+        
+        //para el log
+        $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
+        $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+        if($resultQueryFinSubasta->num_rows == 0){
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+                $idprod = $rowNombreProd['id'];
+                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+                $idlote = $rowNombreLote['id'];
+                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, "NULL", $idlote, "NULL");
+            }
+            
+        }
+        //fin del para el log
+    
 }
 ?>

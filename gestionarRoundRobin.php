@@ -426,7 +426,7 @@
                 $resultNombreLote = $conn->query( $queryBuscarLote);
                 $rowNombreLote = $resultNombreLote->fetch_assoc();
                 $idlote = $rowNombreLote['id'];
-                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, "NULL", idlote, "NULL");
+                escribirLog("La subasta ".$idSubasta." ha finalizado sin pujas.", "NULL", $idSubasta, "NULL", $idlote, "NULL");
             }
             
         }
