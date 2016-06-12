@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2016 a las 17:19:52
+-- Tiempo de generación: 12-06-2016 a las 17:38:30
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- Base de datos: `643b4d11c092cc1ea32a96bdb4f8da93`
 --
 
+
 drop database if exists 643b4d11c092cc1ea32a96bdb4f8da93;
 
 create database 643b4d11c092cc1ea32a96bdb4f8da93;
@@ -27,6 +28,7 @@ create database 643b4d11c092cc1ea32a96bdb4f8da93;
 grant all on 643b4d11c092cc1ea32a96bdb4f8da93.* to '643b4d11c092cc1e'@'localhost' identified by 'sekret';
 
 USE `643b4d11c092cc1ea32a96bdb4f8da93` ;
+
 -- --------------------------------------------------------
 
 --
@@ -51,7 +53,9 @@ CREATE TABLE `log` (
 --
 
 INSERT INTO `log` (`id`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
-(67, 'Se ha creado el administrador "admin"', 1, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Se ha creado el administrador "admin"', 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'Producto "Coche Tesla" insertado.', 2, NULL, 1, NULL, NULL, 'Coche Tesla', ''),
+(3, 'Producto "Ordenador Asus GL-552" insertado.', 2, NULL, 2, NULL, NULL, 'Ordenador Asus GL-552', '');
 
 -- --------------------------------------------------------
 
@@ -89,8 +93,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `fecha`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
-(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12', 'img/imagen1.jpeg', NULL, NULL, 2),
-(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12', '', NULL, NULL, 2);
+(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12', 'img/imagen1.jpeg', NULL, NULL, 13),
+(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12', '', NULL, NULL, 13);
 
 -- --------------------------------------------------------
 
@@ -119,6 +123,7 @@ CREATE TABLE `subastas` (
   `fechainicio` datetime NOT NULL,
   `fechacierre` datetime DEFAULT NULL,
   `fechasegundapuja` datetime DEFAULT NULL,
+  `cantidadsegundapuja` float DEFAULT NULL,
   `cambioprecio` float DEFAULT NULL,
   `tiempocambioprecio` int(11) DEFAULT NULL,
   `precioactual` float DEFAULT NULL,
