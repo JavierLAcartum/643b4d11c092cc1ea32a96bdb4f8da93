@@ -176,6 +176,11 @@
 					if($tipoSubasta == "7" | $tipoSubasta == "8" | $tipoSubasta == "9" | $tipoSubasta == "10"){
 						$tipoSubastaPhp = "sobreCerrado";
 					}
+					
+					if($tipoSubasta == "11" | $tipoSubasta == "12"){
+						
+						$tipoSubastaPhp = "roundRobin";						
+					}
 				?>
 				
 
