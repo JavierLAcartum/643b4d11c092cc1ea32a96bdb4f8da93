@@ -50,7 +50,7 @@ CREATE TABLE `log` (
 -- Volcado de datos para la tabla `log`
 --
 
-INSERT INTO `log` (`id`, `fecha`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
+INSERT INTO `log` (`id`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
 (67, 'Se ha creado el administrador "admin"', 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
