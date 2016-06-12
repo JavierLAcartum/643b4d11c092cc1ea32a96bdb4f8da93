@@ -26,7 +26,7 @@ function Login()
 	$tipoUser = '';
 	$idUser = '';
 	if ($result->num_rows == 1) {
-		echo $result->num_rows;
+		//echo $result->num_rows;
 		$row = $result->fetch_assoc();
 		$tipoUser = $row['tipo'];
 		$idUser = $row['id'];
@@ -85,8 +85,11 @@ function Registro(){
 	$result = $conn->query($select);
 	
 	if ($result->num_rows == 1) {
-		
-		echo "Ya existe alguien registrado con ese nombre de usuario.";
+		?>
+			<script type="text/javascript">
+				alert('Ya existe alguien registrado con ese nombre de usuario');
+			</script>
+			<?php
 		return false;
 		
 	}else{
@@ -106,7 +109,7 @@ function Registro(){
             
 			return true;
 		} else {
-			echo "Error updating record: " . $conn->error;
+			//echo "Error updating record: " . $conn->error;
 			return false;
 		}
 	}
@@ -209,7 +212,7 @@ if(isset($_POST['registro']))
 				        <p>En caso de tener ya una cuenta creada, en el botón de 'Log in' le permitirá acceder a ella. Una vez logeado, pueden darse 3 tipos diferentes de usuario:
 				        </p>
 				        </br>
-				        <p>.El administrador, tiene la opción de dar de alta otro administrador o un subastador, y 
+				        <p>.El administrador, tiene la opción de dar de alta otro administrador o un subastador, y de ver el log. Para crear un nuevo usuario
 				        </p>
 				    </div>
 				</div>
