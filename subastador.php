@@ -303,18 +303,18 @@ function crearSubasta(){
 
             //esto es para escribir el log
             include("escribirLog.php");
-            $queryBuscarProd = "SELECT id FROM productos WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
-            if($conn->query($queryBuscarProd)==TRUE){
-                $resultNombreProd = $conn->query( $queryBuscarProd);
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' AND idusuario ='".$_SESSION['user']['subastador']."'";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
                 $rowNombreProd = $resultNombreProd->fetch_assoc();
 			    $idprod = $rowNombreProd['id'];
                 escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, $idprod, "NULL", "NULL");
             }else{
-                $queryBuscarLote= "SELECT id FROM lote WHERE nombre='$seleccion' AND idusuario ='".$_SESSION['user']['subastador']."'";
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' AND idusuario ='".$_SESSION['user']['subastador']."'";
                 $resultNombreLote = $conn->query( $queryBuscarLote);
                 $rowNombreLote = $resultNombreLote->fetch_assoc();
 			    $idlote = $rowNombreLote['id'];
-                escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, "NULL",$idlote,  "NULL");
+                escribirLog("Subasta creada.", $_SESSION['user']['subastador'], $idSubasta, "NULL", $idlote, "NULL");
             }
             //fin de escribir el log
             
