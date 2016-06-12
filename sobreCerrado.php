@@ -24,9 +24,43 @@
 	
 	include("listaSubastas.php");
 	
-	if($resultSubastas->num_rows > 0){
+	
+	function comprobarSiHaPujado($idSubasta, $tipoUsuario){
 		
-		while($row = $resultSubastas->fetch_assoc()) {
+		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+		if($tipoUsuario == "postor"){
+		
+			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta' AND idpostor='".$_SESSION['user']['postor']."'";
+			$resultPujas = $conn->query($selectPujas);
+			
+			if($resultPujas->num_rows == 0){ //Si ya ha realizado una puja, no puede hacer más
+				pujar($idSubasta);
+			}
+		}
+	}
+			
+	
+	?>
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+    </meta>
+    <head>
+        <title>SUBASTAS</title>
+        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
+    </head>
+
+    <body>
+
+    	<?php
+
+    	if($resultSubastas->num_rows > 0){
+		
+			while($row = $resultSubastas->fetch_assoc()) {
 			
 			$tipoSubasta = $row['tipo'];
 			$tipoSubastaString = pasarTipoSubastaAString($tipoSubasta);
@@ -47,6 +81,91 @@
 
 				}	
 			}
+
+			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta'";
+			$resultPujas = $conn->query($selectPujas);
+
+    	?>
+
+    	<div id="header">
+			<button class="buttonVolver" onclick="location.href='<?php echo $field; ?>.php'">Volver</button>
+			<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
+		</div>
+
+			<table style="width:100%; padding: 30px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
+			    <tr>
+			        <td style="width: 100px; text-align: center;">FECHA INICIO</td>
+			        <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
+			        <td style="width: 135px; text-align: center;">SUBASTADOR</td>
+			        <td style="width: 130px; text-align: center;">LOTE/PRODUCTO</td>
+			        <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
+			    </tr>
+			</table>
+
+			<table style="width:100%; padding: 15px; margin-top: 0px; font-family:'Segoe UI';">
+				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
+				<td style="width: 100px; text-align: center;"> <?php echo $fechaCierre; ?> </td>
+				<td style="width: 135px; text-align: center;"> <?php echo $nombre." ".$apellidos; ?> </td>
+
+				<?php
+
+
+					$selectProducto = "SELECT nombre, descripcion FROM productos WHERE idsubasta='$idSubasta'";
+					$resultProducto = $conn->query($selectProducto);
+					$selectLote = "SELECT nombre, descripcion FROM lotes WHERE idsubasta='$idSubasta'";
+					$resultLote = $conn->query($selectLote);
+			
+					if($resultProducto->num_rows > 0){
+			
+						while($rowProducto= $resultProducto->fetch_assoc()) {
+						
+							$nombreProducto = $rowProducto['nombre'];
+							$descripcionProducto = $rowProducto['descripcion'];
+							?>
+								<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
+								<td style="width: 150px; text-align: center;"> <?php echo $descripcionProducto; ?> </td>
+							<?php
+						}	
+					}
+
+					else if ($resultLote->num_rows > 0){
+				
+						while($rowLote= $resultLote->fetch_assoc()) {
+						
+							$nombreLote = $rowLote['nombre'];
+							$descripcionLote = $rowLote['descripcion'];
+							?>
+								<td style="width: 130px; text-align: center;"> <?php echo $nombreLote; ?> </td>
+								<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
+							<?php
+						}	
+					}
+
+					else{
+						?>
+							<td style="width: 130px; text-align: center;"> </td>
+						
+							<td style="width: 150px; text-align: center;"> </td>
+						<?php
+					}
+
+					?>
+
+
+					</table>
+
+					<table style="width:100%; padding: 30px; margin-top: 60px; font-family:'Segoe UI'; font-weight: bold;">
+		                <tr>
+		                    <td style="width: 100px; text-align: center;">idPUJA</td>
+		                    <td style="width: 100px; text-align: center;">FECHA</td>
+		                    <td style="width: 135px; text-align: center;">CANTIDAD</td>
+		                </tr>
+	        		</table>
+
+
+					<?php
+
+
 			
 			if(session_id() == '') {
 				session_start();
@@ -64,28 +183,11 @@
 			
 			comprobarSiHaPujado($idSubasta,$tipoUsuario);
 			
-			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta'";
-			$resultPujas = $conn->query($selectPujas);
-		}		
-	}
-	
-	function comprobarSiHaPujado($idSubasta, $tipoUsuario){
-		
-		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-		if($tipoUsuario == "postor"){
-		
-			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta' AND idpostor='".$_SESSION['user']['postor']."'";
-			$resultPujas = $conn->query($selectPujas);
-			
-			if($resultPujas->num_rows == 0){ //Si ya ha realizado una puja, no puede hacer más
-				pujar($idSubasta);
+				}		
 			}
-		}
-	}
 			
-	
-	
-	function pujar($idSubasta){
+
+	        function pujar($idSubasta){
 
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 			?>
@@ -143,10 +245,10 @@
 		}
 	}
 
-	?>
 
+	        ?>
 
-	<script type="text/javascript">
+	        <script type="text/javascript">
 	
 		var respuesta;
 		function visualizarPujas() {
@@ -191,82 +293,6 @@
 	    }, 500);
 				
 	</script>
-
-
-<!DOCTYPE html>
-<html>
-	<meta charset="UTF-8">
-    </meta>
-    <head>
-        <title>SUBASTAS</title>
-        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
-    </head>
-
-    <body>
-
-    	<div id="header">
-			<button class="buttonVolver" onclick="location.href='<?php echo $field; ?>.php'">Volver</button>
-			<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
-		</div>
-
-			<table style="width:100%; padding: 30px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
-			    <tr>
-			        <td style="width: 100px; text-align: center;">FECHA INICIO</td>
-			        <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
-			        <td style="width: 135px; text-align: center;">SUBASTADOR</td>
-			        <td style="width: 130px; text-align: center;">LOTE/PRODUCTO</td>
-			        <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
-			    </tr>
-			</table>
-
-			<table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
-
-				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
-				<td style="width: 100px; text-align: center;"> <?php echo $fechaCierre; ?> </td>
-				<td style="width: 135px; text-align: center;"> <?php echo $nombre." ".$apellidos; ?> </td>
-				<?php
-
-					$selectProducto = "SELECT nombre, descripcion FROM productos WHERE idsubasta='$idSubasta'";
-					$resultProducto = $conn->query($selectProducto);
-					$selectLote = "SELECT nombre, descripcion FROM lotes WHERE idsubasta='$idSubasta'";
-					$resultLote = $conn->query($selectLote);
-			
-					if($resultProducto->num_rows > 0){
-			
-						while($rowProducto= $resultProducto->fetch_assoc()) {
-						
-							$nombreProducto = $rowProducto['nombre'];
-							$descripcionProducto = $rowProducto['descripcion'];
-							?>
-								<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
-								<td style="width: 150px; text-align: center;"> <?php echo $descripcionProducto; ?> </td>
-							<?php
-						}	
-					}
-
-					else if ($resultLote->num_rows > 0){
-				
-						while($rowLote= $resultLote->fetch_assoc()) {
-						
-							$nombreLote = $rowLote['nombre'];
-							$descripcionLote = $rowLote['descripcion'];
-							?>
-								<td style="width: 130px; text-align: center;"> <?php echo $nombreLote; ?> </td>
-								<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
-							<?php
-						}	
-					}
-
-					else{
-						?>
-							<td style="width: 130px; text-align: center;"> </td>
-						
-							<td style="width: 150px; text-align: center;"> </td>
-						<?php
-					}
-				?>
-
-			</table>
 
 	</body>
 </html>
