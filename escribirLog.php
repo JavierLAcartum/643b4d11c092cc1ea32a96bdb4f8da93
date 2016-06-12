@@ -25,6 +25,13 @@ function escribirLog($descripcion, $idusuario, $idsubasta, $idproducto, $idlote,
         $nombrelote = "";
     }
     
+    if($descripcion=="La subasta ".$idsubasta." ha finalizado."){
+        $queryFechaFin =("SELECT fechacierre FROM subastas WHERE id='$idsubasta'");
+        $resultQueryFechaFin = $conn ->query($queryFechaFin);
+        $rowFechaFin = $resultQueryFechaFin->fetch_assoc();
+        $fecha = $rowFechaFin['fechacierre'];
+    }
+    
 	
 	$sql = ("INSERT INTO log (fecha, descripcion, idusuario, idsubasta, idproducto, idlote, idpuja, nombreproducto, nombrelote) VALUES ('$fecha', '$descripcion', $idusuario, $idsubasta, $idproducto, $idlote, $idpuja, '$nombreproducto', '$nombrelote')");
 	
