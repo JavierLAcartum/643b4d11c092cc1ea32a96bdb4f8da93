@@ -169,14 +169,14 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         $resultNombreProd = $conn->query( $queryBuscarProd);
         if($resultNombreProd->num_rows > 0){
             $rowNombreProd = $resultNombreProd->fetch_assoc();
-		   $idprod = $rowNombreProd['id'];
-            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", $idpuja);
+		    $idprod = $rowNombreProd['id'];
+            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", "NULL");
         }else{
             $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
             $resultNombreLote = $conn->query( $queryBuscarLote);
             $rowNombreLote = $resultNombreLote->fetch_assoc();
-		   $idlote = $rowNombreLote['id'];
-            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, "NULL", $idlote, $idpuja);
+		    $idlote = $rowNombreLote['id'];
+            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, "NULL", $idlote, "NULL");
         }
         //fin de escribir en el log
     
