@@ -36,9 +36,8 @@
 	$fechaActual = date("Y-m-d H:i:s");
 	?>
 
-	<table style="width:100%; padding: 10px; padding-left: 15px; padding-bottom: 30px; margin-top: 10px; font-family:'Segoe UI';">
+	<table style="width:100%; padding: 10px; padding-left: 15px; padding-bottom: 30px; margin-top: 10px; margin-left: 15px; font-family:'Segoe UI';">
 	                <tr>
-	                	<td style="width: 100px; text-align: center;"><?php echo $tipoUsuario; ?></td>
 	                    <td style="width: 100px; text-align: center;"><?php echo $fechainicio; ?></td>
 	                    <td style="width: 100px; text-align: center;"><?php echo $fechasegundapuja; ?></td>
 	                    <td style="width: 135px; text-align: center;"><?php echo $fechacierre; ?></td>
@@ -97,7 +96,10 @@
 		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
-				echo "Nadie ha pujado en la subasta";
+				echo "";
+				?>
+					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
+				<?php
 			}else{
 				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 				
@@ -185,7 +187,9 @@
 			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
-				echo "Nadie ha pujado en la subasta";
+				?>
+					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
+				<?php
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
@@ -215,7 +219,9 @@
 
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
-				echo "Nadie ha pujado en la subasta";
+				?>
+					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
+				<?php
 			}else{
 				$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 				
@@ -255,7 +261,9 @@
 			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
 			if($resultado==false){
-				echo "Nadie ha pujado en la subasta";
+				?>
+					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
+				<?php
 			}else{
 				listaPujas($idSubasta);
 				$posicionFecha = 4;
