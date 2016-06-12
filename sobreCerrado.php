@@ -137,13 +137,8 @@
 		        setInterval(function () {
 	                visualizarPujas();
 				}, 500);
-		
-<<<<<<< HEAD
-		var respuestaXhttp;		
-=======
-		var respuestaXhttp;
 
->>>>>>> origin/master
+		var respuestaXhttp;		
 		function comprobarGanador() {
 	               
 	                var xhttp = new XMLHttpRequest();
