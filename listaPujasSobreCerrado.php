@@ -45,7 +45,7 @@ function visualizarPujas(){
 				$tabla=$tabla.'<tr><td>'.$idPuja.'</td><td>'.$fechaPuja.'</td><td>'.$cantidadPuja.'</td><tr>';
 
 				?>
-				<table style="width:100%; padding: 15px; margin-top: 500px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+				<table style="width:100%; padding: 15px; margin-top: 550px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
 		                <tr>
 		                    <td style="width: 100px; text-align: center;"><?php echo $idPuja; ?></td>
 		                    <td style="width: 100px; text-align: center;"><?php echo $fechaPuja; ?></td>
