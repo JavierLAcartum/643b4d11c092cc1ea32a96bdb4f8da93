@@ -25,8 +25,22 @@ function crearTabla(){
                 $tabla=$tabla.'<tr><td>'.$idPuja.'<td><td>'.$fechasub.'</td><td>'.$cantidad.'</td><td>'.$user.'</td></tr>';
         }
         $tabla=$tabla.'</table>';
-        echo $tabla;
-        
+      
+
+        ?>
+
+            <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+                <tr>
+                    <td style="width: 100px; text-align: center;"> <?php echo $idPuja; ?> </td>
+                    <td style="width: 100px; text-align: center;"> <?php echo $fechasub; ?> </td>
+                    <td style="width: 135px; text-align: center;"> <?php echo $cantidad; ?> </td>
+                    <td style="width: 135px; text-align: center;"> <?php echo $user ?> </td>
+                </tr>
+            </table>
+
+
+
+        <?php        
     
     }else{
         echo "";

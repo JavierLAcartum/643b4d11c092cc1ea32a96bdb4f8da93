@@ -54,6 +54,35 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         $puja = $_POST['puja'];
         $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja',    '$idSubasta', '$idUser')";
         if ($conn->query($select) === TRUE) {
+            
+            //escribir en el log
+            include("escribirLog.php");
+            
+            $queryNombreUsuario= ("SELECT usuario FROM usuarios WHERE id ='".$_SESSION['user']['postor']."'");
+            $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$nombreUsuario = $rowNombreUsuario['usuario'];
+            
+            $queryIdpuja= "SELECT id FROM pujas WHERE idsubasta='$idSubasta' AND idpostor = '$idUser'";
+            $resultidpuja = $conn->query( $queryIdpuja);
+            $rowIdpuja = $resultidpuja->fetch_assoc();
+			$idpuja = $rowIdpuja['id'];
+            
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+			    $idprod = $rowNombreProd['id'];
+                escribirLog("Puja de ".$puja." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", $idpuja);
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+			    $idlote = $rowNombreLote['id'];
+                escribirLog("Puja de ".$puja." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, "NULL", $idlote, $idpuja);
+            }
+            //fin de escribir en el log
+            
         	?>
 			<script type="text/javascript">
 				alert('Usuario Puja Correcta');
@@ -75,6 +104,35 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         $puja = $_POST['puja'];
         $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja','$idSubasta', '$idUser')";
         if ($conn->query($select) === TRUE) {
+            
+            //escribir en el log
+            include("escribirLog.php");
+            
+            $queryNombreUsuario= ("SELECT usuario FROM usuarios WHERE id ='".$_SESSION['user']['postor']."'");
+            $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$nombreUsuario = $rowNombreUsuario['usuario'];
+            
+            $queryIdpuja= "SELECT id FROM pujas WHERE idsubasta='$idSubasta' AND idpostor = '$idUser'";
+            $resultidpuja = $conn->query( $queryIdpuja);
+            $rowIdpuja = $resultidpuja->fetch_assoc();
+			$idpuja = $rowIdpuja['id'];
+            
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+			    $idprod = $rowNombreProd['id'];
+                escribirLog("Puja de ".$puja." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", $idpuja);
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+			    $idlote = $rowNombreLote['id'];
+                escribirLog("Puja de ".$puja." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, "NULL", $idlote, $idpuja);
+            }
+            //fin de escribir en el log
+            
             ?>
 			<script type="text/javascript">
 				alert('Usuario Puja Correcta');
@@ -84,6 +142,44 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
             //echo "Error updating record: " . $conn->error;
         }
 }else{
+        $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
+		$selectSubastas;
+		$resultSubastas;
+    	  
+        $idUser = $_SESSION['user']['postor'];		
+                        
+        // Then call the date functions
+        $date = date('Y-m-d H:i:s');
+        $puja = $_POST['puja'];
+        $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja','$idSubasta', '$idUser')";
+        //escribir en el log
+        include("escribirLog.php");
+            
+        $queryNombreUsuario= ("SELECT usuario FROM usuarios WHERE id ='".$_SESSION['user']['postor']."'");
+        $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+        $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+		$nombreUsuario = $rowNombreUsuario['usuario'];
+        
+        $queryIdpuja= "SELECT id FROM pujas WHERE idsubasta='$idSubasta' AND idpostor = '$idUser'";
+        $resultidpuja = $conn->query( $queryIdpuja);
+        $rowIdpuja = $resultidpuja->fetch_assoc();
+		$idpuja = $rowIdpuja['id'];
+        
+        $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+        $resultNombreProd = $conn->query( $queryBuscarProd);
+        if($resultNombreProd->num_rows > 0){
+            $rowNombreProd = $resultNombreProd->fetch_assoc();
+		   $idprod = $rowNombreProd['id'];
+            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", $idpuja);
+        }else{
+            $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+            $resultNombreLote = $conn->query( $queryBuscarLote);
+            $rowNombreLote = $resultNombreLote->fetch_assoc();
+		   $idlote = $rowNombreLote['id'];
+            escribirLog("Puja inválida realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, "NULL", $idlote, $idpuja);
+        }
+        //fin de escribir en el log
+    
 	?>
 		<script type="text/javascript">
 			alert('La puja tiene un valor incorrecto!');
@@ -153,7 +249,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 	            </table>
 
 
-       		<table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+       		<table style="width:100%; padding: 1px; padding-left: 15px; margin-top: 0px; margin-bottom: 60px; font-family:'Segoe UI';">
 
 
 				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
@@ -222,6 +318,21 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 						<td style="width: 150px; text-align: center;"> </td>
 					<?php
 			}
+
+			?>
+
+			 </table>
+
+			 <table style="width:100%; padding: 30px; margin-top: 60px; font-family:'Segoe UI'; font-weight: bold;">
+	                <tr>
+	                    <td style="width: 100px; text-align: center;">idPUJA</td>
+	                    <td style="width: 100px; text-align: center;">FECHA</td>
+	                    <td style="width: 135px; text-align: center;">CANTIDAD</td>
+	                    <td style="width: 135px; text-align: center;">USUARIO</td>
+	                </tr>
+	            </table>
+
+			<?php
 			
 			if(session_id() == '') {
 				session_start();
@@ -241,7 +352,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         if($tipoUser=='postor'){
         ?>
 
-        </table>
+       
 
         <a class="active">
                 <form id='pujar' class="input-list style-4 clearfix" action='dinamicaDescAscendente.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
@@ -249,6 +360,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
                     <button name='submit'>Puja</button>
                 </form>
         </a>
+
         <?php
         }
         ?>
