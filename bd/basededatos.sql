@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2016 a las 17:38:30
+-- Tiempo de generación: 13-06-2016 a las 01:44:57
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `643b4d11c092cc1ea32a96bdb4f8da93`
 --
 
-
 drop database if exists 643b4d11c092cc1ea32a96bdb4f8da93;
 
 create database 643b4d11c092cc1ea32a96bdb4f8da93;
@@ -28,6 +27,7 @@ create database 643b4d11c092cc1ea32a96bdb4f8da93;
 grant all on 643b4d11c092cc1ea32a96bdb4f8da93.* to '643b4d11c092cc1e'@'localhost' identified by 'sekret';
 
 USE `643b4d11c092cc1ea32a96bdb4f8da93` ;
+
 
 -- --------------------------------------------------------
 
@@ -52,12 +52,12 @@ CREATE TABLE `log` (
 -- Volcado de datos para la tabla `log`
 --
 
-INSERT INTO `log` (`id`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
-(1, 'Se ha creado el administrador "admin".', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'El administrador "admin" ha creado un subastador.', 2, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Se ha creado un postor nuevo.', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Producto "Coche Tesla" insertado.', 2, NULL, 1, NULL, NULL, 'Coche Tesla', ''),
-(5, 'Producto "Ordenador Asus GL-552" insertado.', 2, NULL, 2, NULL, NULL, 'Ordenador Asus GL-552', '');
+INSERT INTO `log` (`id`, `fecha`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
+(1, '2016-06-12 17:36:51', 'Se ha creado el administrador "admin".', 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '2016-06-12 17:36:51', 'El administrador "admin" ha creado un subastador.', 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '2016-06-12 17:36:51', 'Se ha creado un postor nuevo.', 3, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '2016-06-12 17:36:51', 'Producto "Coche Tesla" insertado.', 2, NULL, 1, NULL, NULL, 'Coche Tesla', ''),
+(5, '2016-06-12 17:36:51', 'Producto "Ordenador Asus GL-552" insertado.', 2, NULL, 2, NULL, NULL, 'Ordenador Asus GL-552', '');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,9 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
-(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', 'img/imagen1.jpeg', NULL, NULL, 2),
-(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '', NULL, NULL, 2);
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `fecha`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
+(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12 17:36:51', 'img/imagen1.jpeg', NULL, 79, 2),
+(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12 17:36:51', '', NULL, 80, 2);
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,8 @@ CREATE TABLE `pujas` (
   `idsubasta` int(11) NOT NULL,
   `idpostor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 -- --------------------------------------------------------
 
@@ -129,7 +131,7 @@ CREATE TABLE `subastas` (
   `cambioprecio` float DEFAULT NULL,
   `tiempocambioprecio` int(11) DEFAULT NULL,
   `precioactual` float DEFAULT NULL,
-  `fechaactual` date DEFAULT NULL,
+  `fechaactual` datetime DEFAULT NULL,
   `idsubastador` int(11) DEFAULT NULL,
   `idpujaganadora` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,7 +222,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 --
 -- AUTO_INCREMENT de la tabla `lotes`
 --
@@ -230,22 +232,22 @@ ALTER TABLE `lotes`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
