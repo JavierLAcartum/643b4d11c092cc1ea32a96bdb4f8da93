@@ -71,8 +71,10 @@
 			session_start();
 		}
 		
+		$fechaActual = date("Y-m-d H:i:s");
+		
 		if($tipoUsuario == ""){
-			$selectSubastas = "SELECT * FROM subastas ORDER BY fechacierre DESC";
+			$selectSubastas = "SELECT * FROM subastas WHERE fechainicio < '$fechaActual' AND fechacierre > '$fechaActual' ORDER BY fechacierre DESC";
 			$resultSubastas = $conn->query($selectSubastas);
 			crearDivSubasta($resultSubastas, $conn);
 		}
@@ -86,16 +88,14 @@
 			$selectPujas = "SELECT DISTINCT idsubasta FROM pujas WHERE idpostor = '".$_SESSION['user']['postor']."'";
 			$resultPujas = $conn->query($selectPujas);
 			if($resultPujas->num_rows > 0){//LISTA DE SUBASTAS
+				echo "<br>BIENVENIDO AL HISTORIAL DE SUBASTAS, AQUI APARECEN TODAS LAS SUBASTAS EN LAS QUE UDS. HA PUJADO, SELECCIONE LA QUE QUIERA PARA VER SUS LAS PUJAS EN DICHA SUBASTA<br>";
 				while($rowPujas = $resultPujas->fetch_assoc()) {
-					echo "<br>BIENVENIDO AL HISTORIAL DE SUBASTAS, AQUI APARECEN TODAS LAS SUBASTAS EN LAS QUE UDS. HA PUJADO, SELECCIONE LA QUE QUIERA PARA VER SUS LAS PUJAS EN DICHA SUBASTA<br>";
 					$selectSubastas = "SELECT * FROM subastas WHERE id = '".$rowPujas['idsubasta']."'";
 					$resultSubastas = $conn->query($selectSubastas);
 					crearDivSubasta($resultSubastas, $conn);
 				}
 			}
-		}
-		
-			
+		}			
 	}
 	
 	function crearDivSubasta($resultSubastas, $conn){
@@ -109,11 +109,11 @@
 					$fechaFinSubasta; //fecha fin subasta
                     $tipoSubastaPhp = ''; //Guarda URL del tipo de subasta
 					
-					$producto_lote = -1; //Variable para fijar si es un producto = 0 y si es lote = 1. Por si acaso luego queremos saber en que tabla buscar
 					$nombreObjeto = ''; 
 					$descripcionObjeto = ''; //Si es un lote no tiene descripcion
 					$imagenObjeto; //Si es un lote no tiene imagen
-					$arrayProductos = array(); //Array que contiene la id de los productos si es un lote
+					
+					$producto_lote = "";
 					
 					$nombreSubastador = '';
 					$apellidosSubastador = '';
@@ -148,22 +148,21 @@
 						$apellidosSubastador = $rowSubastador['apellidos'];
 					}
 					if($resultProductos->num_rows == 1){
+						$producto_lote==0;
 						$rowProductos = $resultProductos->fetch_assoc();
-						
-						$producto_lote = 0;
 						$nombreObjeto = $rowProductos['nombre'];
 						$descripcionObjeto = $rowProductos['descripcion'];
 						$imagenObjeto = $rowProductos['imagen'];
-					}else{
-						if($resultProductos->num_rows != 0){
-							$producto_lote = 1;
-							while($rowProductos = $resultProductos->fetch_assoc()) {
-								array_push($arrayProductos, $rowProductos['nombre']);
-							}
-						}
-					}					
+						
+					}else if($resultLotes->num_rows == 1){
+						$producto_lote=1;
+						$rowLote = $resultLotes->fetch_assoc();								
+						$nombreObjeto = $rowLote['nombre'];						
+							
+					}
+									
 					
-					$paginaSubastas;
+					$tipoSubastaPhp;
 					
 					 if($tipoSubasta == 1 || $tipoSubasta == 2 || $tipoSubasta == 3 || $tipoSubasta == 4){
                         $tipoSubastaPhp = "dinamicaDescAscendente";
@@ -199,7 +198,7 @@
 									session_start();
 								}
 								if(array_key_exists('user', $_SESSION)){ //Si no está logueado, no puede acceder a las subastas
-									if(array_key_exists('subastador', $_SESSION['user'])){ //Si es un subastador puede ver la subasta pero no pujar
+									if(array_key_exists('subastador', $_SESSION['user']) | array_key_exists('postor', $_SESSION['user'])){ //Si es un subastador o un postpr puede acceder a la subasta
 									?>
 										<td style="width: 150px; text-align: center;">
 										<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
@@ -207,17 +206,7 @@
 									</a>
 									</td>
 									<?php
-									}
-									else if(array_key_exists('postor', $_SESSION['user'])){ //Si es un postor puede pujar
-									?>
-										<td style="width: 150px; text-align: center;">
-										<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
-										<?php echo "Pujar"?> 
-									<?php
-									}
-									?>
-									
-								<?php
+									}									
 								}
 								else{
 									?>
@@ -236,7 +225,6 @@
 				<?php
 				
 				}
-				
 			}else{
 				echo "";
 				?>
