@@ -136,6 +136,7 @@ function subirLote(){
 		$resultLotes = $conn->query($selectLotes);
 		if ($resultProductos->num_rows > 0) {
 			while($resultProductos->fetch_assoc()) {
+				?>
 				<script type="text/javascript">
 					alert('Ya existe otro producto con el mismo nombre');
 				</script>
