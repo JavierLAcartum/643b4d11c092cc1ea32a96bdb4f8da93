@@ -186,7 +186,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 			$resultLote = $conn->query($selectLote);
 			
 			if($resultProducto->num_rows > 0){
-				
+
 				while($rowProducto= $resultProducto->fetch_assoc()) {
 				
 					$nombreProducto = $rowProducto['nombre'];
@@ -213,6 +213,14 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 						<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
 					<?php
 				}	
+			}
+
+			else{
+					?>
+						<td style="width: 130px; text-align: center;"> </td>
+					
+						<td style="width: 150px; text-align: center;"> </td>
+					<?php
 			}
 			
 			if(session_id() == '') {

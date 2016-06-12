@@ -64,7 +64,7 @@ function checkCambioPrecio($idSubasta){
 			$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
 
 			foreach (array_keys($_SESSION['user']) as $field){
-				
+
 			}
 			
 			include("listaSubastas.php");
@@ -158,6 +158,14 @@ function checkCambioPrecio($idSubasta){
 								<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
 							<?php
 						}	
+					}
+
+					else{
+						?>
+							<td style="width: 130px; text-align: center;"> </td>
+						
+							<td style="width: 150px; text-align: center;"> </td>
+						<?php
 					}
 					
 					if(session_id() == '') {
