@@ -78,10 +78,11 @@ function checkCambioPrecio($idSubasta){
 					?>
 
 					<div id="header">
+						<button class="buttonVolver" onclick="location.href='subastador.php'">Volver</button>
 			    		<h2 style="font-size: 30px; font-style: italic;"> Dinámica holandesa ascendente </h2>
 			    	</div>
 
-			    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+			    	<table style="width:100%; padding: 30px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
 			                <tr>
 			                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
 			                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
