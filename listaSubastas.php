@@ -140,6 +140,7 @@
 					$selectPujas = "SELECT * FROM pujas WHERE idsubasta='".$idSubasta."' ORDER BY fecha DESC";
 					$resultPujas = $conn->query($selectPujas);
 					$pujasRealizadas = $resultPujas;
+					$imagenObjeto = "";
 					
 					if($resultSubastador->num_rows == 1){
 						$rowSubastador = $resultSubastador->fetch_assoc();
