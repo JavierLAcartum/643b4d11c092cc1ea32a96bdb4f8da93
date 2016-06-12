@@ -1,7 +1,7 @@
 <?php 
 function RedirectToURL($url, $tiempo)
 {
-	header("Refresh: $tiempo, URL=$url");
+	header("Refresh: 0, URL=$url");
 	exit;
 }
 

@@ -126,8 +126,12 @@ if(session_id() == '') {
 if(isset($_SESSION['user'])){
 	foreach (array_keys($_SESSION['user']) as $field)
 		{
-			echo "Para volver a la pagina principal debe cerrar sesion";
-			RedirectToURL("$field.php",3);
+			?>
+			<script type="text/javascript">
+				alert('Para volver a la pagina principal debe cerrar sesion');
+			</script>
+			<?php
+			RedirectToURL("$field.php",0);
 		}
 }
 
