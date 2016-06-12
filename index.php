@@ -167,7 +167,7 @@ if(isset($_POST['registro']))
         <div id="header">
 
           <!-- Login -->
-			<a class="active">
+			<a id="inicio" class="active">
 				<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
 					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px; margin-top: 50px;" required />
 					<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
@@ -192,6 +192,34 @@ if(isset($_POST['registro']))
 						<?php
 				}
 			?>
+
+			</br>
+			<a href="#about" class="btn btn-circle page-scroll">
+                    <i style="text-align: center; font-family:'Segoe UI'; font-size: 13px;" class="fa fa-angle-double-down animated"> AYUDA</i>
+            </a>
+
+
+            <section style="margin-top: 500px;" id="about" class="container content-section text-center">
+            	<div class="row">
+            		<div class="col-lg-8 col-lg-offset-2">
+				        <h2 style="font-size: 30px;">Ayuda</h2>
+				        <p>Bienvenido a nuestra página de subastas. En ella dispondrá de diversas opciones que se van a enumerar a continuación:</p>
+				        <p>En primer lugar, puede registrarse si no dispone de una cuenta. Sólo debe rellenar los campos requeridos.
+				        </p>
+				        <p>En caso de tener ya una cuenta creada, en el botón de 'Log in' le permitirá acceder a ella. Una vez logeado, pueden darse 3 tipos diferentes de usuario:
+				        </p>
+				        </br>
+				        <p>.El administrador, tiene la opción de dar de alta otro administrador o un subastador, y 
+				        </p>
+				    </div>
+				</div>
+		    </section>
+		    </br>
+			<a href="#inicio" class="btn btn-circle page-scroll">
+                    <i style="text-align: center; font-family:'Segoe UI'; font-size: 13px;" class="fa fa-angle-double-down animated"> Volver arriba</i>
+            </a>
+
+
         </div>
         <!-- end #header -->
 
@@ -203,7 +231,7 @@ if(isset($_POST['registro']))
 				<?php
 					if(!isset($_GET['page'])){
 						?>
-							<table style="width:100%; padding: 30px; margin-top: 390px; font-family:'Segoe UI'; font-weight: bold;">
+							<table style="width:100%; padding: 30px; margin-top: 450px; font-family:'Segoe UI'; font-weight: bold;">
 							    <tr>
 							        <td style="width: 250px; text-align: center;">TIPO</td>
 							        <td style="width: 100px; text-align: center;">ID</td>
@@ -229,7 +257,7 @@ if(isset($_POST['registro']))
 
 
 		<!-- Pie de pagina -->
-            <div id="footer">
+            <div style="margin-top: 600px;" id="footer">
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
                 <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
