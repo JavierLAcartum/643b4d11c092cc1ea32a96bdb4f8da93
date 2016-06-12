@@ -118,14 +118,15 @@
 
 	<script type="text/javascript">
 	
+		var respuesta;
 		function visualizarPujas() {
 	               
 	                var xhttp = new XMLHttpRequest();
 	                xhttp.onreadystatechange = function () {
 	                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
 
-							respuestaXhttp = xhttp.responseText;
-	                        document.getElementById("tablaPujas").innerHTML = respuestaXhttp;
+							respuesta = xhttp.responseText;
+	                        document.getElementById("tablaPujas").innerHTML = respuesta;
 							
 	                    }
 	                };
@@ -137,8 +138,7 @@
 	                visualizarPujas();
 				}, 500);
 		
-		var respuestaXhttp;
-		
+		var respuestaXhttp;		
 		function comprobarGanador() {
 	               
 	                var xhttp = new XMLHttpRequest();
@@ -158,7 +158,7 @@
 		
 		setInterval(function () {
 	        comprobarGanador();
-	    }
+	    }, 500);
 				
 	</script>
 
