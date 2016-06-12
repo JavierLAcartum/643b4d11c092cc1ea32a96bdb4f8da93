@@ -94,7 +94,7 @@
 	   $idPujaRetorno;
        $select = "SELECT cantidad, id FROM pujas WHERE idsubasta='$idSubasta'";
 	   $result = $conn->query($select);
-¡
+	   
         if ($result->num_rows> 0) {
             
             while( $row=$result->fetch_assoc()){
