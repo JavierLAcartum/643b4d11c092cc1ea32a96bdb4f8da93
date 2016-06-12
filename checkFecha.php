@@ -95,7 +95,7 @@ $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'
 
 		
 if ($conn->query($update) === TRUE) {
-    echo $precioActual;
+    echo 'La subasta esta en un valor de: '.$precioActual;
 } else {
     echo "Error updating record: " . $conn->error;
 }
@@ -106,9 +106,9 @@ $conn->query($update);
   
 }else{
     if($precioActual==null){
-        echo $precioInicial;
+        echo 'La subasta esta en un valor de: '.$precioInicial;
     }else{
-        echo $precioActual;
+        echo 'La subasta esta en un valor de: '.$precioActual;
     }
 }
 }else{
