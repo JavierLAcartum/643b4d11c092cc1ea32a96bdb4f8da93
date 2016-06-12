@@ -80,9 +80,43 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 }
 
 ?>
-    <html>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+    </meta>
+    <head>
+        <title>SUBASTAS</title>
+        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
+    </head>
 
     <body>
+
+    	<div id="header">
+    		<h2 style="font-size: 30px; font-style: italic;"> Dinámica descubierta ascendente </h2>
+    	</div>
+
+    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+                <tr>
+                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
+                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
+                    <td style="width: 135px; text-align: center;">SUBASTADOR</td>
+                    <td style="width: 130px; text-align: center;">LOTE</td>
+                    <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
+                </tr>
+            </table>
+
+
+        <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+
         <!-- Puja -->
         <?php
     $selectSubastas = "SELECT tipo, idsubastador, fechainicio, fechacierre FROM subastas WHERE id='$idSubasta'";
@@ -95,13 +129,17 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 		while($row = $resultSubastas->fetch_assoc()) {
 			$tipoSubasta = $row['tipo'];
 			$tipoSubastaString = pasarTipoSubastaAString($tipoSubasta);
-			echo "Tipo de subasta: ".$tipoSubastaString."\n";
 			
 			$fechaInicio = $row['fechainicio'];
 			$fechaCierre = $row['fechacierre'];
 
-			echo "Fecha de inicio: ".$fechaInicio."\n";
-			echo "Fecha de cierre: ".$fechaCierre."\n";
+			?>
+				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
+			<?php
+
+			?>
+				<td style="width: 100px; text-align: center;"> <?php echo $fechaCierre; ?> </td>
+			<?php
 			
 			$idSubastador = $row['idsubastador'];
 			$selectSubastador = "SELECT nombre, apellidos FROM usuarios WHERE id='$idSubastador'";
@@ -114,7 +152,9 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 					$nombre = $rowSubastador['nombre'];
 					$apellidos = $rowSubastador['apellidos'];
 					
-					echo "Subastador: ".$nombre." ".$apellidos."\n";
+					?>
+						<td style="width: 135px; text-align: center;"> <?php echo $nombre." ".$apellidos; ?> </td>
+					<?php
 
 				}	
 			}
@@ -132,8 +172,13 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 					$nombreProducto = $rowProducto['nombre'];
 					$descripcionProducto = $rowProducto['descripcion'];
 					
-					echo "Producto a subastar: ".$nombreProducto."\n";
-					echo "Descripcion: ".$descripcionProducto;
+					?>
+						<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
+					<?php
+
+					?>
+						<td style="width: 150px; text-align: center;"> <?php echo $descripcionProducto; ?> </td>
+					<?php
 				}	
 			}
 
@@ -143,9 +188,14 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 				
 					$nombreLote = $rowLote['nombre'];
 					$descripcionLote = $rowLote['descripcion'];
-					
-					echo "Lote a subastar: ".$nombreLote."\n";
-					echo "Descripcion: ".$descripcionLote;
+
+					?>
+						<td style="width: 130px; text-align: center;"> <?php echo $nombreLote; ?> </td>
+					<?php
+
+					?>
+						<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
+					<?php
 				}	
 			}
 			
@@ -166,6 +216,9 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 	}
         if($tipoUser=='postor'){
         ?>
+
+        </table>
+
         <a class="active">
                 <form id='pujar' class="input-list style-4 clearfix" action='dinamicaDescAscendente.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
                     <input type='number' name='puja' id='puja' placeholder="<?php echo valorMinimo($idSubasta) ?>" style="width:100px;" required />
