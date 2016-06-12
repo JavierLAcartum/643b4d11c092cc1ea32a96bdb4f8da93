@@ -39,7 +39,7 @@ if ($conn->query($select) === TRUE) {
 
 $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
 } else {
-    echo "Error updating record: " . $conn->error;
+    //echo "Error updating record: " . $conn->error;
 }
 
 

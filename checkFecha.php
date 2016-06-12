@@ -56,9 +56,13 @@ if($repeticiones>1 && $ganador==null){
     $tiempoAct2 = date('Y-m-d H:i:s', $tiempoAct);
     $update= "UPDATE subastas SET precioactual='$precioActual', fechaactual='$tiempoAct2' WHERE id='$idSubasta'";
     if ($conn->query($update) === TRUE) {
-        echo 'La subasta esta en un valor de: '.$precioActual;
+        //echo 'La subasta esta en un valor de: '.$precioActual;
+        ?>
+            </br>
+            <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *La subasta está en un valor de: <?php echo $precioActual; ?>* </label>
+        <?php
     } else {
-        echo "Error updating record: " . $conn->error;
+        //echo "Error updating record: " . $conn->error;
     }
     
 }
@@ -99,9 +103,13 @@ if($precioActual==null){
 $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'";
 
 if ($conn->query($update) === TRUE) {
-    echo 'La subasta esta en un valor de: '.$precioActual;
+    //echo 'La subasta esta en un valor de: '.$precioActual;
+    ?>
+        </br>
+        <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *La subasta está en un valor de: <?php echo $precioActual; ?>* </label>
+    <?php
 } else {
-    echo "Error updating record: " . $conn->error;
+    //-echo "Error updating record: " . $conn->error;
 }
     $update= "UPDATE subastas SET fechaactual='$fecha' WHERE id='$idSubasta'";
     
@@ -110,9 +118,17 @@ $conn->query($update);
   
 }else{
     if($precioActual==null){
-        echo 'La subasta esta en un valor de: '.$precioInicial;
+        //echo 'La subasta esta en un valor de: '.$precioInicial;
+        ?>
+            </br>
+            <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *La subasta está en un valor de: <?php echo $precioInicial; ?>* </label>
+        <?php
     }else{
-        echo 'La subasta esta en un valor de: '.$precioActual;
+        //echo 'La subasta esta en un valor de: '.$precioActual;
+        ?>
+            </br>
+            <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *La subasta está en un valor de: <?php echo $precioActual; ?>* </label>
+        <?php
     }
 }
 }else{
@@ -125,6 +141,10 @@ $conn->query($update);
     $result = $conn->query($select);
     $row = $result->fetch_assoc();
     $user = $row['usuario'];
-    echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
+    //echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
+    ?>
+        </br>
+        <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *El usuario <?php echo $user; ?> ha ganado la subasta con un valor de <?php echo $valor; ?>* </label>
+    <?php
 }
 ?>
