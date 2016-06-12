@@ -143,17 +143,15 @@ $conn->query($update);
     $result = $conn->query($select);
     $row = $result->fetch_assoc();
     $user = $row['usuario'];
-<<<<<<< HEAD
-    echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
+    //echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
+
     
     
-    
-=======
+   
     //echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
     ?>
         </br>
         <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *El usuario <?php echo $user; ?> ha ganado la subasta con un valor de <?php echo $valor; ?>* </label>
     <?php
->>>>>>> origin/master
 }
 ?>
