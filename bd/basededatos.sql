@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2016 a las 00:34:50
+-- Tiempo de generación: 12-06-2016 a las 17:19:52
 -- Versión del servidor: 5.7.12-log
 -- Versión de PHP: 5.6.21
 
@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `643b4d11c092cc1ea32a96bdb4f8da93`
 --
+
 drop database if exists 643b4d11c092cc1ea32a96bdb4f8da93;
 
 create database 643b4d11c092cc1ea32a96bdb4f8da93;
@@ -34,7 +35,7 @@ USE `643b4d11c092cc1ea32a96bdb4f8da93` ;
 
 CREATE TABLE `log` (
   `id` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `descripcion` varchar(200) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL,
   `idsubasta` int(11) DEFAULT NULL,
@@ -44,6 +45,13 @@ CREATE TABLE `log` (
   `nombreproducto` varchar(45) DEFAULT NULL,
   `nombrelote` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `log`
+--
+
+INSERT INTO `log` (`id`, `fecha`, `descripcion`, `idusuario`, `idsubasta`, `idproducto`, `idpuja`, `idlote`, `nombreproducto`, `nombrelote`) VALUES
+(67, 'Se ha creado el administrador "admin"', 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -58,7 +66,6 @@ CREATE TABLE `lotes` (
   `idsubasta` int(11) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,14 @@ CREATE TABLE `productos` (
   `idusuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `fecha`, `imagen`, `idlote`, `idsubasta`, `idusuario`) VALUES
+(1, 'Coche Tesla', 'Poco utilizado, en perfectas condiciones.', '2016-06-12', 'img/imagen1.jpeg', NULL, NULL, 13),
+(2, 'Ordenador Asus GL-552', 'Memoria Ram: 16GB\r\nIntel Core i7 6700 HQ\r\nDisco Duro SSD: 128 GB', '2016-06-12', '', NULL, NULL, 13);
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +106,8 @@ CREATE TABLE `pujas` (
   `idpostor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `subastas`
 --
@@ -103,11 +120,14 @@ CREATE TABLE `subastas` (
   `fechacierre` datetime DEFAULT NULL,
   `fechasegundapuja` datetime DEFAULT NULL,
   `cambioprecio` float DEFAULT NULL,
-  `tiempocambioprecio` time DEFAULT NULL,
+  `tiempocambioprecio` int(11) DEFAULT NULL,
   `precioactual` float DEFAULT NULL,
+  `fechaactual` date DEFAULT NULL,
   `idsubastador` int(11) DEFAULT NULL,
   `idpujaganadora` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
@@ -193,27 +213,27 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT de la tabla `lotes`
 --
 ALTER TABLE `lotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
