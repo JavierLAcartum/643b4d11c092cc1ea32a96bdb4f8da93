@@ -212,7 +212,14 @@ if(isset($_POST['registro']))
 				        <p>En caso de tener ya una cuenta creada, en el botón de 'Log in' le permitirá acceder a ella. Una vez logeado, pueden darse 3 tipos diferentes de usuario:
 				        </p>
 				        </br>
-				        <p>.El administrador, tiene la opción de dar de alta otro administrador o un subastador, y de ver el log. Para crear un nuevo usuario
+				        <p> El <u>administrador</u>, tiene la opción de dar de alta otro administrador o un subastador, y de ver el log. Para crear un nuevo usuario, deben rellenarse todos los campos. Para consultar el log, se podrán filtrar las búsquedas.
+				        </p>
+				        <p> El <u>subastador</u>, tiene las opciones de subir un producto, crear un lote, borrarlos, y crear una subasta, teniendo al menos 2 productos subidos. Para subir un producto o lote, será necesario rellenar una serie de campos. A su vez, puede ver las pujas realizadas en sus subastas.
+				        </p>
+				        <p> El <u>postor</u>, puede ver el historial de subastas.
+				        </p>
+				        </br>
+				        <p> Cada página dispone de un botón de 'Volver', para regresar a la página principal del usuario, o al index. A su vez, los usuarios tienen en todo momento un botón de cerrar sesión. Para poder ver la página de inicio, no se puede estar logeado.
 				        </p>
 				    </div>
 				</div>
@@ -260,7 +267,7 @@ if(isset($_POST['registro']))
 
 
 		<!-- Pie de pagina -->
-            <div style="margin-top: 600px;" id="footer">
+            <div style="margin-top: 850px;" id="footer">
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
                 <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
