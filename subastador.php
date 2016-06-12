@@ -296,10 +296,15 @@ function crearSubasta(){
 				}
 			}
 
-            ?>
+            /*?>
 			</br>
 			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Subasta creada correctamente* </label>
-			<?php
+			<?php*/
+			?>
+			<script type="text/javascript">
+				alert('Subasta creada correctamente');
+			</script>
+			<?php	
 
             //esto es para escribir el log
             include("escribirLog.php");
@@ -327,10 +332,15 @@ function crearSubasta(){
 		
 	else{
 		echo "";
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Debe seleccionar un producto o lote para subastar* </label>
-		<?php
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Debe seleccionar un producto o lote para subastar');
+		</script>
+		<?php	
 	}
 		
 }
@@ -430,9 +440,14 @@ function borrarProducto(){
 	}
 	else{
 		echo "";
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *No ha seleccionado ningún producto o lote para eliminar* </label>
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('No ha seleccionado ningún producto o lote para eliminar');
+		</script>
 		<?php
 		return false;
 	}
@@ -457,17 +472,27 @@ if(isset($_POST['subirProducto']))
 	if($sub == false){
 		echo "";
 		//exec("NO SE HA PODIDO CREAR EL PRODUCTO");
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *NO SE HA PODIDO CREAR EL PRODUCTO* </label>
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('No se ha podido crear el producto');
+		</script>
 		<?php
+		
 
 	}else{
-		echo "";
 		//exec("PRODUCTO CREADO CORRECTAMENTE");
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO CREADO CORRECTAMENTE* </label>
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Producto creado correctamente');
+		</script>
 		<?php
 		//RedirectToURL('subastador.php', 0);
 	}
@@ -476,10 +501,15 @@ if(isset($_POST['crearLote'])){
 	if(subirLote()==true){
 		echo "";
 		//exec("LOTE CREADO CORRECTAMENTE");
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *LOTE CREADO CORRECTAMENTE* </label>
-		<?php
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Lote creado correctamente');
+		</script>
+		<?php	
 		//RedirectToURL('subastador.php', 0);
 	}else{
 		foreach (array_keys($_POST) as $field)
@@ -487,10 +517,15 @@ if(isset($_POST['crearLote'])){
 			$_POST[$field] = '';
 		}
 		echo "";
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al crear lote* </label>
-		<?php
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Error al crear el lote');
+		</script>
+		<?php	
 	}
 }
 if(isset($_REQUEST['crearSubasta'])){
@@ -507,10 +542,15 @@ if(isset($_REQUEST['crearSubasta'])){
 if(isset($_POST['borrarProducto'])){
 	if(borrarProducto()==true){
 		echo "";
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO/LOTE BORRADO CORRECTAMENTE* </label>
-		<?php
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Producto/lote borrado correctamente');
+		</script>
+		<?php	
 		//RedirectToURL('subastador.php', 0);
 		//exec("PRODUCTO/LOTE BORRADO CORRECTAMENTE");
 
@@ -520,10 +560,15 @@ if(isset($_POST['borrarProducto'])){
 			$_POST[$field] = '';
 		}
 		echo "";
-		?>
+		/*?>
 		</br>
 		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al borrar producto* </label>
-		<?php
+		<?php*/
+		?>
+		<script type="text/javascript">
+			alert('Error al borrar producto/lote');
+		</script>
+		<?php	
 	}
 }
 if(isset($_POST['salir'])){
