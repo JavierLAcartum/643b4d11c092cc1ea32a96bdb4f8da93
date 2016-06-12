@@ -179,6 +179,15 @@ if(isset($_POST['registro']))
 
             <h2> Subastas </h2>
             <p> Alba Terce&ntildeo, Javier Leza, Ricardo Sierra, Sara Estrav&iacutes y Sonia Leonato </p>
+
+            <?php 
+				if(isset($_GET['page'])){
+						?>
+						</br></br></br></br></br></br></br></br></br>
+						<button style="margin-left: 60px; font-size: 15px; width: 60px; padding:2px;" class="buttonVolver" onclick="location.href='index.php'">Volver</button>
+						<?php
+				}
+			?>
         </div>
         <!-- end #header -->
 
