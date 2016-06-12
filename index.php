@@ -1,7 +1,7 @@
 <?php
 function RedirectToURL($url, $tiempo)
 {
-	header("Refresh: $tiempo, URL=$url");
+	header("Refresh: 0, URL=$url");
 	exit;
 }
 function Login()
@@ -135,8 +135,8 @@ if(isset($_POST['submit']))
 {
 	$tipoUser = Login(); //Tipo de usuario 
 	if ($tipoUser != ""){
-		echo $tipoUser;
-		RedirectToURL("$tipoUser.php", 0);
+		//echo $tipoUser;
+		RedirectToURL("$tipoUser.php",0);
 	}
 }
 

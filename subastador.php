@@ -583,7 +583,12 @@ if(isset($_POST['salir'])){
 
 		<div class="wrapper">
 
-		<table style="width:100%; padding: 30px; margin-top: 250px; font-family:'Segoe UI'; font-weight: bold;">
+			<div id="num_table"	style="display:inline-block">
+			</div>
+			<?php
+				if(!isset($_GET['page'])){
+					?>
+					<table style="width:100%; padding: 30px; margin-top: 250px; font-family:'Segoe UI'; font-weight: bold;">
 							    <tr>
 							        <td style="width: 250px; text-align: center;">TIPO</td>
 							        <td style="width: 100px; text-align: center;">ID</td>
@@ -593,17 +598,15 @@ if(isset($_POST['salir'])){
 							        <td style="width: 170px; text-align: center;">PRODUCTO/LOTE</td>
 							        <td style="width: 150px; text-align: center;"> </td>
 							    </tr>
-				           	</table>
-
-			<div id="num_table"	style="display:inline-block">
-			</div>
-			<?php
-				if(!isset($_GET['page'])){
-					?>
+				    </table>
 					<?php
 					include("listaSubastas.php");
 					crearTablaSubastas('subastador');
 				}else{
+					?>
+						</br></br></br></br></br></br></br></br>
+						</br></br></br></br></br></br></br></br>
+					<?php
 					$page = $_GET['page'];
 					include("$page.php");
 				}
