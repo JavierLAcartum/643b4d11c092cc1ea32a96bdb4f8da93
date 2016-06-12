@@ -227,7 +227,7 @@ function checkCambioPrecio($idSubasta){
 
             setInterval(function () {
                 loadDoc();
-            }, 200);
+            }, 50);
         </script>
 
 
