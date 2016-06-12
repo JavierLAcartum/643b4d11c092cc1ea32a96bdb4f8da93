@@ -21,7 +21,11 @@ function Registro(){
 	
 	if ($result->num_rows == 1) {
 		
-		echo "Ya existe alguien registrado con ese nombre de usuario.";
+		?>
+			<script type="text/javascript">
+				alert('Ya existe alguien registrado con ese nombre de usuario');
+			</script>
+		<?php
 		return false;
 		
 	}else{
@@ -52,7 +56,7 @@ function Registro(){
             
 			return true;
 		} else {
-			echo "Error updating record: " . $conn->error;
+			//echo "Error updating record: " . $conn->error;
 			return false;
 		}
 	}

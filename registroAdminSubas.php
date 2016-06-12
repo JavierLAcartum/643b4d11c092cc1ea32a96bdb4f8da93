@@ -1,4 +1,4 @@
-<form action="administrador.php" method="post">
+<form action="administrador.php?page=registroAdminSubas" method="post">
 
     <select name='tipoUsuario' style="width:105px; margin-left: 580px; margin-top: 100px;">
         <option selected value='administrador'>Administrador</option>
