@@ -22,14 +22,8 @@ function crearTabla(){
                 $result2 = $conn->query($select);   
                 $row2 = $result2->fetch_assoc();
                 $user = $row2['usuario'];
-                $tabla=$tabla.'<tr><td>'.$idPuja.'<td><td>'.$fechasub.'</td><td>'.$cantidad.'</td><td>'.$user.'</td></tr>';
-        }
-        $tabla=$tabla.'</table>';
-      
-
-        ?>
-
-            <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+			?>
+				 <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
                 <tr>
                     <td style="width: 100px; text-align: center;"> <?php echo $idPuja; ?> </td>
                     <td style="width: 100px; text-align: center;"> <?php echo $fechasub; ?> </td>
@@ -37,10 +31,8 @@ function crearTabla(){
                     <td style="width: 135px; text-align: center;"> <?php echo $user ?> </td>
                 </tr>
             </table>
-
-
-
-        <?php        
+                
+        <?php}       
     
     }else{
         echo "";

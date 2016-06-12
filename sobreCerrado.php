@@ -14,13 +14,10 @@
 	$resultSubastas = $conn->query($selectSubastas);
 	$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
 	
-	//BOTON DE VOLVER CUANDO ESTAS EN UNA SUBASTAS
-	//*********************************************
 	foreach (array_keys($_SESSION['user']) as $field)
 	{
 					
 	}
-	//*********************************************
 	
 	include("listaSubastas.php");
 	
