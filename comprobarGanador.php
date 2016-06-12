@@ -52,6 +52,29 @@
 					$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 					$selectPujas = "SELECT id, cantidad FROM pujas WHERE idsubasta='$idSubasta'";
 					$resultPujas = $conn->query($selectPujas);
+                    
+                    $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado.'";
+                    $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+                    if($resultQueryFinSubasta->num_rows == 0){
+                         //escribir en el log
+                        include("escribirLog.php");
+                                
+                        $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+                        $resultNombreProd = $conn->query( $queryBuscarProd);
+                        if($resultNombreProd->num_rows > 0){
+                            $rowNombreProd = $resultNombreProd->fetch_assoc();
+                            $idprod = $rowNombreProd['id'];
+                            escribirLog("La subasta ".$idSubasta." ha finalizado.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+                        }else{
+                            $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                            $resultNombreLote = $conn->query( $queryBuscarLote);
+                            $rowNombreLote = $resultNombreLote->fetch_assoc();
+                            $idlote = $rowNombreLote['id'];
+                            escribirLog("La subasta ".$idSubasta." ha finalizado.", "NULL", $idSubasta, "NULL", $idlote,  "NULL");
+                        }
+                        //fin de escribir en el log
+                    }
+                   
 					
 					if ($resultPujas->num_rows > 0){
 				
