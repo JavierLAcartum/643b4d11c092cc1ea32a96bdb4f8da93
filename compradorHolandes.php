@@ -34,7 +34,11 @@ $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$da
 }
 
 if ($conn->query($select) === TRUE) {
-    echo "PUJA GUARDADA CORRECTAMENTE";
+    ?>
+    <script type="text/javascript">
+        alert("PUJA GUARDADA CORRECTAMENTE");
+    </script>
+    <?php
     $select = "SELECT id FROM pujas WHERE idsubasta='$idSubasta'";
     $result = $conn->query($select);
     $row=$result->fetch_assoc();
