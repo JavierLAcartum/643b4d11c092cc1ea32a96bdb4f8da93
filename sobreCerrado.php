@@ -81,26 +81,8 @@
 				pujar($idSubasta);
 			}
 		}
-			
-<<<<<<< HEAD
-=======
-			$selectPujas = "SELECT * FROM pujas WHERE idsubasta='$idSubasta'";
-			$resultPujas = $conn->query($selectPujas);
-		}
-		
-		if ($resultPujas->num_rows > 0){
-		
-			while($rowPuja= $resultPujas->fetch_assoc()) {
-			
-				$idPuja = $rowPuja['id'];
-				$fechaPuja = $rowPuja['fecha'];
-				$cantidadPuja = $rowPuja['cantidad'];
-								
-			}	
-		}	
-			
->>>>>>> origin/master
 	}
+			
 	
 	
 	function pujar($idSubasta){
@@ -133,7 +115,7 @@
 
 	?>
 
-<<<<<<< HEAD
+
 	<script type="text/javascript">
 	
 	function visualizarPujas() {
@@ -175,9 +157,8 @@
 	
 	        setInterval(function () {
                 comprobarGanador();
-=======
-
-
+				
+		</script>
 
 
 <!DOCTYPE html>
@@ -246,33 +227,6 @@
 				?>
 
 			</table>
-
-		<script type="text/javascript">
-		
-			var respuestaXhttp;
-			function comprobarGanador() {
-		               
-		                var xhttp = new XMLHttpRequest();
-		                xhttp.onreadystatechange = function () {
-		                    if ((xhttp.readyState == 4) && (xhttp.status == 200)) {
-
-								respuestaXhttp = xhttp.responseText;
-		                        document.getElementById("pujaFinalizada").innerHTML = respuestaXhttp;
-								if(respuestaXhttp != ""){
-									document.getElementById('pujar').style.display='none'; //Si ya ha realizado una puja, se oculta el formulario para pujar
-								}
-		                    }
-		                };
-		                xhttp.open("GET", "comprobarGanador.php?id=<?php echo $idSubasta;?>", true);
-		                xhttp.send(); 
-			}				
-			
-			setInterval(function () {
-		        comprobarGanador();
->>>>>>> origin/master
-			}, 500);
-
-		</script>
 
 	</body>
 </html>
