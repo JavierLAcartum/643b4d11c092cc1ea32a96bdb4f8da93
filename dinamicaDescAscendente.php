@@ -322,14 +322,18 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 			?>
 
 			 </table>
-
+        <?php
+                if($tipoUser=='postor'){
+                    ?>
 		        <a class="active">
 		                <form id='pujar' class="input-list style-4 clearfix" action='dinamicaDescAscendente.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
 		                    <input type='number' name='puja' id='puja' placeholder="<?php echo valorMinimo($idSubasta) ?>" style="width:100px; margin-left: 570px;" step ='0.01' required />
 		                    <button name='submit'>Pujar</button>
 		                </form>
 		        </a>
-
+        <?php
+                }
+        ?>
 			 <table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
 	                <tr>
 	                    <td style="width: 100px; text-align: center;">idPUJA</td>
@@ -356,9 +360,9 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 			}
 		}		
 	}
-        if($tipoUser=='postor'){
+        
       
-        }
+       
         ?>
 
         <script type="text/javascript">

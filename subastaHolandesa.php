@@ -188,9 +188,6 @@ function checkCambioPrecio($idSubasta){
 					}
 				}		
 			}
-		            if($tipoUser=='postor' && $ganador==null){
-		      
-		            }
 		        ?>
 
 		        </table>
@@ -223,14 +220,19 @@ function checkCambioPrecio($idSubasta){
                 loadDoc();
             }, 50);
         </script>
-
+           <?php     
+        if($tipoUser=='postor' && $ganador==null){
+		      ?>
+		            
         		
 		        	<a class="active">
 		                <form id='login' class="input-list style-4 clearfix" action='compradorHolandes.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
 		                    <button style="margin-top: 60px; margin-left: 600px;" name='submit'>PUJAR</button>
 		                </form>
 		            </a>
-		     
+		     <?php
+        }
+        ?>
 
 
         <div id="demo"></div>
