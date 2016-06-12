@@ -138,7 +138,12 @@
 	                visualizarPujas();
 				}, 500);
 		
+<<<<<<< HEAD
 		var respuestaXhttp;		
+=======
+		var respuestaXhttp;
+
+>>>>>>> origin/master
 		function comprobarGanador() {
 	               
 	                var xhttp = new XMLHttpRequest();
@@ -225,6 +230,14 @@
 								<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
 							<?php
 						}	
+					}
+
+					else{
+						?>
+							<td style="width: 130px; text-align: center;"> </td>
+						
+							<td style="width: 150px; text-align: center;"> </td>
+						<?php
 					}
 				?>
 

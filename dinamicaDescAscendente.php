@@ -54,9 +54,14 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         $puja = $_POST['puja'];
         $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja',    '$idSubasta', '$idUser')";
         if ($conn->query($select) === TRUE) {
-            echo "Usuario Puja Correcta.";
+        	?>
+			<script type="text/javascript">
+				alert('Usuario Puja Correcta');
+			</script>
+			<?php
+            echo "";
         } else {
-            echo "Error updating record: " . $conn->error;
+           // echo "Error updating record: " . $conn->error;
         }
 }else if($pujactual < valorMinimo($idSubasta)&& ($tipoSubasta==2 || $tipoSubasta==4)){
         $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
@@ -70,12 +75,21 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
         $puja = $_POST['puja'];
         $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$puja','$idSubasta', '$idUser')";
         if ($conn->query($select) === TRUE) {
-            echo "Usuario Puja Correcta.";
+            ?>
+			<script type="text/javascript">
+				alert('Usuario Puja Correcta');
+			</script>
+			<?php
         } else {
-            echo "Error updating record: " . $conn->error;
+            //echo "Error updating record: " . $conn->error;
         }
 }else{
-    echo "La puja tiene un valor incorrecto!";
+	?>
+		<script type="text/javascript">
+			alert('La puja tiene un valor incorrecto!');
+		</script>
+	<?php
+    echo "";
 }
 }
 
@@ -195,12 +209,18 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 
 					?>
 						<td style="width: 130px; text-align: center;"> <?php echo $nombreLote; ?> </td>
-					<?php
-
-					?>
+					
 						<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
 					<?php
 				}	
+			}
+
+			else{
+					?>
+						<td style="width: 130px; text-align: center;"> </td>
+					
+						<td style="width: 150px; text-align: center;"> </td>
+					<?php
 			}
 			
 			if(session_id() == '') {
