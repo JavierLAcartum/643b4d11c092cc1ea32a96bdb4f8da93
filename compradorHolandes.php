@@ -18,37 +18,29 @@ if(session_id() == '') {
 
 $idUser = $_SESSION['user']['postor'];
 
-$select = "SELECT cambioprecio FROM subastas WHERE id='$idSubasta'";
-$result = $conn->query($selectProducto);
+$select = "SELECT precioactual FROM subastas WHERE id='$idSubasta'";
+$result = $conn->query($select);
 $row=$result->fetch_assoc();
-$valor = $row['cambioprecio'];
+$valor = $row['precioactual'];
 
+$date = date('Y-m-d H:i:s');
 
 $select = "INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$date', '$valor',    '$idSubasta', '$idUser')";
 
 if ($conn->query($select) === TRUE) {
     echo "PUJA GUARDADA CORRECTAMENTE";
-    return true;
-} else {
-    echo "Error updating record: " . $conn->error;
-    return false;
-}
-
-$select = "SELECT id FROM pujas WHERE idsubasta='$idSubasta'";
-$result = $conn->query($selectProducto);
-$row=$result->fetch_assoc();
-$idPuja = $row['id'];
+    $select = "SELECT id FROM pujas WHERE idsubasta='$idSubasta'";
+    $result = $conn->query($select);
+    $row=$result->fetch_assoc();
+    $idPuja = $row['id'];   
+    $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
+    $conn->query($update);
+    RedirectToURL("subastaHolandesa.php?id=$idSubasta", 0);
 
 $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
-
-		
-if ($conn->query($update) === TRUE) {
-    echo "PUJA GANADORA GUARDADA CORRECTAMENTE";
-    return true;
 } else {
     echo "Error updating record: " . $conn->error;
-    return false;
 }
-       			
-RedirectToURL("postor.php", 0);
->
+
+
+?>

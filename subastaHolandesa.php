@@ -38,6 +38,12 @@ function checkCambioPrecio($idSubasta){
 				$idUser = $_SESSION['user']['postor'];
                 $tipoUser = "postor";
 			}
+    $select="SELECT idpujaganadora FROM subastas WHERE id='$idSubasta'";
+    $result = $conn->query($select);
+    $row=$result->fetch_assoc();
+    $ganador = $row['idpujaganadora']; 
+    
+    
 ?>
 
 
@@ -183,7 +189,7 @@ function checkCambioPrecio($idSubasta){
 					}
 				}		
 			}
-		            if($tipoUser=='postor'){
+		            if($tipoUser=='postor' && $ganador==null){
 		        ?>
 		        <a class="active">
 		                <form id='login' class="input-list style-4 clearfix" action='compradorHolandes.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
@@ -222,7 +228,7 @@ function checkCambioPrecio($idSubasta){
 
             setInterval(function () {
                 loadDoc();
-            }, 100);
+            }, 200);
         </script>
 
 
