@@ -39,101 +39,149 @@ function checkCambioPrecio($idSubasta){
                 $tipoUser = "postor";
 			}
 ?>
-    <html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+    </meta>
+    <head>
+        <title>SUBASTAS</title>
+        <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
+    </head>
 
     <body>
-        <!-- Puja -->
-        <?php
-        	$selectSubastas = "SELECT tipo, idsubastador, fechainicio, fechacierre FROM subastas WHERE id='$idSubasta'";
-	$resultSubastas = $conn->query($selectSubastas);
-	$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
-	
-	include("listaSubastas.php");
-	
-	if($resultSubastas->num_rows > 0){
-		
-		while($row = $resultSubastas->fetch_assoc()) {
-			
-			$tipoSubasta = $row['tipo'];
-			$tipoSubastaString = pasarTipoSubastaAString($tipoSubasta);
-			echo "Tipo de subasta: ".$tipoSubastaString."\n";
-			
-			$fechaInicio = $row['fechainicio'];
-			$fechaCierre = $row['fechacierre'];
 
-			echo "Fecha de inicio: ".$fechaInicio."\n";
-			echo "Fecha de cierre: ".$fechaCierre."\n";
-			
-			$idSubastador = $row['idsubastador'];
-			$selectSubastador = "SELECT nombre, apellidos FROM usuarios WHERE id='$idSubastador'";
-			$resultSubastador = $conn->query($selectSubastador);
-			
-			if($resultSubastador->num_rows > 0){
-		
-				while($rowSubastador = $resultSubastador->fetch_assoc()) {
-				
-					$nombre = $rowSubastador['nombre'];
-					$apellidos = $rowSubastador['apellidos'];
-					
-					echo "Subastador: ".$nombre." ".$apellidos."\n";
 
-				}	
-			}
+		        <!-- Puja -->
+		        <?php
+		        	$selectSubastas = "SELECT tipo, idsubastador, fechainicio, fechacierre FROM subastas WHERE id='$idSubasta'";
+			$resultSubastas = $conn->query($selectSubastas);
+			$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
 			
-			$selectProducto = "SELECT nombre, descripcion FROM productos WHERE idsubasta='$idSubasta'";
-			$resultProducto = $conn->query($selectProducto);
-			$selectLote = "SELECT nombre, descripcion FROM lotes WHERE idsubasta='$idSubasta'";
-			$resultLote = $conn->query($selectLote);
+			include("listaSubastas.php");
 			
-			if($resultProducto->num_rows > 0){
-		
-				while($rowProducto= $resultProducto->fetch_assoc()) {
+			if($resultSubastas->num_rows > 0){
 				
-					$nombreProducto = $rowProducto['nombre'];
-					$descripcionProducto = $rowProducto['descripcion'];
+				while($row = $resultSubastas->fetch_assoc()) {
 					
-					echo "Producto a subastar: ".$nombreProducto."\n";
-					echo "Descripcion: ".$descripcionProducto;
-				}	
-			}
+					$tipoSubasta = $row['tipo'];
+					$tipoSubastaString = pasarTipoSubastaAString($tipoSubasta);
 
-			else if ($resultLote->num_rows > 0){
-		
-				while($rowLote= $resultLote->fetch_assoc()) {
-				
-					$nombreLote = $rowLote['nombre'];
-					$descripcionLote = $rowLote['descripcion'];
+					$fechaInicio = $row['fechainicio'];
+					$fechaCierre = $row['fechacierre'];
+
+					?>
+
+					<div id="header">
+			    		<h2 style="font-size: 30px; font-style: italic;"> Dinámica holandesa ascendente </h2>
+			    	</div>
+
+			    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+			                <tr>
+			                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
+			                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
+			                    <td style="width: 135px; text-align: center;">SUBASTADOR</td>
+			                    <td style="width: 130px; text-align: center;">LOTE/PRODUCTO</td>
+			                    <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
+			                </tr>
+			            </table>
+
+
+			            <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+
+			            <td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
+						
+						<td style="width: 100px; text-align: center;"> <?php echo $fechaCierre; ?> </td>
+						
+					<?php
 					
-					echo "Lote a subastar: ".$nombreLote."\n";
-					echo "Descripcion: ".$descripcionLote;
-				}	
-			}
-			
-			if(session_id() == '') {
-				session_start();
-			}
-			
-			$tipoUsuario;
-			if(array_key_exists('subastador', $_SESSION['user'])){
+					$idSubastador = $row['idsubastador'];
+					$selectSubastador = "SELECT nombre, apellidos FROM usuarios WHERE id='$idSubastador'";
+					$resultSubastador = $conn->query($selectSubastador);
+					
+					if($resultSubastador->num_rows > 0){
 				
-				$tipoUsuario = "subastador";
-			}
-			else if(array_key_exists('postor', $_SESSION['user'])){
+						while($rowSubastador = $resultSubastador->fetch_assoc()) {
+						
+							$nombre = $rowSubastador['nombre'];
+							$apellidos = $rowSubastador['apellidos'];
+
+							?>
+								<td style="width: 135px; text-align: center;"> <?php echo $nombre." ".$apellidos; ?> </td>
+							<?php
+
+						}	
+					}
+					
+					$selectProducto = "SELECT nombre, descripcion FROM productos WHERE idsubasta='$idSubasta'";
+					$resultProducto = $conn->query($selectProducto);
+					$selectLote = "SELECT nombre, descripcion FROM lotes WHERE idsubasta='$idSubasta'";
+					$resultLote = $conn->query($selectLote);
+					
+					if($resultProducto->num_rows > 0){
 				
-				$tipoUsuario = "postor";
+						while($rowProducto= $resultProducto->fetch_assoc()) {
+						
+							$nombreProducto = $rowProducto['nombre'];
+							$descripcionProducto = $rowProducto['descripcion'];
+
+							?>
+								<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
+							
+								<td style="width: 150px; text-align: center;"> <?php echo $descripcionProducto; ?> </td>
+							<?php
+						}	
+					}
+
+					else if ($resultLote->num_rows > 0){
+				
+						while($rowLote= $resultLote->fetch_assoc()) {
+						
+							$nombreLote = $rowLote['nombre'];
+							$descripcionLote = $rowLote['descripcion'];
+							
+							?>
+								<td style="width: 130px; text-align: center;"> <?php echo $nombreLote; ?> </td>
+							<?php
+
+							?>
+								<td style="width: 150px; text-align: center;"> <?php echo $descripcionLote; ?> </td>
+							<?php
+						}	
+					}
+					
+					if(session_id() == '') {
+						session_start();
+					}
+					
+					$tipoUsuario;
+					if(array_key_exists('subastador', $_SESSION['user'])){
+						
+						$tipoUsuario = "subastador";
+					}
+					else if(array_key_exists('postor', $_SESSION['user'])){
+						
+						$tipoUsuario = "postor";
+					}
+				}		
 			}
-		}		
-	}
-            if($tipoUser=='postor'){
-        ?>
-        <a class="active">
-                <form id='login' class="input-list style-4 clearfix" action='compradorHolandes.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
-                    <button name='submit'>COMPRA</button>
-                </form>
-            </a>
-        <?php
-            }
-        ?>
+		            if($tipoUser=='postor'){
+		        ?>
+		        <a class="active">
+		                <form id='login' class="input-list style-4 clearfix" action='compradorHolandes.php?id=<?php echo $idSubasta; ?>' method='post' accept-charset='UTF-8'>
+		                    <button name='submit'>COMPRA</button>
+		                </form>
+		            </a>
+		        <?php
+		            }
+		        ?>
+
+		        </table>
 
         <script type="text/javascript">
             //setInterval(function(){ refreshTable(); }, 3000);

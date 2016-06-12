@@ -100,23 +100,7 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 
     <body>
 
-    	<div id="header">
-    		<h2 style="font-size: 30px; font-style: italic;"> Dinámica descubierta ascendente </h2>
-    	</div>
-
-    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
-                <tr>
-                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
-                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
-                    <td style="width: 135px; text-align: center;">SUBASTADOR</td>
-                    <td style="width: 130px; text-align: center;">LOTE</td>
-                    <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
-                </tr>
-            </table>
-
-
-        <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
-
+    	
         <!-- Puja -->
         <?php
     $selectSubastas = "SELECT tipo, idsubastador, fechainicio, fechacierre FROM subastas WHERE id='$idSubasta'";
@@ -134,10 +118,27 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 			$fechaCierre = $row['fechacierre'];
 
 			?>
-				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
-			<?php
 
-			?>
+			<div id="header">
+    		<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
+	    	</div>
+
+	    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+	                <tr>
+	                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
+	                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>
+	                    <td style="width: 135px; text-align: center;">SUBASTADOR</td>
+	                    <td style="width: 130px; text-align: center;">LOTE/PRODUCTO</td>
+	                    <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
+	                </tr>
+	            </table>
+
+
+       		<table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
+
+
+				<td style="width: 100px; text-align: center;"> <?php echo $fechaInicio; ?> </td>
+		
 				<td style="width: 100px; text-align: center;"> <?php echo $fechaCierre; ?> </td>
 			<?php
 			
@@ -166,24 +167,22 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 			$resultLote = $conn->query($selectLote);
 			
 			if($resultProducto->num_rows > 0){
-		
+
 				while($rowProducto= $resultProducto->fetch_assoc()) {
 				
 					$nombreProducto = $rowProducto['nombre'];
 					$descripcionProducto = $rowProducto['descripcion'];
-					
-					?>
-						<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
-					<?php
 
 					?>
+						<td style="width: 130px; text-align: center;"> <?php echo $nombreProducto; ?> </td>
+					
 						<td style="width: 150px; text-align: center;"> <?php echo $descripcionProducto; ?> </td>
 					<?php
 				}	
 			}
 
 			else if ($resultLote->num_rows > 0){
-		
+
 				while($rowLote= $resultLote->fetch_assoc()) {
 				
 					$nombreLote = $rowLote['nombre'];
