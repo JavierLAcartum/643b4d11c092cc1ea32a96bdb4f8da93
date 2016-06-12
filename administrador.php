@@ -75,6 +75,8 @@ if(isset($_SESSION['user'])){
 				RedirectToURL("$field.php",0);
 			}
 		}
+}else{
+	RedirectToURL("index.php",0);
 }
 
 if(isset($_POST['registro']))

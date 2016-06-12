@@ -41,9 +41,10 @@ $tiempoActual = strtotime($fechaActual);
 $tiempo = $tiempoActual-$tiempoInicial;
 $repeticiones = $tiempo/$tiempoCambio;
 $repeticiones = floor($repeticiones);
+$totalDinero;
 if($repeticiones>1 && $ganador==null){
-    $totalDinero=$sumar*$repeticiones;
-    if($precioActual == null){
+    $totalDinero=$repeticiones*$sumar;
+    if($precioActual == ""){
         $totalDinero = $totalDinero + $precioInicial;
     }else{
         $totalDinero = $totalDinero + $precioActual;  
@@ -52,12 +53,16 @@ if($repeticiones>1 && $ganador==null){
     $tiempoAct = $tiempoInicial+$diferenciaTiempo;
     $precioActual = $totalDinero;
     $fechaactual = $tiempoAct;
-    $tiempoAct2 = date('Y/m/d H:i:s', $tiempoAct);
-    $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'";
-    $conn->query($update);
-    $update2= "UPDATE subastas SET fechaactual='$tiempoAct2' WHERE id='$idSubasta'";
-    $conn->query($update2);
+    $tiempoAct2 = date('Y-m-d H:i:s', $tiempoAct);
+    $update= "UPDATE subastas SET precioactual='$precioActual', fechaactual='$tiempoAct2' WHERE id='$idSubasta'";
+    if ($conn->query($update) === TRUE) {
+        echo 'La subasta esta en un valor de: '.$precioActual;
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+    
 }
+
 if($ganador == null){
 if($fechaCambio == ""){
     $fecha = new DateTime($fechaInicio);
@@ -71,7 +76,7 @@ if($fechaCambio == ""){
 
 
 
-if(strtotime($fechaActual) >= strtotime($fecha)){
+if((strtotime($fechaActual) >= strtotime($fecha))&& $repeticiones<2){
 if($precioActual==null){
     if($tipoSubasta == 5){
         $precioActual = $precioInicial+$sumar;
@@ -93,7 +98,6 @@ if($precioActual==null){
 
 $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'";
 
-		
 if ($conn->query($update) === TRUE) {
     echo 'La subasta esta en un valor de: '.$precioActual;
 } else {
