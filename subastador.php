@@ -17,19 +17,19 @@ function subirP(){
 	$selectLotes = ("SELECT nombre FROM lotes WHERE nombre='$nom' AND idusuario='".$_SESSION['user']['subastador']."'");
 			$resultLotes = $conn->query($selectLotes);
 			
-	if ($resultProductos->num_rows > 0) {	
-			echo "";
+	if ($resultProductos->num_rows > 0) {
 			?>
-			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro producto con el mismo nombre* </label>
+			<script type="text/javascript">
+				alert('Ya existe otro producto con el mismo nombre');
+			</script>
 			<?php
 				return false;
 	}
 	if ($resultLotes->num_rows > 0) {
-			echo "";
 			?>
-			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro lote con el mismo nombre* </label>
+			<script type="text/javascript">
+				alert('Ya existe otro lote con el mismo nombre');
+			</script>
 			<?php
 			return false;
 	}
@@ -53,20 +53,19 @@ function subirP(){
 				
 				$resultado = move_uploaded_file($_FILES["imagenProducto"]["tmp_name"], $ruta);
 				if (!$resultado){
-					echo "";
 					?>
-					</br>
-					<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ocurrió un error al subir la imagen* </label>
+					<script type="text/javascript">
+						alert('Ocurrió un error al subir la imagen');
+					</script>
 					<?php
 					return false;
 				}
 				
 			} else {
-				
-				echo "";
 				?>
-				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Tipo de archivo no permitido, elija una imagen en formato jpg, jpeg, o png* </label>
+				<script type="text/javascript">
+					alert('Tipo de archivo no permitido, elija una imagen en formato jpg, jpeg, o png');
+				</script>
 				<?php
 				return false;
 			}
@@ -137,21 +136,20 @@ function subirLote(){
 		$resultLotes = $conn->query($selectLotes);
 		if ($resultProductos->num_rows > 0) {
 			while($resultProductos->fetch_assoc()) {
-				echo "";
-				?>
-				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro producto con el mismo nombre* </label>
+				<script type="text/javascript">
+					alert('Ya existe otro producto con el mismo nombre');
+				</script>
 				<?php
 				return false;
 			}
 		}
 		if ($resultLotes->num_rows > 0) {
 			while($resultLotes->fetch_assoc()) {
-				echo "";
 				?>
-				</br>
-				<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Ya existe otro lote con el mismo nombre* </label>
-				<?php
+				<script type="text/javascript">
+					alert('Ya existe otro lote con el mismo nombre');
+				</script>
+				<?php	
 				return false;
 			}
 		}
@@ -191,11 +189,11 @@ function subirLote(){
 			return false;
 		}
 	}else{
-		echo "";
 		?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Debe seleccionar al menos 2 productos* </label>
-		<?php
+		<script type="text/javascript">
+			alert('Debe seleccionar al menos 2 productos');
+		</script>
+		<?php	
 		return false;
 	}
 }
@@ -296,10 +294,6 @@ function crearSubasta(){
 				}
 			}
 
-            /*?>
-			</br>
-			<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Subasta creada correctamente* </label>
-			<?php*/
 			?>
 			<script type="text/javascript">
 				alert('Subasta creada correctamente');
@@ -331,11 +325,6 @@ function crearSubasta(){
 	}
 		
 	else{
-		echo "";
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Debe seleccionar un producto o lote para subastar* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Debe seleccionar un producto o lote para subastar');
@@ -439,11 +428,6 @@ function borrarProducto(){
 		return true;
 	}
 	else{
-		echo "";
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *No ha seleccionado ningún producto o lote para eliminar* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('No ha seleccionado ningún producto o lote para eliminar');
@@ -470,12 +454,6 @@ if(isset($_POST['subirProducto']))
 {
 	$sub = subirP();
 	if($sub == false){
-		echo "";
-		//exec("NO SE HA PODIDO CREAR EL PRODUCTO");
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *NO SE HA PODIDO CREAR EL PRODUCTO* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('No se ha podido crear el producto');
@@ -484,43 +462,25 @@ if(isset($_POST['subirProducto']))
 		
 
 	}else{
-		//exec("PRODUCTO CREADO CORRECTAMENTE");
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO CREADO CORRECTAMENTE* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Producto creado correctamente');
 		</script>
 		<?php
-		//RedirectToURL('subastador.php', 0);
 	}
 }
 if(isset($_POST['crearLote'])){
 	if(subirLote()==true){
-		echo "";
-		//exec("LOTE CREADO CORRECTAMENTE");
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *LOTE CREADO CORRECTAMENTE* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Lote creado correctamente');
 		</script>
 		<?php	
-		//RedirectToURL('subastador.php', 0);
 	}else{
 		foreach (array_keys($_POST) as $field)
 		{
 			$_POST[$field] = '';
 		}
-		echo "";
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al crear lote* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Error al crear el lote');
@@ -541,29 +501,17 @@ if(isset($_REQUEST['crearSubasta'])){
 }
 if(isset($_POST['borrarProducto'])){
 	if(borrarProducto()==true){
-		echo "";
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *PRODUCTO/LOTE BORRADO CORRECTAMENTE* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Producto/lote borrado correctamente');
 		</script>
 		<?php	
-		//RedirectToURL('subastador.php', 0);
-		//exec("PRODUCTO/LOTE BORRADO CORRECTAMENTE");
 
 	}else{
 		foreach (array_keys($_POST) as $field)
 		{
 			$_POST[$field] = '';
 		}
-		echo "";
-		/*?>
-		</br>
-		<label style="margin-left: 550px; margin-top:50px; position: absolute; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *Error al borrar producto* </label>
-		<?php*/
 		?>
 		<script type="text/javascript">
 			alert('Error al borrar producto/lote');
