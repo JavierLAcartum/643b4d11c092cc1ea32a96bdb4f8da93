@@ -63,7 +63,9 @@
                     <td style="width: 135px; text-align: center;">NOMBRE DE USUARIO</td>
                     <td style="width: 130px; text-align: center;">idSUBASTA</td>
                     <td style="width: 130px; text-align: center;">idPRODUCTO</td>
+                    <td style="width: 130px; text-align: center;">NOMBRE PRODUCTO</td>
                     <td style="width: 130px; text-align: center;">idLOTE</td>
+                    <td style="width: 130px; text-align: center;">NOMBRE LOTE</td>
                     <td style="width: 150px; text-align: center;">idPUJA</td>
                 </tr>
             </table>
@@ -82,7 +84,9 @@
                     $nombreUsuario = '';
                     $idSubasta = '';
                     $idProducto = '';
+                    $nombreProducto = '';
                     $idLote = '';
+                    $nombreLote = '';
                     $idPuja = '';
 					
 					
@@ -99,7 +103,9 @@
                     
                     $idSubasta = $rowLog['idsubasta'];
 					$idProducto = $rowLog['idproducto'];
+                    $nombreProducto = $rowLog['nombreproducto'];
                     $idLote = $rowLog['idlote'];
+                    $nombreLote = $rowLog['nombrelote'];
 					$idPuja = $rowLog['idpuja'];
 					
 					
@@ -126,7 +132,13 @@
                         <?php echo $idProducto?>
                     </td>
                     <td style="width: 130px; text-align: center;">
+                        <?php echo $nombreProducto?>
+                    </td>
+                    <td style="width: 130px; text-align: center;">
                         <?php echo $idLote?>
+                    </td>
+                    <td style="width: 130px; text-align: center;">
+                        <?php echo $nombreLote?>
                     </td>
                     <td style="width: 150px; text-align: center;">
                         <?php echo $idPuja?>
