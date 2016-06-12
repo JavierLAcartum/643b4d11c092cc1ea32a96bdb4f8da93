@@ -92,7 +92,7 @@
 			
 			<form id='pujar' action="sobreCerrado.php?id=<?php echo $idSubasta;?>" method='post' accept-charset='UTF-8'>
 				<input type='number' name='puja' id='puja' placeholder="Cantidad a pujar" step='0.01' min='0' />
-				<input type = 'submit' name = 'pujar'> Pujar </button>	
+				<button type = 'submit' name = 'pujar'> Pujar </button>	
 			</form>
 		<?php
 	
@@ -102,6 +102,36 @@
 			
 			$insertPuja = ("INSERT INTO pujas (fecha, cantidad, idsubasta, idpostor) VALUES ('$fecha', '$cantidad', '$idSubasta', '".$_SESSION['user']['postor']."')");
 			$conn->query($insertPuja);
+            
+            
+            //escribir en el log
+            include("escribirLog.php");
+            
+            $queryNombreUsuario= ("SELECT usuario FROM usuarios WHERE id ='".$_SESSION['user']['postor']."'");
+            $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+			$nombreUsuario = $rowNombreUsuario['usuario'];
+            
+            $queryIdpuja= "SELECT id FROM pujas WHERE idsubasta='$idSubasta' AND idpostor = '".$_SESSION['user']['postor']."'";
+            $resultidpuja = $conn->query( $queryIdpuja);
+            $rowIdpuja = $resultidpuja->fetch_assoc();
+			$idpuja = $rowIdpuja['id'];
+            
+            $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+            $resultNombreProd = $conn->query( $queryBuscarProd);
+            if($resultNombreProd->num_rows > 0){
+                $rowNombreProd = $resultNombreProd->fetch_assoc();
+			    $idprod = $rowNombreProd['id'];
+                escribirLog("Puja de ".$cantidad." € realizada por: \""."$nombreUsuario"."\".", $_SESSION['user']['postor'], $idSubasta, $idprod, "NULL", $idpuja);
+            }else{
+                $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+                $resultNombreLote = $conn->query( $queryBuscarLote);
+                $rowNombreLote = $resultNombreLote->fetch_assoc();
+			    $idlote = $rowNombreLote['id'];
+                escribirLog("Puja de ".$cantidad." € realizada por: \""."$nombreUsuario"."\".", $_SESSION['user']['postor'], $idSubasta, "NULL", $idlote, $idpuja);
+            }
+            //fin de escribir en el log
+            
 			
 			?>
 			
