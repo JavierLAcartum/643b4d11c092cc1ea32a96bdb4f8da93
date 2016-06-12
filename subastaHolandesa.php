@@ -54,7 +54,7 @@ function checkCambioPrecio($idSubasta){
 <!DOCTYPE html>
 <html>
 	<meta charset="UTF-8">
-    </meta>
+    
     <head>
         <title>SUBASTAS</title>
         <link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
@@ -227,7 +227,7 @@ function checkCambioPrecio($idSubasta){
 
             setInterval(function () {
                 loadDoc();
-            }, 200);
+            }, 50);
         </script>
 
 

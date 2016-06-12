@@ -101,22 +101,20 @@
                         $cantidadpujaganadora='';
                         
 						if($tipoSubasta == 7){ //De primer precio ascendente
-						
-							echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La ganadora es la puja con mayor cantidad.
+						echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn);
+							//La ganadora es la puja con mayor cantidad.
 							echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //Paga el precio más alto
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             $cantidadpujaganadora=$arrayCantidadPujas[count($arrayIdPujas)-1];
 						}
 						else if($tipoSubasta == 8){ //De primer precio descendente
-						
-							echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
+						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn);
 							echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
                             $idpujaganadora=$arrayIdPujas[0];
                             $cantidadpujaganadora=$arrayCantidadPujas[0];
 						}
 						else if($tipoSubasta == 9){ //De segundo precio ascendente
-						
-							echo "La puja ganadora es: ".$arrayIdPujas[count($arrayIdPujas)-1]; //La puja ganadora es la puja más alta
+						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); //La puja ganadora es la puja más alta
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             
 							
@@ -132,8 +130,7 @@
 							}
 						}
 						else if($tipoSubasta == 10) { //De segundo precio descendente
-						
-							echo "La puja ganadora es: ".$arrayIdPujas[0]; //La puja ganadora es la puja más baja
+							echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn); //La puja ganadora es la puja más baja
 							$idpujaganadora = $arrayIdPujas[0];
                             
 							//Comprobar que hay más de una puja
@@ -205,9 +202,17 @@
 		
 	}
 	
-	function userPujador($idPuja){
-		
-		
+	function userPujador($idPuja, $conn){
+        $selectPujas = "SELECT idpostor FROM pujas WHERE id='$idPuja'";
+        $resultPujas= $conn->query($selectPujas);
+        $row=$resultPujas->fetch_assoc();
+        $idPostor = $row['idpostor'];
+        $selectUser = "SELECT usuario FROM usuarios WHERE id='$idPostor'";
+        $resultUser= $conn->query($selectUser);
+        $row=$resultUser->fetch_assoc();
+        $user= $row['usuario'];
+        
+        return $user;	
 	}
 	
 	
@@ -263,7 +268,7 @@
 							$idPuja = $rowPuja['id'];
 							$cantidadPuja = $valorPujaFinal;
 							
-							echo "La id de la puja ganadora es: ".$idPuja;
+							echo "El usuario ganador de la subasta es: ".userPujador($idPuja, $conn)." ";
 							echo "Con la cantidad de: ".$valorPujaFinal;
                         
                             //escribir en el log
