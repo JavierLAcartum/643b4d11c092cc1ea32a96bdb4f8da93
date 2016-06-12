@@ -95,7 +95,8 @@ if ($conn->query($select) === TRUE) {
     RedirectToURL("subastaHolandesa.php?id=$idSubasta", 0);
 
 $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
-} else {
+}
+else {
     //echo "Error updating record: " . $conn->error;
 }
 
