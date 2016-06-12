@@ -65,26 +65,28 @@
 			}else{
 				
 				pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "puja");
-			}
-		}else if(strtotime($fechaActual) == strtotime($fechasegundapuja)){
+			}			
+		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
+			
 			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 			
-			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta)."' WHERE id='$idSubasta'";
+			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
 			$result = $conn->query($update);
-		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
+			
 			if($tipoSubasta==11){
 				echo "<br>";
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra unica puja mayor que la actual.";
+				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja mayor que la actual.";
 			}else if($tipoSubasta==12){
 				echo "<br>";
-				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra unica puja menor que la actual.";
+				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros. Puede realizar otra única puja menor que la actual.";
 			}
 			$posicionFecha = 3;
 			if(empty($haPujado)){
-				?><p>Ya no puede pujar, porque no participo en la primera ronda</p><?php
+				?><p>Ya no puede pujar, porque no participó en la primera ronda</p><?php
 			}else{
 				if($haPujado->num_rows == 1){
 					pujar($idSubasta, $tipoSubasta, $_SESSION['user']['postor'], "pujaSegunda");
+					echo"AAAAAAAAAAAAH";
 					echo "<table><tr><td>Fecha</td><td>Puja</td></tr>";
 					while($row = $haPujado->fetch_assoc()){
 						echo "<tr><td>".$row['fecha']."</td><td>".$row['cantidad']."</td></tr>'";
@@ -97,7 +99,8 @@
 					}
 					echo "</table>";
 				}else{
-					echo "Ha pujado ".$haPujado->num_rows." veces. WTF";
+					
+					echo "Ha pujado ".$haPujado->num_rows." veces.";
 				}
 				
 			}
@@ -106,9 +109,8 @@
 			?><p>Subasta finalizada</p><?php
 			listaPujas($idSubasta);
 			$posicionFecha = 4;
-			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta)." euros.";
+			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta, $fechacierre)." euros.";
 		}
-		echo $posicionFecha;
 	}
 	if($tipoUsuario == "subastador"){
 		if(strtotime($fechaActual) < strtotime($fechainicio)){ 
@@ -116,13 +118,12 @@
 			$posicionFecha = 1;
 		}else if((strtotime($fechaActual) >= strtotime($fechainicio)) && (strtotime($fechaActual) < strtotime($fechasegundapuja))){
 			$posicionFecha = 2;
-			listaPujas($idSubasta);
-		}else if(strtotime($fechaActual) == strtotime($fechasegundapuja)){
+			listaPujas($idSubasta);			
+		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
 			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 			
-			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta)."' WHERE id='$idSubasta'";
+			$update = "UPDATE subastas SET cantidadsegundapuja='".valorMinimoRR($idSubasta, $fechasegundapuja)."' WHERE id='$idSubasta'";
 			$result = $conn->query($update);
-		}else if((strtotime($fechaActual) >= strtotime($fechasegundapuja)) &&  (strtotime($fechaActual) < strtotime($fechacierre))){
 			if($tipoSubasta==11){
 				echo "<br>";
 				echo "<p>La puja ganadora hasta el momento es de: ".cantidadSegundaPuja($idSubasta)." euros.";
@@ -137,7 +138,7 @@
 			?><p>Subasta finalizada</p><?php
 			listaPujas($idSubasta);
 			$posicionFecha = 4;
-			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta)." euros.";
+			echo "La puja ganadora de esta subasta es de: ".valorMinimoRR($idSubasta, $fechacierre)." euros.";
 		}
 	}
 	

@@ -152,6 +152,10 @@
 		
 	}
 	
+	function userPujador($idPuja){
+		
+		
+	}
 	
 	
 	function comprobarGanadorDinamica($tipoSubasta, $idSubasta){

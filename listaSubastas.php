@@ -209,7 +209,7 @@
 										<td style="width: 150px; text-align: center;">
 										<a href="<?php echo $tipoSubastaPhp ?>.php?id=<?php echo $idSubasta; ?>">
 										<?php echo "Ver subasta"?> 
-									</a>
+										</a>
 									</td>
 									<?php
 									}									

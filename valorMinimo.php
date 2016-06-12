@@ -39,7 +39,7 @@
        
     }
 	
-	function valorMinimoRR($idSubasta){
+	function valorMinimoRR($idSubasta, $fecha){
        $conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 		$selectSubastas;
 		$resultSubastas;
@@ -52,7 +52,7 @@
        $row=$result->fetch_assoc();
        $tipoSubasta = $row['tipo'];
        $precio = $row['precioinicial'];
-        $select = "SELECT cantidad FROM pujas WHERE idsubasta='$idSubasta'";
+       $select = "SELECT cantidad FROM pujas WHERE idsubasta='$idSubasta' AND fecha <= '$fecha'";
 	   $result = $conn->query($select);
 	   $idUser = '';
         if ($result->num_rows> 0) {
