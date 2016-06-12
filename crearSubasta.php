@@ -131,7 +131,10 @@
 		}
 	
 		if ($resultLotes->num_rows >= 1){
-			echo "<br/><br/>Elija un lote para subastar";
+			echo "<br/><br/>";
+			?>
+			<label style="font-family:'Segoe UI'; font-size: 15px;">Elija un lote para subastar</label>
+			<?php
 			while($row = $resultLotes->fetch_assoc()) {
 			?>
 								<input type="radio" name="seleccion" value = "<?php echo $row['nombre'];?>">
