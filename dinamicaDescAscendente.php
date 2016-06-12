@@ -106,6 +106,10 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
     $selectSubastas = "SELECT tipo, idsubastador, fechainicio, fechacierre FROM subastas WHERE id='$idSubasta'";
 	$resultSubastas = $conn->query($selectSubastas);
 	$tipoSubasta; $tipoSubastaString; $producto; $subastador; $fechaInicio; $fechaCierre;
+
+	foreach (array_keys($_SESSION['user']) as $field){
+				
+	}
 	
 	include("listaSubastas.php");
 	
@@ -119,11 +123,12 @@ if($pujactual > valorMinimo($idSubasta)&& ($tipoSubasta==1 || $tipoSubasta==3))
 
 			?>
 
-			<div id="header">
-    		<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
+			<div id="header">		
+				<button class="buttonVolver" onclick="location.href='<?php echo $field; ?>.php'">Volver</button>
+    			<h2 style="font-size: 30px; font-style: italic;"> <?php echo $tipoSubastaString; ?> </h2>
 	    	</div>
 
-	    	<table style="width:100%; padding: 30px; margin-top: 10px; font-family:'Segoe UI'; font-weight: bold;">
+	    		<table style="width:100%; padding: 30px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
 	                <tr>
 	                    <td style="width: 100px; text-align: center;">FECHA INICIO</td>
 	                    <td style="width: 100px; text-align: center;">FECHA CIERRE</td>

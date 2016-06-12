@@ -16,7 +16,7 @@ function escribirLog($descripcion, $idusuario, $idsubasta, $idproducto, $idlote,
         $nombreproducto = "";
     }
     
-      if($idlote!="NULL"){
+    if($idlote!="NULL"){
         $queryNombreLote = ("SELECT nombre FROM lotes WHERE id='$idlote'");
         $resultQueryNombreLote = $conn ->query($queryNombreLote);
         $rowNombreLote = $resultQueryNombreLote->fetch_assoc();
