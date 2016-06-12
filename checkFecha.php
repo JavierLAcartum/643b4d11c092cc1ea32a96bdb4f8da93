@@ -16,7 +16,7 @@ function RedirectToURL($url, $tiempo)
     header("Refresh: $tiempo, URL=$url");
     exit;
 }
-$select = "SELECT precioinicial, cambioprecio, precioactual, fechainicio, tiempocambioprecio, fechaactual, tipo, idpujaganadora FROM subastas WHERE id='$idSubasta'";
+$select = "SELECT precioinicial, cambioprecio, precioactual, fechainicio, tiempocambioprecio, fechaactual, tipo, idpujaganadora, fechacierre FROM subastas WHERE id='$idSubasta'";
 $result = $conn->query($select);
 $row = $result->fetch_assoc();
 $precioInicial = $row['precioinicial'];
@@ -27,6 +27,7 @@ $fechaInicio = $row['fechainicio'];
 $tiempoCambio = $row['tiempocambioprecio'];
 $fechaCambio = $row['fechaactual'];
 $ganador = $row['idpujaganadora'];
+$fechaFin = $row['fechacierre'];
 
 if($fechaCambio == null){
     $tiempoInicial = strtotime($fechaInicio);
@@ -44,7 +45,7 @@ $tiempo = $tiempoActual-$tiempoInicial;
 $repeticiones = $tiempo/$tiempoCambio;
 $repeticiones = floor($repeticiones);
 $totalDinero;
-if($repeticiones>1 && $ganador==null){
+if($repeticiones>1 && $ganador==null && strtotime($fechaActual) <= strtotime($fechaFin)){
     $totalDinero=$repeticiones*$sumar;
     if($precioActual == ""){
         $totalDinero = $totalDinero + $precioInicial;
@@ -69,7 +70,7 @@ if($repeticiones>1 && $ganador==null){
     
 }
 
-if($ganador == null){
+if($ganador == null && strtotime($fechaActual) <= strtotime($fechaFin)){
 if($fechaCambio == ""){
     $fecha = new DateTime($fechaInicio);
     $fecha->add(new DateInterval('PT'.$tiempoCambio.'S'));
@@ -133,7 +134,7 @@ $conn->query($update);
         <?php
     }
 }
-}else{
+}else if($ganador!=null){
     $select = "SELECT idpostor, cantidad FROM pujas WHERE id='$ganador'";
     $result = $conn->query($select);
     $row = $result->fetch_assoc();
@@ -153,5 +154,10 @@ $conn->query($update);
         </br>
         <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *El usuario <?php echo $user; ?> ha ganado la subasta con un valor de <?php echo $valor; ?>* </label>
     <?php
+}else{
+    ?>
+            </br>
+        <label style="margin-left: 500px; top: 30px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *No ha habido pujas en la subasta* </label>
+<?php
 }
 ?>

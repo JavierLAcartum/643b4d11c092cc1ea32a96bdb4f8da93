@@ -150,7 +150,12 @@
 
 
 					</table>
-
+			
+					<form id='pujar' action="sobreCerrado.php?id=<?php echo $idSubasta;?>" method='post' accept-charset='UTF-8'>
+						<input style="margin-left: 500px; margin-top: 30px;" type='number' name='puja' id='puja' placeholder="Cantidad a pujar" step='0.01' min='0' />
+						<button type = 'submit' name = 'pujar'> Pujar </button>	
+					</form>
+		
 					<table style="width:100%; padding: 30px; margin-top: 60px; font-family:'Segoe UI'; font-weight: bold;">
 		                <tr>
 		                    <td style="width: 100px; text-align: center;">idPUJA</td>
@@ -187,13 +192,7 @@
 	        function pujar($idSubasta){
 
 		$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
-			?>
 			
-			<form id='pujar' action="sobreCerrado.php?id=<?php echo $idSubasta;?>" method='post' accept-charset='UTF-8'>
-				<input type='number' name='puja' id='puja' placeholder="Cantidad a pujar" step='0.01' min='0' />
-				<button type = 'submit' name = 'pujar'> Pujar </button>	
-			</form>
-		<?php
 	
 		if(isset($_POST['puja'])){
 			$fecha = date("Y-m-d H:i:s");
