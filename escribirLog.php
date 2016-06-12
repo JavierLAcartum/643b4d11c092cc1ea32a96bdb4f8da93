@@ -25,7 +25,7 @@ function escribirLog($descripcion, $idusuario, $idsubasta, $idproducto, $idlote,
         $nombrelote = "";
     }
     
-    if($descripcion=="La subasta ".$idsubasta." ha finalizado."){
+    if($descripcion=="La subasta ".$idsubasta." ha finalizado."||(strpos($descripcion, 'La puja ganadora de la subasta') !== false)||(strpos($descripcion, 'ha finalizado sin pujas') !== false)){
         $queryFechaFin =("SELECT fechacierre FROM subastas WHERE id='$idsubasta'");
         $resultQueryFechaFin = $conn ->query($queryFechaFin);
         $rowFechaFin = $resultQueryFechaFin->fetch_assoc();

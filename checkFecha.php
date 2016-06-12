@@ -25,6 +25,39 @@ $fechaInicio = $row['fechainicio'];
 $tiempoCambio = $row['tiempocambioprecio'];
 $fechaCambio = $row['fechaactual'];
 $ganador = $row['idpujaganadora'];
+
+if($fechaCambio == null){
+    $tiempoInicial = strtotime($fechaInicio);
+}else{
+    $tiempoInicial = strtotime($fechaCambio);
+}
+
+$fechaActual = date('Y-m-d H:i:s');
+$fechaActual = new DateTime($fechaActual);
+$fechaActual = $fechaActual->format('Y-m-d H:i:s');
+
+$tiempoActual = strtotime($fechaActual);
+
+$tiempo = $tiempoActual-$tiempoInicial;
+$repeticiones = $tiempo/$tiempoCambio;
+$repeticiones = floor($repeticiones);
+if($repeticiones>1 && $ganador==null){
+    $totalDinero=$sumar*$repeticiones;
+    if($precioActual == null){
+        $totalDinero = $totalDinero + $precioInicial;
+    }else{
+        $totalDinero = $totalDinero + $precioActual;  
+    }
+    $diferenciaTiempo=$tiempoCambio*$repeticiones;
+    $tiempoAct = $tiempoInicial+$diferenciaTiempo;
+    $precioActual = $totalDinero;
+    $fechaactual = $tiempoAct;
+    $tiempoAct2 = date('Y/m/d H:i:s', $tiempoAct);
+    $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'";
+    $conn->query($update);
+    $update2= "UPDATE subastas SET fechaactual='$tiempoAct2' WHERE id='$idSubasta'";
+    $conn->query($update2);
+}
 if($ganador == null){
 if($fechaCambio == ""){
     $fecha = new DateTime($fechaInicio);
@@ -36,9 +69,6 @@ if($fechaCambio == ""){
     $fecha = $fecha->format('Y-m-d H:i:s');
 }
 
-$fechaActual = date('Y-m-d H:i:s');
-$fechaActual = new DateTime($fechaActual);
-$fechaActual = $fechaActual->format('Y-m-d H:i:s');
 
 
 if(strtotime($fechaActual) >= strtotime($fecha)){
@@ -65,7 +95,7 @@ $update= "UPDATE subastas SET precioactual='$precioActual' WHERE id='$idSubasta'
 
 		
 if ($conn->query($update) === TRUE) {
-    echo $precioActual;
+    echo 'La subasta esta en un valor de: '.$precioActual;
 } else {
     echo "Error updating record: " . $conn->error;
 }
@@ -76,9 +106,9 @@ $conn->query($update);
   
 }else{
     if($precioActual==null){
-        echo $precioInicial;
+        echo 'La subasta esta en un valor de: '.$precioInicial;
     }else{
-        echo $precioActual;
+        echo 'La subasta esta en un valor de: '.$precioActual;
     }
 }
 }else{

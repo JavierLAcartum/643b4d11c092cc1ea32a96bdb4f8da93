@@ -26,7 +26,7 @@ function Login()
 	$tipoUser = '';
 	$idUser = '';
 	if ($result->num_rows == 1) {
-		echo $result->num_rows;
+		//echo $result->num_rows;
 		$row = $result->fetch_assoc();
 		$tipoUser = $row['tipo'];
 		$idUser = $row['id'];
@@ -85,8 +85,11 @@ function Registro(){
 	$result = $conn->query($select);
 	
 	if ($result->num_rows == 1) {
-		
-		echo "Ya existe alguien registrado con ese nombre de usuario.";
+		?>
+			<script type="text/javascript">
+				alert('Ya existe alguien registrado con ese nombre de usuario');
+			</script>
+			<?php
 		return false;
 		
 	}else{
@@ -106,7 +109,7 @@ function Registro(){
             
 			return true;
 		} else {
-			echo "Error updating record: " . $conn->error;
+			//echo "Error updating record: " . $conn->error;
 			return false;
 		}
 	}
@@ -167,7 +170,7 @@ if(isset($_POST['registro']))
         <div id="header">
 
           <!-- Login -->
-			<a class="active">
+			<a id="inicio" class="active">
 				<form id='login' class="input-list style-4 clearfix" action='index.php' method='post' accept-charset='UTF-8'>
 					<input type='text' name='username' id='username' placeholder="Usuario" maxlength="20" style="width:100px; margin-top: 50px;" required />
 					<input type='password' name='password' id='password' placeholder="Password" maxlength="20" style="width:100px;" required />
@@ -192,6 +195,41 @@ if(isset($_POST['registro']))
 						<?php
 				}
 			?>
+
+			</br>
+			<a href="#about" class="btn btn-circle page-scroll">
+                    <i style="text-align: center; font-family:'Segoe UI'; font-size: 13px;" class="fa fa-angle-double-down animated"> AYUDA</i>
+            </a>
+
+
+            <section style="margin-top: 500px;" id="about" class="container content-section text-center">
+            	<div class="row">
+            		<div class="col-lg-8 col-lg-offset-2">
+				        <h2 style="font-size: 30px;">Ayuda</h2>
+				        <p>Bienvenido a nuestra página de subastas. En ella dispondrá de diversas opciones que se van a enumerar a continuación:</p>
+				        <p>En primer lugar, puede registrarse si no dispone de una cuenta. Sólo debe rellenar los campos requeridos.
+				        </p>
+				        <p>En caso de tener ya una cuenta creada, en el botón de 'Log in' le permitirá acceder a ella. Una vez logeado, pueden darse 3 tipos diferentes de usuario:
+				        </p>
+				        </br>
+				        <p> El <u>administrador</u>, tiene la opción de dar de alta otro administrador o un subastador, y de ver el log. Para crear un nuevo usuario, deben rellenarse todos los campos. Para consultar el log, se podrán filtrar las búsquedas.
+				        </p>
+				        <p> El <u>subastador</u>, tiene las opciones de subir un producto, crear un lote, borrarlos, y crear una subasta, teniendo al menos 2 productos subidos. Para subir un producto o lote, será necesario rellenar una serie de campos. A su vez, puede ver las pujas realizadas en sus subastas.
+				        </p>
+				        <p> El <u>postor</u>, puede ver el historial de subastas.
+				        </p>
+				        </br>
+				        <p> Cada página dispone de un botón de 'Volver', para regresar a la página principal del usuario, o al index. A su vez, los usuarios tienen en todo momento un botón de cerrar sesión. Para poder ver la página de inicio, no se puede estar logeado.
+				        </p>
+				    </div>
+				</div>
+		    </section>
+		    </br>
+			<a href="#inicio" class="btn btn-circle page-scroll">
+                    <i style="text-align: center; font-family:'Segoe UI'; font-size: 13px;" class="fa fa-angle-double-down animated"> Volver arriba</i>
+            </a>
+
+
         </div>
         <!-- end #header -->
 
@@ -203,7 +241,7 @@ if(isset($_POST['registro']))
 				<?php
 					if(!isset($_GET['page'])){
 						?>
-							<table style="width:100%; padding: 30px; margin-top: 390px; font-family:'Segoe UI'; font-weight: bold;">
+							<table style="width:100%; padding: 30px; margin-top: 450px; font-family:'Segoe UI'; font-weight: bold;">
 							    <tr>
 							        <td style="width: 250px; text-align: center;">TIPO</td>
 							        <td style="width: 100px; text-align: center;">ID</td>
@@ -229,7 +267,7 @@ if(isset($_POST['registro']))
 
 
 		<!-- Pie de pagina -->
-            <div id="footer">
+            <div style="margin-top: 850px;" id="footer">
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
                 <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -

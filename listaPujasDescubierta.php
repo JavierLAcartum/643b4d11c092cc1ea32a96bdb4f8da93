@@ -32,8 +32,8 @@ function crearTabla(){
                 </tr>
             </table>
                 
-        <?php}       
-    
+        <?php       
+        }
     }else{
         echo "";
         ?>
@@ -46,3 +46,6 @@ function crearTabla(){
 
 crearTabla();
 ?>
+
+
+
