@@ -259,6 +259,8 @@
 			}
 			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
+			
+			$conn = new mysqli("localhost", "643b4d11c092cc1e", "sekret", "643b4d11c092cc1ea32a96bdb4f8da93");
 			//Subasta finalizada, mostrar ganador
 			?>
 				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
@@ -274,7 +276,7 @@
 				$posicionFecha = 4;
 				?>
 					<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
-					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, cuya id es <?php echo sacarIdPuja($idSubasta); ?> </label> </td>
+					<td><label style="text-align: center; margin-left: 1px; font-family:'Segoe UI'; font-size: 15px; font-weight: bold;"> La puja ganadora de esta subasta es de: <?php echo valorMinimoRR($idSubasta, $fechacierre); ?> euros, realizada por el usuario <?php echo userPujador(sacarIdPuja($idSubasta), $conn); ?> </label> </td>
 					</table>
 				<?php
                 escribirLogGanador($conn, $idSubasta, $fechacierre);
@@ -307,6 +309,19 @@
                     
      }
     //fin de para el log
+	
+		function userPujador($idPuja, $conn){
+        $selectPujas = "SELECT idpostor FROM pujas WHERE id='$idPuja'";
+        $resultPujas= $conn->query($selectPujas);
+        $row=$resultPujas->fetch_assoc();
+        $idPostor = $row['idpostor'];
+        $selectUser = "SELECT usuario FROM usuarios WHERE id='$idPostor'";
+        $resultUser= $conn->query($selectUser);
+        $row=$resultUser->fetch_assoc();
+        $user= $row['usuario'];
+        
+        return $user;	
+	}
 	
 	function haPujado_SI_NO($idSubasta){
 
@@ -392,6 +407,7 @@
             
         }
     }
+	
 
     function escribirLogNoPujas($conn, $idSubasta, $fechacierre){
         
