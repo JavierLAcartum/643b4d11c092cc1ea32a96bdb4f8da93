@@ -1,4 +1,6 @@
 <?php
+
+
 if(isset($_GET['id'])){
     $idSubasta = $_GET['id'];
 }
@@ -126,5 +128,8 @@ $conn->query($update);
     $row = $result->fetch_assoc();
     $user = $row['usuario'];
     echo 'El usuario '.$user.' ha ganado la subasta con un valor de '.$valor.'.';
+    
+    
+    
 }
 ?>

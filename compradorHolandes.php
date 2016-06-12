@@ -1,4 +1,5 @@
 <?php
+include("escribirLog.php");
 function RedirectToURL($url, $tiempo)
 {
 	header("Refresh: $tiempo, URL=$url");
@@ -35,6 +36,35 @@ if ($conn->query($select) === TRUE) {
     $idPuja = $row['id'];   
     $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
     $conn->query($update);
+    
+    //escribir en el log
+    $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .$valor. "€.'";
+    $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+    if($resultQueryFinSubasta->num_rows == 0){
+        $queryNombreUsuario= ("SELECT usuario FROM usuarios WHERE id ='$idUser'");
+        $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+        $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+		$nombreUsuario = $rowNombreUsuario['usuario'];
+       
+        $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
+        $resultNombreProd = $conn->query( $queryBuscarProd);
+        if($resultNombreProd->num_rows > 0){
+            $rowNombreProd = $resultNombreProd->fetch_assoc();
+            $idprod = $rowNombreProd['id'];
+            escribirLog("Puja de ".$valor." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta, $idprod, "NULL", $idPuja);
+            escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valor."€.", $idUser, $idSubasta, $idprod, "NULL", $idPuja);
+            escribirLog("La subasta ".$idSubasta." ha finalizado.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+        }else{
+            $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
+            $resultNombreLote = $conn->query( $queryBuscarLote);
+            $rowNombreLote = $resultNombreLote->fetch_assoc();
+            $idlote = $rowNombreLote['id'];
+            escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valor."€.", $idUser, $idSubasta, "NULL", $idlote, $idPuja);
+        }
+
+    }
+    //fin de escribir en el log
+    
     RedirectToURL("subastaHolandesa.php?id=$idSubasta", 0);
 
 $update= "UPDATE subastas SET idpujaganadora='$idPuja' WHERE id='$idSubasta'";
