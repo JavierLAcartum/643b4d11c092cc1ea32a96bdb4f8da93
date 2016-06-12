@@ -234,7 +234,7 @@
 			}else{
 				echo "";
 				?>
-					<label style="margin-left: 470px; margin-top:600px; font-family:'Segoe UI'; font-size: 20px;"> No existen subastas actualmente </label>
+					<label style="margin-left: 550px; margin-top:600px; font-family:'Segoe UI'; font-size: 20px;"> No existen subastas actualmente </label>
 				<?php
 			}
 	}
