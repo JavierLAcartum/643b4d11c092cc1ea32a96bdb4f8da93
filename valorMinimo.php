@@ -86,15 +86,15 @@
        $row=$result->fetch_assoc();
        $tipoSubasta = $row['tipo'];
        $precio = $row['precioinicial'];
-<<<<<<< HEAD
+
 	     $idPujaRetorno;
        $select = "SELECT cantidad, id FROM pujas WHERE idsubasta='$idSubasta'";
 	     $result = $conn->query($select);
-=======
+
 	   $idPujaRetorno;
        $select = "SELECT cantidad, id FROM pujas WHERE idsubasta='$idSubasta'";
 	   $result = $conn->query($select);
->>>>>>> origin/master
+¡
         if ($result->num_rows> 0) {
             
             while( $row=$result->fetch_assoc()){
