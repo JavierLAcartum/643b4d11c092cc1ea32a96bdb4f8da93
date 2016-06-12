@@ -185,7 +185,7 @@
 			?>
 				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
 			<?php
-			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			$resultado = valorMinimoRR($idSubasta, $fechacierre);
 			if($resultado==false){
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
@@ -261,7 +261,7 @@
 			?>
 				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
 			<?php
-			$resultado = valorMinimoRR($idSubasta, $fechasegundapuja);
+			$resultado = valorMinimoRR($idSubasta, $fechacierre);
 			if($resultado==false){
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
