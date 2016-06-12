@@ -116,6 +116,16 @@
 
 				</table>
 
+
+				<table style="width:100%; padding: 10px; padding-left: 15px; margin-top: 70px; font-family:'Segoe UI'; font-weight: bold;">
+	                <tr>
+	                	<td style="width: 100px; text-align: center;">Usuario</td>
+	                    <td style="width: 100px; text-align: center;">Fecha inicio</td>
+	                    <td style="width: 100px; text-align: center;">Segunda fecha</td>
+	                    <td style="width: 135px; text-align: center;">Fecha cierre</td>
+	                </tr>
+				</table>
+
 			<script type="text/javascript">
 			
 			var anterior = "";
@@ -167,7 +177,6 @@
 							alert('Usuario Puja Correcta');
 						</script>
 						<?php
-						echo "";
 					}
 			
 	}
@@ -189,7 +198,6 @@
 							alert('Usuario Puja Correcta');
 						</script>
 						<?php
-						echo "";
 					} else {
 					   // echo "Error updating record: " . $conn->error;
 					}
@@ -199,7 +207,6 @@
 							alert('La puja tiene un valor incorrecto!');
 						</script>
 					<?php
-					echo "";
 				}
 			}else if($tipoSubasta==12){
 				//COMO ES DESCENDENTE TENEMOS QUE COMPROBAR QUE ES MENOR QUE LA PUJA ACTUAL MAS BAJA
@@ -214,7 +221,6 @@
 							alert('Usuario Puja Correcta');
 						</script>
 						<?php
-						echo "";
 					} else {
 					   // echo "Error updating record: " . $conn->error;
 					}
@@ -224,12 +230,11 @@
 							alert('La puja tiene un valor incorrecto!');
 						</script>
 					<?php
-					echo "";
 				}
 			}
 	}
 	?>
-	<div id="contenido" style="border:solid;"></div>
+	<div id="contenido" style="border: 1px solid;"></div>
 	<?php
 			
 ?>
