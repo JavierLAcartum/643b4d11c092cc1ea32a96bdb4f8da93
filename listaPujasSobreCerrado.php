@@ -32,11 +32,13 @@ function visualizarPujas(){
 			$resultPujas = $conn->query($selectPujas);
 		}
 		
-		?>
-		<table style="width:100%; margin-top: 500px; padding: 15px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
-		<?php
 		
+	
 		if ($resultPujas->num_rows > 0){
+
+			?>
+			<table style="width:100%; margin-top: 500px; padding: 15px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+			<?php
 		
 			$tabla='<table><tr><td>ID Puja</td><td>Fecha</td><td>Cantidad</td></tr>';
 			while($rowPuja= $resultPujas->fetch_assoc()) {
@@ -64,7 +66,6 @@ function visualizarPujas(){
 		</table>
 		<?php
 		}
-		
 		else{
 			echo "";
 			 ?>
