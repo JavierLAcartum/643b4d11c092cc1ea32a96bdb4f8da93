@@ -32,6 +32,10 @@ function visualizarPujas(){
 			$resultPujas = $conn->query($selectPujas);
 		}
 		
+		?>
+		<table style="width:100%; margin-top: 500px; padding: 15px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+		<?php
+		
 		if ($resultPujas->num_rows > 0){
 		
 			$tabla='<table><tr><td>ID Puja</td><td>Fecha</td><td>Cantidad</td></tr>';
@@ -45,19 +49,22 @@ function visualizarPujas(){
 				$tabla=$tabla.'<tr><td>'.$idPuja.'</td><td>'.$fechaPuja.'</td><td>'.$cantidadPuja.'</td><tr>';
 
 				?>
-				<table style="width:100%; padding: 15px; margin-top: 550px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+				
 		                <tr>
 		                    <td style="width: 100px; text-align: center;"><?php echo $idPuja; ?></td>
 		                    <td style="width: 100px; text-align: center;"><?php echo $fechaPuja; ?></td>
 		                    <td style="width: 135px; text-align: center;"><?php echo $cantidadPuja; ?></td>
 		                </tr>
-		        </table>
+		        
 
 
 				<?php
 			}	
-			
-		}	
+			?>
+		</table>
+		<?php
+		}
+		
 		else{
 			echo "";
 			 ?>
