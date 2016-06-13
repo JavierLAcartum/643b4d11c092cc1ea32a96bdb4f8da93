@@ -155,7 +155,7 @@
         <?php
 			}else{
                 ?>
-                <label style="position: absolute; left: 515px; top: 535px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No existen logs actualmente* </label>
+                <label style="position: absolute; left: 515px; top: 435px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No existen logs actualmente* </label>
                 <?php
 			}
 	}
