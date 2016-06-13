@@ -375,7 +375,7 @@
 			?>
 			
 			<form id='pujar' action="roundRobin.php?id=<?php echo $idSubasta;?>" method='post' accept-charset='UTF-8'>
-				<input type='number' name='<?php echo $momento; ?>' id='puja' placeholder="Cantidad a pujar" step='0.01' min='0' />
+				<input style="margin-left: 550px; margin-top: 50px;" type='number' name='<?php echo $momento; ?>' id='puja' placeholder="Cantidad a pujar" step='0.01' min='0' />
 				<button name = 'pujar'> Pujar </button>	
 			</form>
 		<?php
