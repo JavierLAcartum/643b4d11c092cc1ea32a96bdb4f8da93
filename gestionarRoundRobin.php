@@ -428,11 +428,11 @@
                 $resultNombreLote = $conn->query( $queryBuscarLote);
                 $rowNombreLote = $resultNombreLote->fetch_assoc();
                 $idlote = $rowNombreLote['id'];
-<<<<<<< HEAD
+
                 escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", $idganador, $idSubasta, "NULL", idlote, sacarIdPuja($idSubasta));
-=======
+
                 escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".valorMinimoRR($idSubasta, $fechacierre)."€.", $idganador, $idSubasta, "NULL", $idlote, sacarIdPuja($idSubasta));
->>>>>>> origin/master
+
             }
             
         }
