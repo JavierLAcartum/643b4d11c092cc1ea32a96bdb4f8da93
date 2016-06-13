@@ -221,7 +221,7 @@
 				
 				if(fechaInicioDate >= fechaCierreDate){
 					
-					alert('La fecha de cierre de la subasta debe ser posterior a la de finalización');
+					alert('La fecha de cierre de la subasta debe ser posterior a la de inicio');
 					return false;
 					
 				}
