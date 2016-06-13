@@ -78,9 +78,6 @@ if(isset($_POST['salir'])){
 		<div>				
 				<?php
 				if(!isset($_GET['page'])){
-					include("listaSubastas.php");
-					crearTablaSubastas("");
-				}else{
 					?>
 					<table style="width:100%; padding: 30px; margin-top: 50px; font-family:'Segoe UI'; font-weight: bold;">
 							    <tr>
@@ -94,6 +91,9 @@ if(isset($_POST['salir'])){
 							    </tr>
 				    </table>
 					<?php
+					include("listaSubastas.php");
+					crearTablaSubastas("");
+				}else{
 					$page = $_GET['page'];
 					include("$page.php");
 				}

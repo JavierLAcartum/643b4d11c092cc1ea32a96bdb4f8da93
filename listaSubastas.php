@@ -54,7 +54,7 @@
 			return "Round Robin ascendente";
 			break;
 			case 12:
-			return "Robin Robin descendente";
+			return "Round Robin descendente";
 			break;
 			
 		}
