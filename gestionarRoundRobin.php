@@ -250,7 +250,7 @@
 					<?php
 				}
 				
-
+					?>
 						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja menor que la actual.* </label>
 					<?php
 				}else if($tipoSubasta==12){
