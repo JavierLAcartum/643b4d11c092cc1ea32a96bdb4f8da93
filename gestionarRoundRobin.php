@@ -168,11 +168,11 @@
 						?>
 							<label style="margin-left: 515px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Ha pujado <?php echo $haPujado->num_rows; ?> veces* </label>
 						<?php
-<<<<<<< HEAD
+
 						
-=======
+
 						//echo "Ha pujado ".$haPujado->num_rows." veces.";
->>>>>>> origin/master
+
 
 					}
 				}
@@ -190,20 +190,19 @@
 				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
 			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechacierre);
-<<<<<<< HEAD
+
 			if($resultado==-1){
-=======
+
 			if($resultado==false){
->>>>>>> origin/master
+
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
 				<?php
                  escribirLogNoPujas($conn, $idSubasta, $fechacierre);
 			}else{
-<<<<<<< HEAD
-=======
+
 				listaPujas($idSubasta);
->>>>>>> origin/master
+
 				$posicionFecha = 4;
 				?>
 					<table style="border: 1px solid; margin-bottom: 10px; margin-top: 10px; margin-left: 10px;">
@@ -242,7 +241,7 @@
 				$result = $conn->query($update);
 				if($tipoSubasta==11){
 					?>
-<<<<<<< HEAD
+
 						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros.* </label>
 					<?php
 				}else if($tipoSubasta==12){
@@ -251,7 +250,7 @@
 					<?php
 				}
 				
-=======
+
 						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja menor que la actual.* </label>
 					<?php
 				}else if($tipoSubasta==12){
@@ -277,7 +276,7 @@
 						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros* </label>
 					<?php
 				}
->>>>>>> origin/master
+
 			}
 			
 		}else if(strtotime($fechaActual) >= strtotime($fechacierre)){
@@ -288,11 +287,11 @@
 				<label style="margin-left: 400px; font-family:'Segoe UI'; font-size: 15px; color:white;"> *Subasta finalizada* </label>
 			<?php
 			$resultado = valorMinimoRR($idSubasta, $fechacierre);
-<<<<<<< HEAD
+
 			if($resultado==-1){
-=======
+
 			if($resultado==false){
->>>>>>> origin/master
+
 				?>
 					<label style="margin-left: 400px; font-family:'Segoe UI';"> *Nadie ha pujado en la subasta* </label>
 				<?php
