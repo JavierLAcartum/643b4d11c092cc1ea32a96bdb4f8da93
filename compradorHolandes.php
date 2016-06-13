@@ -81,9 +81,13 @@ if ($conn->query($select) === TRUE) {
             $rowNombreLote = $resultNombreLote->fetch_assoc();
             $idlote = $rowNombreLote['id'];
             if($valor == null){
+                escribirLog("La subasta ".$idSubasta." ha finalizado.", "NULL", $idSubasta, $idprod, "NULL", "NULL");
+                escribirLog("Puja de ".$valor2." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta,  "NULL", $idlote, $idPuja);
                 escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valor2."€.", $idUser, $idSubasta, "NULL", $idlote, $idPuja);
 
             }else{
+                escribirLog("La subasta ".$idSubasta." ha finalizado.", "NULL", $idSubasta, "NULL", $idlote, "NULL");
+                escribirLog("Puja de ".$valor." € realizada por: \""."$nombreUsuario"."\".", $idUser, $idSubasta,  "NULL", $idlote, $idPuja);
                 escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valor."€.", $idUser, $idSubasta, "NULL", $idlote, $idPuja);
 
             }
