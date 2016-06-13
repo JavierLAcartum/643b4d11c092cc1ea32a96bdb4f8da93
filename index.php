@@ -202,11 +202,10 @@ if(isset($_POST['registro']))
             </a>
 
 
-<<<<<<< HEAD
             <section style="margin-top: 1100px;" id="about" class="container content-section text-center">
-=======
+
             <section style="margin-top: 1100px; position: relative;" id="about" class="container content-section text-center">
->>>>>>> origin/master
+
             	<div class="row">
             		<div class="col-lg-8 col-lg-offset-2">
 				        <h2 style="font-size: 30px;">Ayuda</h2>
@@ -271,11 +270,11 @@ if(isset($_POST['registro']))
 
 
 		<!-- Pie de pagina -->
-<<<<<<< HEAD
+
             <div style="margin-top: 950px;" id="footer">
-=======
+
             <div style="margin-top: 1400px; position: relative;" id="footer">
->>>>>>> origin/master
+
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
                 <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
