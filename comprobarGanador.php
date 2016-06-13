@@ -171,8 +171,10 @@
 					}
 					
 					else{
-						
-						echo "La subasta ha finalizado sin pujas";
+						?>
+						<label style="position: absolute; left: 515px; top: 535px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *La subasta ha finalizado sin pujas* </label>
+						<?php
+						echo "";
                         //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
@@ -268,8 +270,9 @@
 							$idPuja = $rowPuja['id'];
 							$cantidadPuja = $valorPujaFinal;
 							
-							echo "El usuario ganador de la subasta es: ".userPujador($idPuja, $conn)." ";
-							echo "Con la cantidad de: ".$valorPujaFinal;
+							?>
+								<label style="position: absolute; left: 415px; top: 335px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador de la subasta es <?php echo userPujador($idPuja, $conn); ?> con la cantidad de <?php echo $valorPujaFinal; ?> euros* </label>
+							<?php
                         
                             //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .$valorPujaFinal. "€.'";
@@ -296,7 +299,9 @@
 					
 					else{
 						
-						echo "La subasta ha finalizado sin pujas";
+						?>
+						<label style="position: absolute; left: 515px; top: 535px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *La subasta ha finalizado sin pujas* </label>
+						<?php
                          //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
