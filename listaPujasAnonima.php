@@ -17,7 +17,7 @@ function crearTabla(){
             $fechasub= $row['fecha'];
             $cantidad= $row['cantidad'];
             $idpostor= $row['idpostor'];
-            $idpuja= $row['idpuja'];
+            $idpuja= $row['id'];
 
                 $tabla=$tabla.'<tr><td>'.$fechasub.'</td><td>'.$cantidad.'</td></tr>';
                 ?>
