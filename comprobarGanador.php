@@ -89,8 +89,8 @@
 								
 								array_push($arrayIdPujas, $idPuja);
 								array_push($arrayCantidadPujas, $cantidadPuja);
-								echo (count($arrayCantidadPujas));
-								echo (count($arrayIdPujas));
+								//echo (count($arrayCantidadPujas));
+								//echo (count($arrayIdPujas));
 								
 							}
 						}
@@ -101,46 +101,64 @@
                         $cantidadpujaganadora='';
                         
 						if($tipoSubasta == 7){ //De primer precio ascendente
-						echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn);
-							//La ganadora es la puja con mayor cantidad.
-							echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //Paga el precio más alto
+							?>
+							<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); ?> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-1]; ?> euros* </label> 
+							<?php
+							//La ganadora es la puja con mayor cantidad
+							//Paga el precio más alto
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             $cantidadpujaganadora=$arrayCantidadPujas[count($arrayIdPujas)-1];
 						}
 						else if($tipoSubasta == 8){ //De primer precio descendente
-						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn);
-							echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
+							?>
+							<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[0], $conn); ?> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?> euros* </label> 
+							<?php
+							//Paga el segundo precio más bajo
                             $idpujaganadora=$arrayIdPujas[0];
                             $cantidadpujaganadora=$arrayCantidadPujas[0];
 						}
 						else if($tipoSubasta == 9){ //De segundo precio ascendente
-						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); //La puja ganadora es la puja más alta
+							?>
+								<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); ?> </label> 
+							<?php
+							//La puja ganadora es la puja más alta
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             
 							
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
-								echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-2]; //Paga el segundo precio más alto
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-2]; ?>* </label> 
+								<?php
+								//Paga el segundo precio más alto
                                 $cantidadpujaganadora = $arrayCantidadPujas[count($arrayIdPujas)-2];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
-								
-								echo "Con la cantidad de: ".$arrayCantidadPujas[0];
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
 						}
 						else if($tipoSubasta == 10) { //De segundo precio descendente
-							echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn); //La puja ganadora es la puja más baja
+							?>
+								<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[0], $conn); ?> </label> 
+							<?php
+							//La puja ganadora es la puja más baja
 							$idpujaganadora = $arrayIdPujas[0];
                             
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
-								echo "Con la cantidad de: ".$arrayCantidadPujas[1]; //Paga el segundo precio más bajo
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[1]; ?>* </label> 
+								<?php
+								//Paga el segundo precio más bajo
                                 $cantidadpujaganadora = $arrayCantidadPujas[1];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
-								
-								echo "Con la cantidad de: ".$arrayCantidadPujas[0];
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
 						
@@ -149,20 +167,25 @@
 						//escribir en el log
                         $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.'";
                         $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
-                       
+                        
+                        $queryNombreUsuario= ("SELECT idpostor FROM pujas WHERE id ='$idPuja'");
+                        $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+                        $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+                        $nombreUsuario = $rowNombreUsuario['idpostor'];
+                        
                         if($resultQueryFinSubasta->num_rows == 0){
                             $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
                             $resultNombreProd = $conn->query( $queryBuscarProd);
                             if($resultNombreProd->num_rows > 0){
                                 $rowNombreProd = $resultNombreProd->fetch_assoc();
                                 $idprod = $rowNombreProd['id'];
-                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", "NULL", $idSubasta, $idprod, "NULL", $idpujaganadora);
+                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.",$nombreUsuario, $idSubasta, $idprod, "NULL", $idpujaganadora);
                             }else{
                                 $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
                                 $resultNombreLote = $conn->query( $queryBuscarLote);
                                 $rowNombreLote = $resultNombreLote->fetch_assoc();
                                 $idlote = $rowNombreLote['id'];
-                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", "NULL", $idSubasta, "NULL", $idlote, $idpujaganadora);
+                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", $nombreUsuario, $idSubasta, "NULL", $idlote, $idpujaganadora);
                             }
                         
                         }
@@ -171,8 +194,10 @@
 					}
 					
 					else{
-						
-						echo "La subasta ha finalizado sin pujas";
+						?>
+						<label style="position: absolute; left: 515px; top: 535px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *La subasta ha finalizado sin pujas* </label>
+						<?php
+						echo "";
                         //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
@@ -268,25 +293,32 @@
 							$idPuja = $rowPuja['id'];
 							$cantidadPuja = $valorPujaFinal;
 							
-							echo "El usuario ganador de la subasta es: ".userPujador($idPuja, $conn)." ";
-							echo "Con la cantidad de: ".$valorPujaFinal;
+							?>
+								<label style="position: absolute; left: 415px; top: 335px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador de la subasta es <?php echo userPujador($idPuja, $conn); ?> con la cantidad de <?php echo $valorPujaFinal; ?> euros* </label>
+							<?php
                         
                             //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .$valorPujaFinal. "€.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+                        
+                            $queryNombreUsuario= ("SELECT idpostor FROM pujas WHERE id ='$idPuja'");
+                            $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+                            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+                            $nombreUsuario = $rowNombreUsuario['idpostor'];
+                        
                             if($resultQueryFinSubasta->num_rows == 0){
                                $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
                                 $resultNombreProd = $conn->query( $queryBuscarProd);
                                 if($resultNombreProd->num_rows > 0){
                                     $rowNombreProd = $resultNombreProd->fetch_assoc();
                                     $idprod = $rowNombreProd['id'];
-                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", "NULL", $idSubasta, $idprod, "NULL", $idPuja);
+                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", $nombreUsuario, $idSubasta, $idprod, "NULL", $idPuja);
                                 }else{
                                     $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
                                     $resultNombreLote = $conn->query( $queryBuscarLote);
                                     $rowNombreLote = $resultNombreLote->fetch_assoc();
                                     $idlote = $rowNombreLote['id'];
-                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", "NULL", $idSubasta, "NULL", $idlote, $idPuja);
+                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", $nombreUsuario, $idSubasta, "NULL", $idlote, $idPuja);
                                 }
                         
                             }
@@ -296,7 +328,9 @@
 					
 					else{
 						
-						echo "La subasta ha finalizado sin pujas";
+						?>
+						<label style="position: absolute; left: 515px; top: 535px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *La subasta ha finalizado sin pujas* </label>
+						<?php
                          //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La subasta ".$idSubasta." ha finalizado sin pujas.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);

@@ -48,9 +48,24 @@ $totalDinero;
 if($repeticiones>1 && $ganador==null && strtotime($fechaActual) <= strtotime($fechaFin)){
     $totalDinero=$repeticiones*$sumar;
     if($precioActual == ""){
+        if($tipoSubasta == 5){
         $totalDinero = $totalDinero + $precioInicial;
+        }else if($tipoSubasta == 6){
+            $totalDinero = $precioInicial - $totalDinero;
+            if($totalDinero<1){
+                $totalDinero = 1;
+            }
+        }
     }else{
-        $totalDinero = $totalDinero + $precioActual;  
+        if($tipoSubasta == 5){
+            $totalDinero = $totalDinero + $precioActual;  
+        }else if($tipoSubasta == 6){
+            $totalDinero = $precioActual - $totalDinero;
+             if($totalDinero<1){
+                $totalDinero = 1;
+            }
+
+        }
     }
     $diferenciaTiempo=$tiempoCambio*$repeticiones;
     $tiempoAct = $tiempoInicial+$diferenciaTiempo;
@@ -90,6 +105,9 @@ if($precioActual==null){
     }else if($tipoSubasta == 6){
         if($precioInicial-$sumar>0){
             $precioActual = $precioInicial-$sumar;
+            if($precioActual<0){
+                $precioActual=1;
+            }
         }
     }
    
@@ -99,6 +117,9 @@ if($precioActual==null){
     }else if($tipoSubasta == 6){
         if($precioActual-$sumar>0){
             $precioActual = $precioActual-$sumar;
+            if($precioActual<0){
+                $precioActual=1;
+            }
         }
     }
 }
