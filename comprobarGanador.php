@@ -149,20 +149,25 @@
 						//escribir en el log
                         $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.'";
                         $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
-                       
+                        
+                        $queryNombreUsuario= ("SELECT idpostor FROM pujas WHERE id ='$idPuja'");
+                        $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+                        $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+                        $nombreUsuario = $rowNombreUsuario['idpostor'];
+                        
                         if($resultQueryFinSubasta->num_rows == 0){
                             $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
                             $resultNombreProd = $conn->query( $queryBuscarProd);
                             if($resultNombreProd->num_rows > 0){
                                 $rowNombreProd = $resultNombreProd->fetch_assoc();
                                 $idprod = $rowNombreProd['id'];
-                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", "NULL", $idSubasta, $idprod, "NULL", $idpujaganadora);
+                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.",$nombreUsuario, $idSubasta, $idprod, "NULL", $idpujaganadora);
                             }else{
                                 $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
                                 $resultNombreLote = $conn->query( $queryBuscarLote);
                                 $rowNombreLote = $resultNombreLote->fetch_assoc();
                                 $idlote = $rowNombreLote['id'];
-                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", "NULL", $idSubasta, "NULL", $idlote, $idpujaganadora);
+                                escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$cantidadpujaganadora."€.", $nombreUsuario, $idSubasta, "NULL", $idlote, $idpujaganadora);
                             }
                         
                         }
@@ -277,19 +282,25 @@
                             //escribir en el log
                             $queryFinSubasta = "SELECT * FROM log WHERE descripcion = 'La puja ganadora de la subasta "  .$idSubasta.  " es " .$valorPujaFinal. "€.'";
                             $resultQueryFinSubasta = $conn ->query($queryFinSubasta);
+                        
+                            $queryNombreUsuario= ("SELECT idpostor FROM pujas WHERE id ='$idPuja'");
+                            $resultNombreUsuario = $conn->query( $queryNombreUsuario);
+                            $rowNombreUsuario = $resultNombreUsuario->fetch_assoc();
+                            $nombreUsuario = $rowNombreUsuario['idpostor'];
+                        
                             if($resultQueryFinSubasta->num_rows == 0){
                                $queryBuscarProd = "SELECT id FROM productos WHERE idsubasta='$idSubasta' ";
                                 $resultNombreProd = $conn->query( $queryBuscarProd);
                                 if($resultNombreProd->num_rows > 0){
                                     $rowNombreProd = $resultNombreProd->fetch_assoc();
                                     $idprod = $rowNombreProd['id'];
-                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", "NULL", $idSubasta, $idprod, "NULL", $idPuja);
+                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", $nombreUsuario, $idSubasta, $idprod, "NULL", $idPuja);
                                 }else{
                                     $queryBuscarLote= "SELECT id FROM lotes WHERE idsubasta='$idSubasta' ";
                                     $resultNombreLote = $conn->query( $queryBuscarLote);
                                     $rowNombreLote = $resultNombreLote->fetch_assoc();
                                     $idlote = $rowNombreLote['id'];
-                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", "NULL", $idSubasta, "NULL", $idlote, $idPuja);
+                                    escribirLog("La puja ganadora de la subasta ".$idSubasta." es ".$valorPujaFinal."€.", $nombreUsuario, $idSubasta, "NULL", $idlote, $idPuja);
                                 }
                         
                             }
