@@ -32,7 +32,13 @@ function visualizarPujas(){
 			$resultPujas = $conn->query($selectPujas);
 		}
 		
+		
+	
 		if ($resultPujas->num_rows > 0){
+
+			?>
+			<table style="width:100%; margin-top: 500px; padding: 15px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+			<?php
 		
 			$tabla='<table><tr><td>ID Puja</td><td>Fecha</td><td>Cantidad</td></tr>';
 			while($rowPuja= $resultPujas->fetch_assoc()) {
@@ -45,23 +51,38 @@ function visualizarPujas(){
 				$tabla=$tabla.'<tr><td>'.$idPuja.'</td><td>'.$fechaPuja.'</td><td>'.$cantidadPuja.'</td><tr>';
 
 				?>
+<<<<<<< HEAD
 				<table style="width:100%; padding: 15px; margin-top: 550px; position: absolute; font-family:'Segoe UI'; border: 1px solid black;">
+=======
+				
+>>>>>>> origin/master
 		                <tr>
 		                    <td style="width: 100px; text-align: center;"><?php echo $idPuja; ?></td>
 		                    <td style="width: 100px; text-align: center;"><?php echo $fechaPuja; ?></td>
 		                    <td style="width: 135px; text-align: center;"><?php echo $cantidadPuja; ?></td>
 		                </tr>
+<<<<<<< HEAD
 		        </table>
+=======
+		        
+>>>>>>> origin/master
 
 
 				<?php
 			}	
+<<<<<<< HEAD
 			
 		}	
+=======
+			?>
+		</table>
+		<?php
+		}
+>>>>>>> origin/master
 		else{
 			echo "";
 			 ?>
-            	<label style="position: absolute; margin-left: 515px; margin-top: 435px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No ha realizado ninguna puja* </label> 
+            	<label style="position: absolute; margin-left: 515px; margin-top: 375px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *No ha realizado ninguna puja* </label> 
         	<?php
 		}
 			

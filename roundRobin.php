@@ -64,6 +64,10 @@
 
 	    		<table style="width:100%; padding: 10px; padding-left: 15px; margin-top: 130px; font-family:'Segoe UI'; font-weight: bold;">
 	                <tr>
+<<<<<<< HEAD
+=======
+	                	<td style="width: 135px; text-align: center;">ID SUBASTA</td>
+>>>>>>> origin/master
 	                    <td style="width: 135px; text-align: center;">SUBASTADOR</td>
 	                    <td style="width: 130px; text-align: center;">LOTE/PRODUCTO</td>
 	                    <td style="width: 150px; text-align: center;">DESCRIPCIÓN</td>
@@ -73,6 +77,10 @@
 
 	            <table style="width:100%; padding: 10px; padding-left: 15px; margin-top: 0px; margin-bottom: 10px; font-family:'Segoe UI';">
 
+<<<<<<< HEAD
+=======
+	            <td style="width: 135px; text-align: center;"> <?php echo $idSubasta; ?> </td>
+>>>>>>> origin/master
 					<td style="width: 135px; text-align: center;"> <?php echo $nombre." ".$apellidos; ?> </td>
 
 					<?php

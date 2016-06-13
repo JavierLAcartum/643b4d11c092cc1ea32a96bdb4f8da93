@@ -20,12 +20,15 @@ SET time_zone = "+00:00";
 -- Base de datos: `643b4d11c092cc1ea32a96bdb4f8da93`
 --
 
+<<<<<<< HEAD
 drop database if exists 643b4d11c092cc1ea32a96bdb4f8da93;
 
 create database 643b4d11c092cc1ea32a96bdb4f8da93;
 
 grant all on 643b4d11c092cc1ea32a96bdb4f8da93.* to '643b4d11c092cc1e'@'localhost' identified by 'sekret';
 
+=======
+>>>>>>> origin/master
 USE `643b4d11c092cc1ea32a96bdb4f8da93` ;
 
 
