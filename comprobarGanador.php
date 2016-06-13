@@ -89,8 +89,8 @@
 								
 								array_push($arrayIdPujas, $idPuja);
 								array_push($arrayCantidadPujas, $cantidadPuja);
-								echo (count($arrayCantidadPujas));
-								echo (count($arrayIdPujas));
+								//echo (count($arrayCantidadPujas));
+								//echo (count($arrayIdPujas));
 								
 							}
 						}
