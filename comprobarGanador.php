@@ -101,46 +101,64 @@
                         $cantidadpujaganadora='';
                         
 						if($tipoSubasta == 7){ //De primer precio ascendente
-						echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn);
-							//La ganadora es la puja con mayor cantidad.
-							echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-1]; //Paga el precio más alto
+							?>
+							<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); ?> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-1]; ?> euros* </label> 
+							<?php
+							//La ganadora es la puja con mayor cantidad
+							//Paga el precio más alto
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             $cantidadpujaganadora=$arrayCantidadPujas[count($arrayIdPujas)-1];
 						}
 						else if($tipoSubasta == 8){ //De primer precio descendente
-						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn);
-							echo "Con la cantidad de: ".$arrayCantidadPujas[0]; //Paga el segundo precio más bajo
+							?>
+							<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[0], $conn); ?> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?> euros* </label> 
+							<?php
+							//Paga el segundo precio más bajo
                             $idpujaganadora=$arrayIdPujas[0];
                             $cantidadpujaganadora=$arrayCantidadPujas[0];
 						}
 						else if($tipoSubasta == 9){ //De segundo precio ascendente
-						  echo "El usuario ganador es: ".userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); //La puja ganadora es la puja más alta
+							?>
+								<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[count($arrayIdPujas)-1], $conn); ?> </label> 
+							<?php
+							//La puja ganadora es la puja más alta
                             $idpujaganadora=$arrayIdPujas[count($arrayIdPujas)-1];
                             
 							
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
-								echo "Con la cantidad de: ".$arrayCantidadPujas[count($arrayIdPujas)-2]; //Paga el segundo precio más alto
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-2]; ?>* </label> 
+								<?php
+								//Paga el segundo precio más alto
                                 $cantidadpujaganadora = $arrayCantidadPujas[count($arrayIdPujas)-2];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
-								
-								echo "Con la cantidad de: ".$arrayCantidadPujas[0];
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
 						}
 						else if($tipoSubasta == 10) { //De segundo precio descendente
-							echo "El usuario ganador es: ".userPujador($arrayIdPujas[0], $conn); //La puja ganadora es la puja más baja
+							?>
+								<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> *El usuario ganador es <?php echo userPujador($arrayIdPujas[0], $conn); ?> </label> 
+							<?php
+							//La puja ganadora es la puja más baja
 							$idpujaganadora = $arrayIdPujas[0];
                             
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
-								echo "Con la cantidad de: ".$arrayCantidadPujas[1]; //Paga el segundo precio más bajo
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[1]; ?>* </label> 
+								<?php
+								//Paga el segundo precio más bajo
                                 $cantidadpujaganadora = $arrayCantidadPujas[1];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
-								
-								echo "Con la cantidad de: ".$arrayCantidadPujas[0];
+								?>
+									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
 						
