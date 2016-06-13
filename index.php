@@ -202,7 +202,7 @@ if(isset($_POST['registro']))
             </a>
 
 
-            <section style="margin-top: 1100px;" id="about" class="container content-section text-center">
+            <section style="margin-top: 1100px; position: absolute;" id="about" class="container content-section text-center">
             	<div class="row">
             		<div class="col-lg-8 col-lg-offset-2">
 				        <h2 style="font-size: 30px;">Ayuda</h2>
@@ -225,7 +225,7 @@ if(isset($_POST['registro']))
 				</div>
 		    </section>
 		    </br>
-			<a href="#inicio" class="btn btn-circle page-scroll">
+			<a href="#inicio" class="btn btn-circle page-scroll" style="margin-top: 1600px; position: absolute;">
                     <i style="text-align: center; font-family:'Segoe UI'; font-size: 13px;" class="fa fa-angle-double-down animated"> Volver arriba</i>
             </a>
 
@@ -267,7 +267,7 @@ if(isset($_POST['registro']))
 
 
 		<!-- Pie de pagina -->
-            <div style="margin-top: 950px;" id="footer">
+            <div style="margin-top: 1100px; position: absolute;" id="footer">
                 <a href="mailto:atercf00@estudiantes.unileon.es">atercf00@estudiantes.unileon.es</a> -
                 <a href="mailto:jlezaa00@estudiantes.unileon.es">jlezaa00@estudiantes.unileon.es</a> -
                 <a href="mailto:rsierv00@estudiantes.unileon.es">rsierv00@estudiantes.unileon.es</a> -
