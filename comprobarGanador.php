@@ -128,14 +128,14 @@
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
 								?>
-									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-2]; ?>* </label> 
+									<label style="position: absolute; left: 435px; top: 410px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[count($arrayIdPujas)-2]; ?>* </label> 
 								<?php
 								//Paga el segundo precio más alto
                                 $cantidadpujaganadora = $arrayCantidadPujas[count($arrayIdPujas)-2];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
 								?>
-									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+									<label style="position: absolute; left: 435px; top: 410px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
 								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
@@ -150,14 +150,14 @@
 							//Comprobar que hay más de una puja
 							if(count($arrayIdPujas) >=2){
 								?>
-									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[1]; ?>* </label> 
+									<label style="position: absolute; left: 435px; top: 410px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[1]; ?>* </label> 
 								<?php
 								//Paga el segundo precio más bajo
                                 $cantidadpujaganadora = $arrayCantidadPujas[1];
 							}
 							else{ //Si no hay más pujas paga lo que él haya pujado
 								?>
-									<label style="position: absolute; left: 435px; top: 400px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
+									<label style="position: absolute; left: 435px; top: 410px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold; "> con la cantidad de <?php echo $arrayCantidadPujas[0]; ?>* </label> 
 								<?php
                                 $cantidadpujaganadora = $arrayCantidadPujas[0];
 							}
