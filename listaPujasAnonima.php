@@ -9,7 +9,7 @@ function crearTabla(){
         session_start();
     }
     
-    $select = "SELECT fecha, cantidad, idpostor FROM pujas WHERE idsubasta='$idSubasta'";
+    $select = "SELECT fecha, cantidad, idpostor, id FROM pujas WHERE idsubasta='$idSubasta'";
     $result = $conn->query($select);
     if($result->num_rows>0){
         $tabla='<table><tr><td>Fecha</td><td>Puja</td></tr>';
@@ -17,12 +17,16 @@ function crearTabla(){
             $fechasub= $row['fecha'];
             $cantidad= $row['cantidad'];
             $idpostor= $row['idpostor'];
+            $idpuja= $row['idpuja'];
+
                 $tabla=$tabla.'<tr><td>'.$fechasub.'</td><td>'.$cantidad.'</td></tr>';
                 ?>
                     <table style="width:100%; padding: 15px; margin-top: 10px; font-family:'Segoe UI'; border: 1px solid black;">
                         <tr>
+                            <td style="width: 100px; text-align: center;"> <?php echo $idpuja; ?> </td>
                             <td style="width: 100px; text-align: center;"> <?php echo $fechasub; ?> </td>
                             <td style="width: 135px; text-align: center;"> <?php echo $cantidad; ?> </td>
+                            <td style="width: 100px; text-align: center;">  </td>
                         </tr>
                     </table>
 
