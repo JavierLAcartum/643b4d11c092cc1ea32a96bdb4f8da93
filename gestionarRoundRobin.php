@@ -107,12 +107,12 @@
 				$result = $conn->query($update);
 				if($tipoSubasta==11){
 					?>
-					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
+					<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora en la primera ronda es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros.* </label>
 				<?php
 				}else if($tipoSubasta==12){
 					echo "<br>";
 					?>
-						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora hasta el momento es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros. Puede realizar otra única puja mayor que la actual.* </label>
+						<label style="margin-left: 115px; margin-top: 10px; font-family:'Segoe UI'; font-size: 13px; font-weight: bold;"> *La puja ganadora en la primera ronda es de: <?php echo cantidadSegundaPuja($idSubasta); ?> euros.* </label>
 					<?php
 				}
 				
